@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #020103;
+      --card-glass: rgba(18, 7, 13, 0.85);
+      --card-border: rgba(225, 29, 72, 0.3);
+      --card-border-glow: rgba(251, 113, 133, 0.65);
+      
+      --red-flame: #fb7185;
+      --red-vivid: #e11d48;
+      --red-crimson: #881337;
+      
+      --text-white: #ffffff;
+      --text-subtle: #cbd5e1;
+      --gold-spiritual: #fef08a;
+
+      --card-red-gradient: linear-gradient(135deg, #991b1b 0%, #7f1d1d 50%, #4c0519 100%);
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      background-color: var(--bg-canvas);
+      color: var(--text-white);
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .spiritual-ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 50% -10%, rgba(225, 29, 72, 0.22) 0%, transparent 60%),
+        radial-gradient(circle at 90% 85%, rgba(136, 19, 55, 0.26) 0%, transparent 55%),
+        radial-gradient(circle at 10% 75%, rgba(153, 27, 27, 0.18) 0%, transparent 50%);
+    }
+
+    .particles-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(254, 240, 138, 0.6);
+      border-radius: 50%;
+      animation: floatUp 8s infinite linear;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 10;
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 20px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .apple-glass-card {
+      width: 100%;
+      background: var(--card-glass);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 12px 14px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .apple-glass-card:hover {
+      border-color: var(--card-border-glow);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+    }
+
+    .apple-glass-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red-flame), transparent);
+      border-radius: 18px 18px 0 0;
+    }
+
+    .mourning-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #ffe4e6;
+      background: rgba(136, 19, 55, 0.7);
+      border: 1px solid rgba(251, 113, 133, 0.45);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .mourning-badge span.pulse-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--red-flame);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--red-flame);
+    }
+
+    .hero-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.4px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-desc {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      line-height: 1.5;
+      text-align: justify;
+      text-align-last: center;
+      margin-bottom: 8px;
+    }
+
+    .countdown-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+    }
+
+    .countdown-box {
+      background: rgba(35, 8, 16, 0.75);
+      border: 1px solid rgba(251, 113, 133, 0.3);
+      border-radius: 10px;
+      padding: 6px 2px;
+      text-align: center;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .countdown-number {
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: var(--gold-spiritual);
+      display: block;
+      font-family: monospace;
+    }
+
+    .countdown-label {
+      font-size: 0.62rem;
+      color: #fda4af;
+      font-weight: 700;
+      margin-top: 1px;
+      display: block;
+    }
+
+    .salavat-title {
+      font-size: 1rem;
+      font-weight: 850;
+      color: var(--gold-spiritual);
+      margin-bottom: 4px;
+    }
+
+    .salavat-counter-display {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      font-family: monospace;
+      margin-bottom: 6px;
+      text-shadow: 0 0 15px rgba(225, 29, 72, 0.6);
+    }
+
+    .salavat-desc {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .salavat-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #e11d48 0%, #881337 100%);
+      border: 1px solid var(--red-flame);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(225, 29, 72, 0.45);
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .salavat-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(225, 29, 72, 0.7);
+    }
+
+    .salavat-btn:disabled {
+      background: rgba(60, 15, 25, 0.8);
+      border-color: rgba(251, 113, 133, 0.2);
+      color: #fca5a5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .card-container {
+      width: 380px;
+      height: 240px;
+      perspective: 1000px;
+      cursor: pointer;
+      margin: 4px auto;
+      position: relative;
+      user-select: none;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform-origin: 50% 50%;
+      transition: transform 0.65s cubic-bezier(0.3, 0.7, 0.2, 1);
+      will-change: transform;
+    }
+
+    .card-container.is-flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-side {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95);
+      background: var(--card-red-gradient);
+    }
+
+    .card-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      z-index: 2;
+    }
+
+    .front-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .blu-logo-text {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .card-spiritual-calligraphy {
+      margin: auto 0;
+      text-align: right;
+    }
+
+    .spiritual-line-1 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--gold-spiritual);
+      display: block;
+      margin-bottom: 4px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .spiritual-line-2 {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #f3f4f6;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .front-bottom {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+
+    .front-chip-mini {
+      width: 44px;
+      height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #fef08a 0%, #ca8a04 100%);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      z-index: 1;
+    }
+
+    .mag-stripe {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: #150306;
+    }
+
+    .card-back-content {
+      position: absolute;
+      inset: 0;
+      padding: 85px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .holder-name-block {
+      color: #fca5a5;
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-align: right;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .pan-numbers-block {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      direction: ltr;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: #fef08a;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .saman-logo-block {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      direction: ltr;
+    }
+
+    .saman-text {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #fca5a5;
+    }
+
+    .saman-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #fca5a5;
+    }
+
+    @media (max-width: 600px) {
+      .card-container {
+        width: 255px;
+        height: 405px;
+        margin-bottom: 10px;
+      }
+      .card-front { padding: 22px 20px; }
+      .card-spiritual-calligraphy { margin: 30px 0; }
+      .spiritual-line-1 { font-size: 1.05rem; }
+      .spiritual-line-2 { font-size: 0.85rem; margin-top: 6px; }
+      .mag-stripe { top: 0; bottom: 0; left: 19px; right: auto; width: 42px; height: 100%; }
+      .card-back-content { padding: 0; top: 0; bottom: 0; left: 72px; right: 18px; display: flex; flex-direction: column; justify-content: flex-start; direction: rtl; }
+      .holder-name-block { margin-top: 110px; font-size: 1.25rem; text-align: right; }
+      .pan-numbers-block { margin-top: 26px; display: flex; flex-direction: column; gap: 3px; direction: ltr; }
+      .pan-numbers-block span { font-size: 1.45rem; text-align: left; }
+      .saman-logo-block { margin-top: auto; margin-bottom: 22px; }
+    }
+
+    .card-actions-wrapper {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 380px;
+      justify-content: center;
+    }
+
+    .outside-action-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: var(--red-crimson);
+      border: 1px solid var(--card-border);
+      padding: 12px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 6px 18px rgba(136, 19, 55, 0.45);
+      transition: var(--transition-smooth);
+    }
+
+    .outside-action-btn:active {
+      transform: scale(0.97);
+      background: var(--red-vivid);
+    }
+
+    .share-campaign-btn {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(136, 19, 55, 0.4);
+      border: 1px dashed rgba(251, 113, 133, 0.5);
+      color: #ffe4e6;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+    }
+
+    .share-campaign-btn:hover {
+      background: rgba(136, 19, 55, 0.7);
+      border-color: var(--red-flame);
+    }
+
+    .audio-floating-widget {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 9999;
+      background: rgba(18, 9, 12, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(251, 113, 133, 0.5);
+      border-radius: 999px;
+      padding: 8px 18px 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
+      transition: var(--transition-smooth);
+    }
+
+    .audio-floating-widget:hover {
+      transform: scale(1.03);
+    }
+
+    .audio-info-text {
+      font-size: 0.78rem;
+      color: #fda4af;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .audio-toggle-btn {
+      background: var(--red-crimson);
+      border: 1px solid var(--red-flame);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 12px rgba(136, 19, 55, 0.5);
+    }
+
+    .audio-toggle-btn:hover {
+      background: var(--red-vivid);
+    }
+
+    @media (max-width: 600px) {
+      .audio-floating-widget {
+        bottom: 20px;
+        right: 15px;
+        padding: 6px 12px 6px 10px;
+      }
+      .audio-info-text span:last-child {
+        display: none;
+      }
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 20px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid rgba(225, 29, 72, 0.25);
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo-card {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: #ffffff;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    }
+
+    .footer-logo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .snack-toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 140px);
+      opacity: 0;
+      visibility: hidden;
+      background: var(--red-vivid);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      z-index: 9999;
+      box-shadow: 0 8px 25px rgba(225, 29, 72, 0.75);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .snack-toast.active {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spiritual-ambient"></div>
+  <div class="particles-container" id="particlesContainer"></div>
+
+  <audio id="bgAudio" loop>
+    <source src="https://dl.samenaudio.com/maddahi/Fatemieh/background-roze.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="audio-floating-widget">
+    <div class="audio-info-text">
+      <span>🎧</span>
+      <span>نوای فاطمیه</span>
+    </div>
+    <button id="audioBtn" class="audio-toggle-btn" onclick="toggleAudio()">
+      <span id="audioIcon">▶</span>
+      <span id="audioText">پخش</span>
+    </button>
+  </div>
+
+  <main>
+    <div class="apple-glass-card">
+      <div class="mourning-badge">
+        <span class="pulse-dot"></span>
+        پویش هم‌عهدی ایام شهادت حضرت زهرا (س)
+      </div>
+      <h1 class="hero-title">نذر روضه و تئاتر آیینی بانوی بی‌نشان</h1>
+      <p class="hero-desc">
+        هر گوشه از این خیمه، از سیاهی پرچم‌ها تا قطره‌های اشک تماشاگران صحنه، با دل‌های باصفای شما روشن است. قدم بر چشم ما گذاشته‌اید؛ برکت حضور و یاری شما صرف دکور، روشنایی صحنه، دوخت لباس‌ها و پذیرایی از عزاداران حضرت صدیقه طاهره (س) می‌شود.
+      </p>
+
+      <div class="countdown-container">
+        <div class="countdown-box">
+          <span id="days" class="countdown-number">00</span>
+          <span class="countdown-label">روز</span>
+        </div>
+        <div class="countdown-box">
+          <span id="hours" class="countdown-number">00</span>
+          <span class="countdown-label">ساعت</span>
+        </div>
+        <div class="countdown-box">
+          <span id="minutes" class="countdown-number">00</span>
+          <span class="countdown-label">دقیقه</span>
+        </div>
+        <div class="countdown-box">
+          <span id="seconds" class="countdown-number">00</span>
+          <span class="countdown-label">ثانیه</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container" id="cardElement" onclick="triggerFlip()">
+      <div class="card-inner">
+        <div class="card-side card-front">
+          <div class="front-top">
+            <span class="blu-logo-text">blu</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2">
+              <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
+              <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
+              <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
+            </svg>
+          </div>
+          <div class="card-spiritual-calligraphy">
+            <span class="spiritual-line-1">نذر قدم‌های مادر پهلوشکسته...</span>
+            <span class="spiritual-line-2">روشنایی این خیمه و تار و پود این صحنه، از مِهر شما جاریست.</span>
+          </div>
+          <div class="front-bottom">
+            <div class="front-chip-mini"></div>
+          </div>
+        </div>
+
+        <div class="card-side card-back">
+          <div class="mag-stripe"></div>
+          <div class="card-back-content">
+            <div class="holder-name-block">
+              <div>محمدمهدی</div>
+              <div>شریفی</div>
+            </div>
+            <div class="pan-numbers-block">
+              <span>6219</span>
+              <span>8619</span>
+              <span>0425</span>
+              <span>3118</span>
+            </div>
+            <div class="saman-logo-block">
+              <span class="saman-text">Saman Bank</span>
+              <span class="saman-icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-actions-wrapper">
+      <div class="outside-action-btn" onclick="triggerFlip()">
+        <span>مشاهده شماره کارت</span>
+        <span>↺</span>
+      </div>
+      <div class="outside-action-btn" onclick="copyValue(event)">
+        <span>کپی شماره کارت</span>
+        <span>📋</span>
+      </div>
+    </div>
+
+    <div class="apple-glass-card">
+      <div class="salavat-title">🕊️ پویش نذر صلوات هدیه به حضرت زهرا (س)</div>
+      <div id="salavatCountDisplay" class="salavat-counter-display">۰</div>
+      <div class="salavat-desc">با فشردن این دکمه، سهم شما در ذکر صلوات خیمه‌گاه ثبت می‌شود.</div>
+      <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()">
+        <span>✨ ثبت یک صلوات به نام شما</span>
+      </button>
+    </div>
+
+    <button class="share-campaign-btn" onclick="shareCampaign()">
+      <span>🔗 دعوت از دوستان به پویش (اشتراک‌گذاری)</span>
+    </button>
+  </main>
+
+  <footer>
+    <div class="footer-logos">
+      <div class="footer-logo-card" title="مجتمع آموزشی مکتب الرسول (ص)">
+        <img loading="lazy" referrerpolicy="no-referrer" src="https://images.weserv.nl/?url=s11.uupload.ir/files/myrmhs/sabco/ra.jpg" alt="لوگوی مکتب الرسول (ص)">
+      </div>
+      <div class="footer-logo-card" title="مجتمع آموزشی صاحب کوثر (ص)">
+        <img loading="lazy" referrerpolicy="no-referrer" src="https://images.weserv.nl/?url=s11.uupload.ir/files/myrmhs/sabco/sco.jpg" alt="لوگوی صاحب کوثر (ص)">
+      </div>
+    </div>
+    <p class="footer-text">
+      روایت عاشقی، با همت خالصانه و خادمی دانش‌آموزان و مربیان مجتمع‌های آموزشی مکتب الرسول (ص) و صاحب کوثر (ص)
+    </p>
+  </footer>
+
+  <div id="snackToast" class="snack-toast">پیام با موفقیت کپی شد</div>
+
+  <script>
+    const CARD_PAN = "6219861904253118";
+
+    const particlesContainer = document.getElementById('particlesContainer');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 4 + 2;
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.left = `${Math.random() * 100}vw`;
+      p.style.animationDuration = `${Math.random() * 6 + 5}s`;
+      p.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(p);
+    }
+
+    let totalSalavat = parseInt(localStorage.getItem('fatemieh_total_salavat_v13')) || 0;
+    const hasVotedSalavat = localStorage.getItem('fatemieh_has_voted_v13');
+
+    const salavatDisplay = document.getElementById("salavatCountDisplay");
+    const salavatBtn = document.getElementById("salavatBtn");
+
+    salavatDisplay.textContent = totalSalavat.toLocaleString('fa-IR');
+
+    if (hasVotedSalavat) {
+      salavatBtn.disabled = true;
+      salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+    }
+
+    function sendSalavat() {
+      if (localStorage.getItem('fatemieh_has_voted_v13')) return;
+
+      totalSalavat += 1;
+      localStorage.setItem('fatemieh_total_salavat_v13', totalSalavat);
+      localStorage.setItem('fatemieh_has_voted_v13', 'true');
+
+      salavatDisplay.textContent = totalSalavat.toLocaleString('fa-IR');
+      salavatBtn.disabled = true;
+      salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    // تابع ایمن و بدون ارور برای اشتراک‌گذاری
+    function shareCampaign() {
+      const shareData = {
+        title: 'خیمه‌گاه فاطمی | پویش نذر روضه و تئاتر آیینی',
+        text: 'در پویش هم‌عهدی ایام شهادت حضرت زهرا (س) شرکت کنید و سهمی در این نور داشته باشید:',
+        url: window.location.href
+      };
+
+      if (navigator.share && window.isSecureContext) {
+        navigator.share(shareData).catch(() => {
+          // اگر کاربر منو را بست یا اروری داد، به عنوان جایگزین لینک را کپی کن
+          fallbackCopyLink();
+        });
+      } else {
+        fallbackCopyLink();
+      }
+    }
+
+    function fallbackCopyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("لینک پویش با موفقیت کپی شد");
+      }).catch(() => {
+        showToast("لینک در حافظه کپی نشد");
+      });
+    }
+
+    const audio = document.getElementById("bgAudio");
+    const audioBtn = document.getElementById("audioBtn");
+    const audioIcon = document.getElementById("audioIcon");
+    const audioText = document.getElementById("audioText");
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        audioIcon.textContent = "▶";
+        audioText.textContent = "پخش";
+        isPlaying = false;
+      } else {
+        audio.play().then(() => {
+          audioIcon.textContent = "⏸";
+          audioText.textContent = "توقف";
+          isPlaying = true;
+        }).catch(err => {
+          console.log("Audio play restricted by browser policy", err);
+        });
+      }
+    }
+
+    const targetDate = new Date(2026, 11, 25, 18, 0, 0).getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) return;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function triggerFlip() {
+      document.getElementById("cardElement").classList.toggle("is-flipped");
+    }
+
+    function copyValue(e) {
+      if (e) e.stopPropagation();
+      navigator.clipboard.writeText(CARD_PAN).then(() => {
+        showToast("شماره کارت با موفقیت کپی شد");
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("snackToast");
+      t.textContent = msg;
+      t.classList.add("active");
+      setTimeout(() => {
+        t.classList.remove("active");
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
