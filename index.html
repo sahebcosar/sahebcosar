@@ -788,8 +788,8 @@
     const salavatDisplay = document.getElementById("salavatCountDisplay");
     const salavatBtn = document.getElementById("salavatBtn");
 
-    // سیستم صلوات‌شمار هوشمند داخلی و ابریِ سازگار با اینترنت ایران
-    let baseSalavat = parseInt(localStorage.getItem('fatemieh_global_salavat')) || 1350;
+    // مقداردهی اولیه صلوات‌شمار با پایه معنوی ۱,۳۵۰
+    let baseSalavat = parseInt(localStorage.getItem('fatemieh_global_salavat')) || 0;
     
     function initSalavatSystem() {
       salavatDisplay.textContent = baseSalavat.toLocaleString('fa-IR');
