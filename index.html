@@ -788,21 +788,11 @@
     const salavatDisplay = document.getElementById("salavatCountDisplay");
     const salavatBtn = document.getElementById("salavatBtn");
 
-    // استفاده از سرویس ابری عمومی برای همگام‌سازی آنلاین صلوات‌ها (شروع از صفر)
-    const binUrl = "https://api.jsonbin.io/v3/b/6571fa2054105e766f834169/latest"; // جایگزین عمومی رایگان
-    let currentGlobalCount = 0;
-
-    function fetchSalavatCount() {
-      // خواندن مقدار از حافظه ابری مشترک یا محلی هوشمند
-      let saved = localStorage.getItem('fatemieh_real_global_count');
-      if (saved !== null) {
-        currentGlobalCount = parseInt(saved);
-      } else {
-        currentGlobalCount = 0;
-      }
-      
+    // صلوات‌شمار هوشمند (شروع از صفر با قابلیت افزایش آنی)
+    let currentGlobalCount = parseInt(localStorage.getItem('fatemieh_real_global_count')) || 0;
+    
+    function initSalavatSystem() {
       salavatDisplay.textContent = currentGlobalCount.toLocaleString('fa-IR');
-
       if (localStorage.getItem('fatemieh_has_voted_online')) {
         salavatBtn.disabled = true;
         salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
@@ -829,7 +819,7 @@
       showToast("صلوات پربرکت شما ثبت شد ✨");
     }
 
-    fetchSalavatCount();
+    initSalavatSystem();
 
     // اشتراک گذاری
     function shareCampaign() {
