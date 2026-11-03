@@ -740,10 +740,10 @@
 
     <div class="apple-glass-card">
       <div class="salavat-title">🕊️ پویش نذر صلوات هدیه به حضرت زهرا (س)</div>
-      <div id="salavatCountDisplay" class="salavat-counter-display">۰</div>
+      <div id="salavatCountDisplay" class="salavat-counter-display">...</div>
       <div class="salavat-desc">با فشردن این دکمه، سهم شما در ذکر صلوات خیمه‌گاه ثبت می‌شود.</div>
-      <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()">
-        <span>✨ ثبت یک صلوات به نام شما</span>
+      <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()" disabled>
+        <span>⏳ در حال اتصال به سرور پایتون...</span>
       </button>
     </div>
 
@@ -771,7 +771,7 @@
   <script>
     const CARD_PAN = "6219861904253118";
 
-    // ساخت ذرات نورانی پس‌زمینه
+    // ذرات پس‌زمینه
     const particlesContainer = document.getElementById('particlesContainer');
     for (let i = 0; i < 18; i++) {
       const p = document.createElement('div');
@@ -785,41 +785,60 @@
       particlesContainer.appendChild(p);
     }
 
+    // لینک سایت شما به عنوان آدرس سرور پایتون روی خط ۶۳۸ قرار گرفت
+    const PYTHON_API_URL = 'https://sahebcosar.github.io/botpys/';
+
     const salavatDisplay = document.getElementById("salavatCountDisplay");
     const salavatBtn = document.getElementById("salavatBtn");
 
-    // صلوات‌شمار هوشمند (شروع از صفر با قابلیت افزایش آنی)
-    let currentGlobalCount = parseInt(localStorage.getItem('fatemieh_real_global_count')) || 0;
-    
-    function initSalavatSystem() {
-      salavatDisplay.textContent = currentGlobalCount.toLocaleString('fa-IR');
-      if (localStorage.getItem('fatemieh_has_voted_online')) {
-        salavatBtn.disabled = true;
-        salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
-      } else {
-        salavatBtn.disabled = false;
-        salavatBtn.innerHTML = "<span>✨ ثبت یک صلوات به نام شما</span>";
-      }
+    // گرفتن تعداد صلوات‌ها از سرور
+    function fetchSalavatCount() {
+      fetch(`${PYTHON_API_URL}/get`)
+        .then(res => res.json())
+        .then(data => {
+          let count = data.count !== undefined ? data.count : 0;
+          salavatDisplay.textContent = count.toLocaleString('fa-IR');
+
+          if (localStorage.getItem('fatemieh_has_voted_python')) {
+            salavatBtn.disabled = true;
+            salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+          } else {
+            salavatBtn.disabled = false;
+            salavatBtn.innerHTML = "<span>✨ ثبت یک صلوات به نام شما</span>";
+          }
+        })
+        .catch(() => {
+          salavatDisplay.textContent = "۰";
+          salavatBtn.disabled = false;
+          salavatBtn.innerHTML = "<span>✨ ثبت یک صلوات به نام شما</span>";
+        });
     }
 
+    // ثبت صلوات جدید و ارسال به سرور
     function sendSalavat() {
-      if (localStorage.getItem('fatemieh_has_voted_online')) return;
+      if (localStorage.getItem('fatemieh_has_voted_python')) return;
 
-      currentGlobalCount += 1;
-      localStorage.setItem('fatemieh_real_global_count', currentGlobalCount);
-      localStorage.setItem('fatemieh_has_voted_online', 'true');
-
-      salavatDisplay.textContent = currentGlobalCount.toLocaleString('fa-IR');
       salavatBtn.disabled = true;
-      salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+      salavatBtn.innerHTML = "<span>⏳ در حال ثبت در سرور...</span>";
 
-      if (navigator.vibrate) {
-        navigator.vibrate(50);
-      }
-      showToast("صلوات پربرکت شما ثبت شد ✨");
+      fetch(`${PYTHON_API_URL}/hit`, { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          let count = data.count !== undefined ? data.count : 0;
+          salavatDisplay.textContent = count.toLocaleString('fa-IR');
+          localStorage.setItem('fatemieh_has_voted_python', 'true');
+          salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+
+          if (navigator.vibrate) navigator.vibrate(50);
+          showToast("صلوات پربرکت شما ثبت شد ✨");
+        })
+        .catch(() => {
+          salavatBtn.disabled = false;
+          salavatBtn.innerHTML = "<span>✨ خطا در ارتباط. دوباره تلاش کنید</span>";
+        });
     }
 
-    initSalavatSystem();
+    fetchSalavatCount();
 
     // اشتراک گذاری
     function shareCampaign() {
@@ -830,9 +849,7 @@
       };
 
       if (navigator.share && window.isSecureContext) {
-        navigator.share(shareData).catch(() => {
-          fallbackCopyLink();
-        });
+        navigator.share(shareData).catch(() => fallbackCopyLink());
       } else {
         fallbackCopyLink();
       }
@@ -841,8 +858,6 @@
     function fallbackCopyLink() {
       navigator.clipboard.writeText(window.location.href).then(() => {
         showToast("لینک پویش با موفقیت کپی شد");
-      }).catch(() => {
-        showToast("لینک در حافظه کپی نشد");
       });
     }
 
@@ -864,9 +879,7 @@
           audioIcon.textContent = "⏸";
           audioText.textContent = "توقف";
           isPlaying = true;
-        }).catch(err => {
-          console.log("Audio play restricted", err);
-        });
+        }).catch(err => console.log(err));
       }
     }
 
@@ -876,7 +889,6 @@
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
-
       if (distance < 0) return;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -908,9 +920,7 @@
       const t = document.getElementById("snackToast");
       t.textContent = msg;
       t.classList.add("active");
-      setTimeout(() => {
-        t.classList.remove("active");
-      }, 2200);
+      setTimeout(() => t.classList.remove("active"), 2200);
     }
   </script>
 </body>
