@@ -662,7 +662,7 @@
       </div>
       <h1 class="hero-title">نذر روضه و تئاتر آیینی بانوی بی‌نشان</h1>
       <p class="hero-desc">
-        هر گوشه از این خیمه، از سیاهی پرچم‌ها تا قطره‌های اشک تماشاگران صحنه، با دل‌های باصفای شما روشن است. قدم بر چشم ما گذاشته‌اید؛ برکت حضور و یاری شما صرف دکور، روشنایی صحنه، دوخت لباس‌ها و پذیرایی از عزاداران حضرت صدیقه طاهره (س) می‌شود.
+        هر گوشه از این خیمه، از سیاهی پرچم‌ها تا قطره‌های اشک تماشاگران صحنه، با دل‌های باصفای شما روشن است. قدم بر چشم ما گذاشته‌اید؛ برکت حضور و یاری شما صرف دکور، روشنایی صحنه، دوخت لباس‌ها و پذیرایی از عزاداران حضرت صدیقه طهر (س) می‌شود.
       </p>
 
       <div class="countdown-container">
@@ -740,10 +740,10 @@
 
     <div class="apple-glass-card">
       <div class="salavat-title">🕊️ پویش نذر صلوات هدیه به حضرت زهرا (س)</div>
-      <div id="salavatCountDisplay" class="salavat-counter-display">۰</div>
+      <div id="salavatCountDisplay" class="salavat-counter-display">...</div>
       <div class="salavat-desc">با فشردن این دکمه، سهم شما در ذکر صلوات خیمه‌گاه ثبت می‌شود.</div>
-      <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()">
-        <span>✨ ثبت یک صلوات به نام شما</span>
+      <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()" disabled>
+        <span>⏳ در حال بارگذاری صلوات‌ها...</span>
       </button>
     </div>
 
@@ -771,6 +771,7 @@
   <script>
     const CARD_PAN = "6219861904253118";
 
+    // ساخت ذرات نورانی پس‌زمینه
     const particlesContainer = document.getElementById('particlesContainer');
     for (let i = 0; i < 18; i++) {
       const p = document.createElement('div');
@@ -784,36 +785,67 @@
       particlesContainer.appendChild(p);
     }
 
-    let totalSalavat = parseInt(localStorage.getItem('fatemieh_total_salavat_v13')) || 0;
-    const hasVotedSalavat = localStorage.getItem('fatemieh_has_voted_v13');
-
     const salavatDisplay = document.getElementById("salavatCountDisplay");
     const salavatBtn = document.getElementById("salavatBtn");
+    
+    // استفاده از سرویس رایگان آنلاین برای ذخیره سراسری صلوات‌ها
+    const namespace = "fatemieh_tent_campaign_1403";
+    const key = "total_salavat";
 
-    salavatDisplay.textContent = totalSalavat.toLocaleString('fa-IR');
-
-    if (hasVotedSalavat) {
-      salavatBtn.disabled = true;
-      salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+    // خواندن مقدار اولیه صلوات از سرور آنلاین
+    function fetchSalavatCount() {
+      fetch(`https://api.countapi.xyz/get/${namespace}/${key}`)
+        .then(response => response.json())
+        .then(data => {
+          let count = data.value || 0;
+          salavatDisplay.textContent = count.toLocaleString('fa-IR');
+          
+          // بررسی اینکه آیا این کاربر قبلاً رای داده یا خیر
+          if (localStorage.getItem('fatemieh_has_voted_online')) {
+            salavatBtn.disabled = true;
+            salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+          } else {
+            salavatBtn.disabled = false;
+            salavatBtn.innerHTML = "<span>✨ ثبت یک صلوات به نام شما</span>";
+          }
+        })
+        .catch(() => {
+          // در صورت قطعی اینترنت یا خطا، یک مقدار پیش‌فرض نشان بده
+          salavatDisplay.textContent = "۰";
+          salavatBtn.disabled = false;
+          salavatBtn.innerHTML = "<span>✨ ثبت یک صلوات به نام شما</span>";
+        });
     }
 
+    // ثبت صلوات جدید به صورت آنلاین برای همه
     function sendSalavat() {
-      if (localStorage.getItem('fatemieh_has_voted_v13')) return;
+      if (localStorage.getItem('fatemieh_has_voted_online')) return;
 
-      totalSalavat += 1;
-      localStorage.setItem('fatemieh_total_salavat_v13', totalSalavat);
-      localStorage.setItem('fatemieh_has_voted_v13', 'true');
-
-      salavatDisplay.textContent = totalSalavat.toLocaleString('fa-IR');
       salavatBtn.disabled = true;
-      salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+      salavatBtn.innerHTML = "<span>⏳ در حال ثبت در بارگاه حضرت زهرا (س)...</span>";
 
-      if (navigator.vibrate) {
-        navigator.vibrate(50);
-      }
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+        .then(response => response.json())
+        .then(data => {
+          let count = data.value || 0;
+          salavatDisplay.textContent = count.toLocaleString('fa-IR');
+          localStorage.setItem('fatemieh_has_voted_online', 'true');
+          salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
+          
+          if (navigator.vibrate) {
+            navigator.vibrate(50);
+          }
+        })
+        .catch(() => {
+          salavatBtn.disabled = false;
+          salavatBtn.innerHTML = "<span>✨ خطا در ارتباط. دوباره تلاش کنید</span>";
+        });
     }
 
-    // تابع ایمن و بدون ارور برای اشتراک‌گذاری
+    // بارگذاری تعداد صلوات‌ها هنگام باز شدن صفحه
+    fetchSalavatCount();
+
+    // اشتراک گذاری
     function shareCampaign() {
       const shareData = {
         title: 'خیمه‌گاه فاطمی | پویش نذر روضه و تئاتر آیینی',
@@ -823,7 +855,6 @@
 
       if (navigator.share && window.isSecureContext) {
         navigator.share(shareData).catch(() => {
-          // اگر کاربر منو را بست یا اروری داد، به عنوان جایگزین لینک را کپی کن
           fallbackCopyLink();
         });
       } else {
@@ -839,6 +870,7 @@
       });
     }
 
+    // صوت پس‌زمینه
     const audio = document.getElementById("bgAudio");
     const audioBtn = document.getElementById("audioBtn");
     const audioIcon = document.getElementById("audioIcon");
@@ -857,11 +889,12 @@
           audioText.textContent = "توقف";
           isPlaying = true;
         }).catch(err => {
-          console.log("Audio play restricted by browser policy", err);
+          console.log("Audio play restricted", err);
         });
       }
     }
 
+    // شمارش معکوس
     const targetDate = new Date(2026, 11, 25, 18, 0, 0).getTime();
 
     function updateCountdown() {
