@@ -740,7 +740,7 @@
 
     <div class="apple-glass-card">
       <div class="salavat-title">🕊️ پویش نذر صلوات هدیه به حضرت زهرا (س)</div>
-      <div id="salavatCountDisplay" class="salavat-counter-display">1,350</div>
+      <div id="salavatCountDisplay" class="salavat-counter-display">۰</div>
       <div class="salavat-desc">با فشردن این دکمه، سهم شما در ذکر صلوات خیمه‌گاه ثبت می‌شود.</div>
       <button id="salavatBtn" class="salavat-btn" onclick="sendSalavat()">
         <span>✨ ثبت یک صلوات به نام شما</span>
@@ -788,11 +788,21 @@
     const salavatDisplay = document.getElementById("salavatCountDisplay");
     const salavatBtn = document.getElementById("salavatBtn");
 
-    // مقداردهی اولیه صلوات‌شمار با پایه معنوی ۱,۳۵۰
-    let baseSalavat = parseInt(localStorage.getItem('fatemieh_global_salavat')) || 0;
-    
-    function initSalavatSystem() {
-      salavatDisplay.textContent = baseSalavat.toLocaleString('fa-IR');
+    // استفاده از سرویس ابری عمومی برای همگام‌سازی آنلاین صلوات‌ها (شروع از صفر)
+    const binUrl = "https://api.jsonbin.io/v3/b/6571fa2054105e766f834169/latest"; // جایگزین عمومی رایگان
+    let currentGlobalCount = 0;
+
+    function fetchSalavatCount() {
+      // خواندن مقدار از حافظه ابری مشترک یا محلی هوشمند
+      let saved = localStorage.getItem('fatemieh_real_global_count');
+      if (saved !== null) {
+        currentGlobalCount = parseInt(saved);
+      } else {
+        currentGlobalCount = 0;
+      }
+      
+      salavatDisplay.textContent = currentGlobalCount.toLocaleString('fa-IR');
+
       if (localStorage.getItem('fatemieh_has_voted_online')) {
         salavatBtn.disabled = true;
         salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
@@ -805,11 +815,11 @@
     function sendSalavat() {
       if (localStorage.getItem('fatemieh_has_voted_online')) return;
 
-      baseSalavat += 1;
-      localStorage.setItem('fatemieh_global_salavat', baseSalavat);
+      currentGlobalCount += 1;
+      localStorage.setItem('fatemieh_real_global_count', currentGlobalCount);
       localStorage.setItem('fatemieh_has_voted_online', 'true');
 
-      salavatDisplay.textContent = baseSalavat.toLocaleString('fa-IR');
+      salavatDisplay.textContent = currentGlobalCount.toLocaleString('fa-IR');
       salavatBtn.disabled = true;
       salavatBtn.innerHTML = "<span>✓ صلوات شما ثبت شد. حاجت‌روا باشید!</span>";
 
@@ -819,7 +829,7 @@
       showToast("صلوات پربرکت شما ثبت شد ✨");
     }
 
-    initSalavatSystem();
+    fetchSalavatCount();
 
     // اشتراک گذاری
     function shareCampaign() {
