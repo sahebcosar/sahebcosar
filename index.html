@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#030102">
+  <meta name="theme-color" content="#050507">
   <meta name="description" content="خیمه‌گاه فاطمی | نذر روضه و تئاتر آیینی بانوی بی‌نشان - پویش هم‌عهدی ایام شهادت حضرت زهرا (س)">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fa_IR">
@@ -12,12 +12,12 @@
   <meta property="og:image" content="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg">
   <meta property="og:image:alt" content="تصویری از اجرای گذشته تئاتر آیینی بانوی بی‌نشان">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="referrer" content="no-referrer">
   <title>خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
 @font-face {
@@ -30,28 +30,32 @@
 
 :root {
   color-scheme: dark;
-  --page: #0c0f12;
-  --page-raised: #14181c;
-  --surface: #1a1e22;
-  --surface-soft: #21262b;
-  --surface-inset: #111518;
-  --ink: #f1efec;
-  --muted: #b2b6b5;
-  --quiet: #858e8c;
-  --line: #363d40;
-  --line-soft: #292f32;
-  --wine: #87394d;
-  --wine-deep: #572638;
-  --rose: #d0878b;
-  --gold: #e0c47e;
-  --gold-soft: #bda26a;
-  --green: #258366;
-  --green-dark: #134f3f;
-  --radius-card: 13px;
-  --radius-control: 8px;
-  --content-width: 1160px;
-  --page-gutter: clamp(18px, 3.2vw, 48px);
-  --ease: cubic-bezier(0.2, 0.65, 0.25, 1);
+  --bg-deep: #050507;
+  --bg-main: #09080b;
+  --surface: #110d10;
+  --surface-raised: #181115;
+  --surface-inset: #0b080a;
+  
+  --crimson: #8f1424;
+  --crimson-bright: #b81d33;
+  --crimson-deep: #4a0811;
+  
+  --gold: #d4b475;
+  --gold-soft: #a88d56;
+  
+  --ink: #f5f0f1;
+  --muted: #c2b6b8;
+  --quiet: #8c7e81;
+  
+  --border: #2b1a1f;
+  --border-crimson: rgba(184, 29, 51, 0.42);
+  --border-gold: rgba(212, 180, 117, 0.28);
+  
+  --radius-card: 14px;
+  --radius-control: 9px;
+  --content-width: 1140px;
+  --page-gutter: clamp(16px, 3.5vw, 44px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 *,
@@ -64,8 +68,8 @@ html {
   min-width: 320px;
   min-height: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
-  scrollbar-color: #51403a var(--page);
+  scroll-padding-top: 86px;
+  scrollbar-color: var(--crimson) var(--bg-deep);
 }
 
 body {
@@ -77,10 +81,12 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--ink);
-  background:
-    radial-gradient(ellipse at 12% 0, rgba(116, 39, 58, 0.18), transparent 38%),
-    radial-gradient(ellipse at 100% 34%, rgba(27, 105, 78, 0.09), transparent 34%),
-    linear-gradient(180deg, #12161a 0, var(--page) 31rem, #090c0f 100%);
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 20, 36, 0.28), transparent 70%),
+    radial-gradient(circle at 10% 35%, rgba(105, 11, 23, 0.16), transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(105, 11, 23, 0.14), transparent 45%),
+    linear-gradient(180deg, #0a0709 0%, var(--bg-deep) 100%);
   font-family: "Vazirmatn", Tahoma, sans-serif;
   font-size: 15px;
   line-height: 1.85;
@@ -94,12 +100,12 @@ body::before {
   pointer-events: none;
   content: "";
   inset: 0;
-  opacity: 0.17;
+  opacity: 0.22;
   background-image: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 3px,
-    rgba(255, 255, 255, 0.012) 4px
+    rgba(255, 255, 255, 0.01) 4px
   );
 }
 
@@ -127,16 +133,13 @@ button {
 
 button:focus-visible,
 a:focus-visible,
-[role="button"]:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--gold);
+[role="button"]:focus-visible {
+  outline: 2px solid var(--crimson-bright);
   outline-offset: 3px;
 }
 
 [id] {
-  scroll-margin-top: 94px;
+  scroll-margin-top: 90px;
 }
 
 .ambient-glow {
@@ -144,8 +147,7 @@ textarea:focus-visible {
   z-index: 0;
   pointer-events: none;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(89, 39, 43, 0.08), transparent 22%, transparent 78%, rgba(32, 70, 56, 0.06));
+  background: radial-gradient(circle at 50% 0%, rgba(168, 24, 43, 0.09), transparent 60%);
 }
 
 #spiritualCanvas {
@@ -153,7 +155,7 @@ textarea:focus-visible {
   z-index: 0;
   pointer-events: none;
   inset: 0;
-  opacity: 0.15;
+  opacity: 0.22;
 }
 
 .dot-icon {
@@ -171,11 +173,11 @@ textarea:focus-visible {
   z-index: 10000;
   top: 10px;
   right: 12px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   transform: translateY(-160%);
   border-radius: var(--radius-control);
-  color: #20170d;
-  background: var(--gold);
+  color: #fff;
+  background: var(--crimson);
   font-weight: 800;
   text-decoration: none;
   transition: transform 160ms ease;
@@ -185,80 +187,63 @@ textarea:focus-visible {
   transform: translateY(0);
 }
 
+/* ============ Header ============ */
 .global-header {
   position: sticky;
   z-index: 100;
   top: 0;
   display: flex;
-  width: min(100%, var(--content-width));
-  min-height: 76px;
+  width: 100%;
+  min-height: 68px;
   align-items: center;
-  gap: clamp(18px, 3vw, 42px);
-  margin-inline: auto;
-  padding: 10px var(--page-gutter);
-  border-bottom: 1px solid rgba(211, 183, 127, 0.14);
-  background: rgba(12, 15, 18, 0.96);
-}
-
-.site-brand {
-  display: inline-flex;
-  min-width: max-content;
-  align-items: center;
-  gap: 11px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.site-brand-mark {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border: 1px solid rgba(211, 183, 127, 0.38);
-  border-radius: 11px;
-  color: #e4cea3;
-  background: #281c1b;
-  font-family: "Lalezar", "Vazirmatn", sans-serif;
-  font-size: 1.35rem;
-  line-height: 1;
-}
-
-.site-brand-copy {
-  display: grid;
-  line-height: 1.5;
-}
-
-.site-brand-copy strong {
-  color: #f1e7dc;
-  font-size: 0.87rem;
-  font-weight: 800;
-}
-
-.site-brand-copy small {
-  color: var(--quiet);
-  font-size: 0.65rem;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-crimson);
+  background: rgba(8, 6, 8, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
 }
 
 .site-nav {
   display: flex;
+  width: min(100%, var(--content-width));
   align-items: center;
-  gap: clamp(16px, 2.6vw, 34px);
-  margin-inline-start: auto;
+  justify-content: flex-start;
+  gap: clamp(20px, 3.5vw, 38px);
+  padding: 10px var(--page-gutter);
 }
 
 .site-nav a {
-  padding-block: 8px;
-  color: #c9bdb4;
-  font-size: 0.78rem;
+  position: relative;
+  padding-block: 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: color 160ms ease;
+  transition: color 180ms ease;
+}
+
+.site-nav a::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--crimson-bright);
+  content: "";
+  transition: width 220ms var(--ease);
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
-  color: var(--gold);
+  color: #fff;
 }
 
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* ============ Main Layout ============ */
 main {
   position: relative;
   z-index: 1;
@@ -267,43 +252,43 @@ main {
   flex: 1;
   flex-direction: column;
   align-items: stretch;
-  gap: 22px;
+  gap: 24px;
   margin-inline: auto;
-  padding: 32px var(--page-gutter) 54px;
+  padding: 28px var(--page-gutter) 54px;
 }
 
 .hero-card,
-.salavat-card,
 .legacy-outer,
 .guiding-card,
-.feedback-card,
 .trust-card {
   position: relative;
   width: 100%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  background: var(--surface);
+  background: linear-gradient(160deg, var(--surface-raised) 0%, var(--surface) 100%);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* ============ Hero Card ============ */
 .hero-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 14px;
+  gap: 16px;
   overflow: hidden;
   padding: clamp(26px, 4vw, 48px);
-  border-color: #46312e;
+  border-color: var(--border-crimson);
   background:
-    linear-gradient(90deg, rgba(61, 31, 31, 0.23), transparent 53%),
-    #1b1514;
+    radial-gradient(circle at 95% 15%, rgba(168, 24, 43, 0.22), transparent 50%),
+    linear-gradient(135deg, #160c10 0%, #0d080b 100%);
 }
 
 .hero-card::before {
   position: absolute;
-  top: 20px;
-  bottom: 20px;
+  top: 0;
+  bottom: 0;
   right: 0;
-  width: 3px;
-  background: linear-gradient(180deg, transparent, var(--wine), var(--gold-soft), transparent);
+  width: 4px;
+  background: linear-gradient(180deg, var(--crimson-bright), var(--gold), var(--crimson-deep));
   content: "";
 }
 
@@ -311,65 +296,75 @@ main {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  gap: 9px;
-  margin-bottom: 2px;
-  padding: 5px 0;
-  color: #cfb995;
-  font-size: 0.74rem;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-crimson);
+  border-radius: 999px;
+  color: #f2ccd1;
+  background: rgba(143, 20, 36, 0.22);
+  font-size: 0.76rem;
   font-weight: 700;
 }
 
 .pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: #9c4a4b;
+  background: #e62e49;
+  box-shadow: 0 0 10px #e62e49;
+  animation: pulse-crimson 2s infinite;
+}
+
+@keyframes pulse-crimson {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.65; }
 }
 
 .hero-title {
-  max-width: 20ch;
-  color: #f4ece3;
+  margin: 0;
+  max-width: 24ch;
+  color: #ffffff;
   font-family: "Vazirmatn", Tahoma, sans-serif;
-  font-size: 2.65rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.48;
-  text-wrap: balance;
+  font-size: clamp(1.65rem, 3.4vw, 2.55rem);
+  font-weight: 900;
+  line-height: 1.45;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
 }
 
 .hero-desc {
   max-width: 68ch;
   margin: 0;
-  color: #c7bcb4;
-  font-size: 0.93rem;
+  color: var(--muted);
+  font-size: 0.94rem;
   line-height: 2.1;
-  text-align: right;
+  text-align: justify;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 9px;
-  margin-top: 3px;
+  gap: 12px;
+  margin-top: 6px;
 }
 
 .hero-action {
   display: inline-flex;
-  min-height: 43px;
+  min-height: 46px;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 8px 16px;
-  border: 1px solid #8e6140;
+  padding: 10px 22px;
+  border: 1px solid #c9243b;
   border-radius: var(--radius-control);
-  color: #f2e7d4;
-  background: #66452f;
-  font-size: 0.76rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #9e1629 0%, #6e0d1b 100%);
+  box-shadow: 0 6px 20px rgba(158, 22, 41, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-size: 0.82rem;
   font-weight: 800;
   text-decoration: none;
-  transition: background-color 160ms ease, border-color 160ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .hero-action::after {
@@ -377,190 +372,94 @@ main {
 }
 
 .hero-action:hover {
-  border-color: #b68b55;
-  background: #795639;
+  transform: translateY(-2px);
+  border-color: #e0324a;
+  background: linear-gradient(135deg, #b51b31 0%, #821020 100%);
+  box-shadow: 0 8px 25px rgba(181, 27, 49, 0.5);
 }
 
 .hero-action-secondary {
-  border-color: var(--line);
-  color: #d9cdc2;
-  background: transparent;
+  border-color: var(--border);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: none;
 }
 
 .hero-action-secondary:hover {
-  border-color: #655142;
-  background: rgba(255, 255, 255, 0.035);
+  border-color: var(--border-crimson);
+  background: rgba(143, 20, 36, 0.14);
+  box-shadow: none;
 }
 
 .live-status-pill {
   display: flex;
   min-height: 68px;
   align-items: center;
-  gap: 11px;
-  padding: 14px 16px;
-  border-inline-start: 2px solid var(--gold-soft);
-  color: #d1c4ae;
-  background: rgba(211, 183, 127, 0.055);
-  font-size: 0.79rem;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid rgba(212, 180, 117, 0.16);
+  border-inline-start: 3px solid var(--crimson-bright);
+  border-radius: 8px;
+  color: #e8dce0;
+  background: rgba(18, 11, 14, 0.85);
+  font-size: 0.82rem;
   font-weight: 700;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .live-status-pill .dot-icon {
-  color: var(--gold);
+  color: var(--crimson-bright);
+  box-shadow: 0 0 8px var(--crimson-bright);
 }
 
-.hover-highlight {
-  transition: border-color 180ms ease, background-color 180ms ease;
-}
-
-.hover-highlight:hover {
-  border-color: #51403a;
-  background-color: #211a18;
-}
-
-.tilt-target,
-.tilt-target.tilt-active {
-  transform: none !important;
-  transition: none;
-  will-change: auto;
-}
-
-.salavat-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 26px 22px 21px;
-  border-color: #4b3d2c;
-  text-align: center;
-}
-
-.salavat-title {
-  color: #e0c895;
-  font-size: 0.95rem;
-  font-weight: 800;
-  line-height: 1.8;
-}
-
-.salavat-count {
-  margin: 12px 0 15px;
-  color: #f1e6d7;
-  font-family: "Plus Jakarta Sans", "Vazirmatn", sans-serif;
-  font-size: 2.65rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  line-height: 1.2;
-  transition: color 180ms ease;
-}
-
-.salavat-count.bump {
-  color: #ebd39e;
-}
-
-.salavat-btn {
-  position: relative;
-  min-height: 46px;
-  padding: 9px 18px;
-  overflow: hidden;
-  border: 1px solid #865064;
-  border-radius: var(--radius-control);
-  color: #f1e9e3;
-  background: #693448;
-  font-size: 0.78rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-.salavat-btn:hover:not(:disabled) {
-  border-color: #a26d7c;
-  background: #794155;
-}
-
-.salavat-btn:disabled {
-  border-color: #413839;
-  color: #998f8c;
-  background: #373031;
-  cursor: not-allowed;
-}
-
-.salavat-timer {
-  min-height: 24px;
-  margin-top: 9px;
-  color: var(--quiet);
-  font-size: 0.68rem;
-}
-
-.salavat-particle {
-  position: absolute;
-  z-index: 4;
-  top: var(--y);
-  left: var(--x);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #e1c98e;
-  pointer-events: none;
-  animation: float-sparkle 800ms ease-out forwards;
-}
-
-@keyframes float-sparkle {
-  to {
-    opacity: 0;
-    transform: translate(var(--dx), var(--dy)) scale(0.2);
-  }
-}
-
+/* ============ Legacy & Gallery Section ============ */
 .legacy-outer {
   display: grid;
-  gap: 16px;
-  padding: 15px;
+  gap: 18px;
+  padding: 18px;
+  border-color: var(--border);
 }
 
 .legacy-text-box {
-  align-self: stretch;
-  padding: 20px;
-  border: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #191413;
+  background: var(--surface-inset);
 }
 
 .legacy-head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .legacy-head-icon {
   display: inline-flex;
-  min-height: 26px;
   align-items: center;
-  color: var(--gold);
-}
-
-.legacy-head-icon .dot-icon {
-  width: 6px;
-  height: 6px;
+  color: var(--crimson-bright);
 }
 
 .legacy-title {
-  color: #e1c895;
-  font-size: 1.08rem;
+  margin: 0;
+  color: var(--gold);
+  font-size: 1.12rem;
   font-weight: 800;
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 .legacy-body {
-  color: #c2b6af;
-  font-size: 0.83rem;
-  line-height: 2.05;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 2.1;
   text-align: justify;
-  text-align-last: right;
 }
 
 .legacy-body p {
-  margin: 0 0 11px;
+  margin: 0 0 12px;
 }
 
 .legacy-body p:last-of-type {
@@ -569,28 +468,29 @@ main {
 
 .legacy-emphasis {
   display: block;
-  margin-top: 13px;
-  color: #d9bd82;
-  font-size: 0.84rem;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: #f0c9cf;
+  font-size: 0.86rem;
   font-weight: 800;
-  text-align: right;
 }
 
 .legacy-image-box {
   min-width: 0;
-  padding: 8px;
-  border: 1px solid var(--line-soft);
+  padding: 10px;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #151110;
+  background: var(--surface-inset);
 }
 
 .legacy-gallery {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 6px;
-  background: #211b18;
+  border-radius: 8px;
+  background: #140d10;
   isolation: isolate;
   touch-action: pan-y;
 }
@@ -603,16 +503,6 @@ main {
   opacity: 0;
   pointer-events: none;
   inset: 0;
-}
-
-.slide:not(.image-ready) {
-  background: linear-gradient(110deg, #201a18 25%, #2a2220 45%, #201a18 65%);
-  background-size: 220% 100%;
-  animation: image-placeholder 1.8s linear infinite;
-}
-
-@keyframes image-placeholder {
-  to { background-position: -220% 0; }
 }
 
 .slide.is-active {
@@ -663,28 +553,20 @@ main {
   display: block;
   width: 100%;
   height: 100%;
-  background: #201a18;
+  background: #140d10;
   object-fit: cover;
-  opacity: 0;
+  opacity: 1;
   user-select: none;
   -webkit-user-drag: none;
-  transition: opacity 240ms ease;
-}
-
-.slide img.image-ready {
-  opacity: 1;
-}
-
-.slide img.image-error {
-  object-fit: contain;
 }
 
 .legacy-slider-controls {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  margin-top: 10px;
-  padding-inline: 2px;
+  margin-top: 12px;
+  padding-inline: 4px;
 }
 
 .slider-nav-group {
@@ -697,67 +579,76 @@ main {
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .slider-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #514541;
+  background: #3d262c;
   cursor: pointer;
-  transition: background-color 160ms ease, width 160ms ease;
+  transition: background-color 180ms ease, width 180ms ease;
 }
 
 .slider-dot.is-active {
-  width: 17px;
+  width: 22px;
   border-radius: 999px;
-  background: var(--gold-soft);
+  background: var(--crimson-bright);
 }
 
 .slider-nav-btn {
   position: relative;
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   padding: 0;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-crimson);
   border-radius: 50%;
-  color: #e1d4ca;
-  background: #1e1817;
+  color: var(--ink);
+  background: #1a0f13;
   cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
 .slider-nav-btn:hover {
-  border-color: #806344;
-  color: #efdbb4;
-  background: #29211c;
+  border-color: var(--crimson-bright);
+  color: #fff;
+  background: var(--crimson);
 }
 
 .slider-nav-btn:active {
-  background: #322720;
+  transform: scale(0.94);
 }
 
+/* جهت فلش‌های قبلی و بعدی به چپ و راست */
 .slider-nav-btn .chevron {
   display: block;
-  width: 8px;
-  height: 8px;
-  border-top: 1.5px solid currentColor;
-  border-left: 1.5px solid currentColor;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.slider-prev-btn .chevron {
   transform: rotate(45deg);
+  margin-right: 2px;
 }
 
 .slider-next-btn .chevron {
-  transform: rotate(225deg);
+  transform: rotate(-135deg);
+  margin-left: 2px;
 }
 
+/* ============ Guiding Light Section ============ */
 .guiding-card {
   display: flex;
   min-height: 100%;
   flex-direction: column;
-  padding: 22px;
+  justify-content: space-between;
+  padding: 26px;
+  border-color: var(--border);
 }
 
 .guiding-head {
@@ -765,7 +656,9 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
 }
 
 .guiding-head-left {
@@ -774,38 +667,33 @@ main {
   gap: 10px;
 }
 
-.guiding-icon,
-.feedback-icon {
+.guiding-icon {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid #55432e;
+  border: 1px solid var(--border-crimson);
   border-radius: 50%;
-  color: var(--gold);
-  background: #2a2119;
-}
-
-.guiding-icon .dot-icon,
-.feedback-icon .dot-icon {
-  width: 6px;
-  height: 6px;
+  color: var(--crimson-bright);
+  background: rgba(143, 20, 36, 0.16);
 }
 
 .guiding-title {
-  color: #e3d1ae;
-  font-size: 1rem;
+  margin: 0;
+  color: var(--gold);
+  font-size: 1.05rem;
   font-weight: 800;
 }
 
 .guiding-type {
-  padding: 3px 10px;
-  border: 1px solid #473538;
+  padding: 4px 12px;
+  border: 1px solid var(--border-crimson);
   border-radius: 999px;
-  color: #d4a9a9;
-  background: #271b1d;
-  font-size: 0.66rem;
+  color: #f5cbd1;
+  background: rgba(143, 20, 36, 0.24);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .guiding-body {
@@ -813,79 +701,80 @@ main {
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  padding-block: 10px;
   transition: opacity 180ms ease;
 }
 
 .guiding-body.is-fading {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 .guiding-text {
-  margin: 0 0 13px;
-  color: #e9dfd6;
-  font-size: 0.9rem;
-  line-height: 2.15;
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 2.2;
   text-align: center;
 }
 
 .guiding-text.arabic {
-  font-size: 1.08rem;
+  color: var(--gold);
+  font-size: 1.12rem;
+  font-weight: 700;
   line-height: 2.35;
   direction: rtl;
 }
 
 .guiding-translation {
   display: block;
-  margin-bottom: 10px;
-  padding: 8px 11px;
-  border-inline-start: 2px solid #805343;
-  border-radius: 4px;
-  color: #cdb8b1;
-  background: rgba(99, 45, 50, 0.16);
-  font-size: 0.77rem;
-  font-style: italic;
-  line-height: 1.95;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-inline-start: 3px solid var(--crimson-bright);
+  border-radius: 6px;
+  color: var(--muted);
+  background: rgba(143, 20, 36, 0.1);
+  font-size: 0.82rem;
+  line-height: 2;
   text-align: center;
 }
 
 .guiding-source {
   display: block;
-  margin-bottom: 15px;
-  color: #c9ae78;
-  font-size: 0.68rem;
+  margin-bottom: 16px;
+  color: var(--gold-soft);
+  font-size: 0.74rem;
   font-weight: 700;
   text-align: center;
 }
 
 .guiding-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  margin-top: 8px;
 }
 
 .guiding-next-btn {
   display: inline-flex;
-  min-height: 39px;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 7px 12px;
-  border: 1px solid var(--line);
+  padding: 8px 18px;
+  border: 1px solid var(--border-crimson);
   border-radius: var(--radius-control);
-  color: #d8c8bc;
-  background: #211a18;
-  font-size: 0.71rem;
+  color: var(--ink);
+  background: #1a0f13;
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
 }
 
 .guiding-next-btn:hover {
-  border-color: #7d6546;
-  color: #eed9b0;
-  background: #29221b;
+  border-color: var(--crimson-bright);
+  color: #fff;
+  background: var(--crimson);
 }
 
 .guiding-next-btn .dot-icon {
@@ -908,12 +797,14 @@ main {
   to { transform: rotate(360deg); }
 }
 
+/* ============ Realistic Bank Card (Desktop & Mobile) ============ */
 .card-scene {
   position: relative;
-  width: min(100%, 390px);
-  aspect-ratio: 1.586;
+  width: min(100%, 420px);
+  aspect-ratio: 1.586 / 1;
   margin-inline: auto;
-  perspective: 1200px;
+  perspective: 1400px;
+  -webkit-perspective: 1400px;
   cursor: pointer;
   user-select: none;
 }
@@ -923,23 +814,30 @@ main {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 620ms var(--ease);
+  -webkit-transform-style: preserve-3d;
+  transition: transform 680ms var(--ease);
 }
 
 .card-scene.is-flipped .card-inner {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .card-side {
   position: absolute;
   overflow: hidden;
-  border: 1px solid rgba(230, 238, 230, 0.23);
-  border-radius: 15px;
+  border: 1px solid rgba(212, 180, 117, 0.28);
+  border-radius: 16px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 42%),
-    linear-gradient(140deg, #176c53, #0d493b);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), inset 0 1px rgba(255, 255, 255, 0.12);
+    radial-gradient(circle at 88% 18%, rgba(168, 22, 43, 0.42), transparent 55%),
+    radial-gradient(circle at 12% 85%, rgba(110, 11, 25, 0.35), transparent 55%),
+    linear-gradient(135deg, #1c1317 0%, #0d090b 55%, #170a0e 100%);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(143, 20, 36, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.16);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   inset: 0;
 }
 
@@ -949,7 +847,14 @@ main {
   pointer-events: none;
   content: "";
   inset: 0;
-  background: repeating-linear-gradient(145deg, transparent 0 13px, rgba(255, 255, 255, 0.014) 14px 15px);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 8px
+    );
 }
 
 .card-glare {
@@ -957,8 +862,12 @@ main {
   z-index: 3;
   pointer-events: none;
   inset: 0;
-  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.16), transparent 55%);
-  opacity: 0.55;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 235, 238, 0.18),
+    transparent 55%
+  );
+  opacity: 0.7;
 }
 
 .card-front {
@@ -966,7 +875,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(16px, 3vw, 24px);
+  padding: clamp(16px, 4.5vw, 24px);
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
 .front-header,
@@ -987,16 +898,17 @@ main {
 
 .blu-logo-svg {
   width: auto;
-  height: 26px;
+  height: clamp(22px, 5vw, 28px);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .blu-slogan {
-  margin-top: 1px;
-  color: rgba(255, 255, 255, 0.83);
+  margin-top: 2px;
+  color: rgba(245, 240, 241, 0.75);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 0.52rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.48rem, 1.4vw, 0.55rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .chip-nfc-row {
@@ -1004,32 +916,38 @@ main {
 }
 
 .emv-chip {
-  width: 40px;
-  height: 30px;
+  width: clamp(38px, 9vw, 46px);
+  height: clamp(28px, 6.8vw, 34px);
   overflow: hidden;
-  border: 1px solid rgba(81, 60, 25, 0.65);
+  border: 1px solid #6b5019;
   border-radius: 6px;
-  background: linear-gradient(135deg, #dec986, #9b7a39);
+  background: linear-gradient(135deg, #f3dd9d 0%, #c49f4f 50%, #947126 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
 .emv-chip svg {
   width: 100%;
   height: 100%;
-  opacity: 0.7;
+  opacity: 0.78;
 }
 
 .nfc-icon {
-  opacity: 0.9;
+  width: clamp(18px, 4.5vw, 22px);
+  height: clamp(18px, 4.5vw, 22px);
+  opacity: 0.85;
 }
 
 .card-spiritual-quote {
   position: relative;
   z-index: 4;
-  margin-block: auto;
-  padding: 11px 14px;
-  border-inline-start: 2px solid #d6bd80;
-  border-radius: 3px;
-  background: rgba(4, 33, 25, 0.27);
+  margin-top: auto;
+  padding: clamp(9px, 2.5vw, 13px) clamp(11px, 3vw, 15px);
+  border: 1px solid rgba(184, 29, 51, 0.3);
+  border-inline-start: 3px solid var(--crimson-bright);
+  border-radius: 8px;
+  background: rgba(10, 6, 8, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .quote-title,
@@ -1038,32 +956,33 @@ main {
 }
 
 .quote-title {
-  margin-bottom: 2px;
-  color: #e7d59e;
-  font-size: 0.83rem;
+  margin-bottom: 3px;
+  color: var(--gold);
+  font-size: clamp(0.75rem, 2.3vw, 0.86rem);
   font-weight: 800;
 }
 
 .quote-sub {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.67rem;
+  font-size: clamp(0.62rem, 1.9vw, 0.7rem);
   line-height: 1.75;
 }
 
 .card-back {
   z-index: 1;
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .mag-stripe-real {
   position: absolute;
   z-index: 4;
-  top: 15px;
+  top: clamp(14px, 3.8vw, 20px);
   right: 0;
   left: 0;
-  height: 34px;
-  background: linear-gradient(180deg, #0b0d0c, #252724 48%, #080a09);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1);
+  height: clamp(32px, 8vw, 42px);
+  background: linear-gradient(180deg, #050505 0%, #1c1c1c 48%, #070707 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .back-data-area {
@@ -1072,7 +991,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 58px 18px 12px;
+  padding: clamp(54px, 14vw, 72px) clamp(16px, 4.5vw, 24px) clamp(12px, 3.2vw, 18px);
   direction: rtl;
   inset: 0;
 }
@@ -1080,271 +999,165 @@ main {
 .back-top-brand {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 6px;
   direction: ltr;
 }
 
 .saman-title {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.85);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 0.61rem;
+  font-size: clamp(0.58rem, 1.8vw, 0.66rem);
   font-weight: 800;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .saman-symbol {
   width: 12px;
   height: 12px;
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border: 2px solid var(--crimson-bright);
   border-radius: 50%;
+  box-shadow: 0 0 6px var(--crimson-bright);
 }
 
 .back-middle-info {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  gap: clamp(6px, 1.8vw, 10px);
   margin-block: auto;
+  padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.42);
 }
 
 .back-holder-name {
-  color: #fff;
-  font-size: 0.82rem;
+  color: var(--gold);
+  font-size: clamp(0.78rem, 2.4vw, 0.9rem);
   font-weight: 800;
 }
 
 .back-pan-vertical {
   display: flex;
+  width: 100%;
   align-items: center;
-  gap: clamp(5px, 1vw, 10px);
+  justify-content: center;
+  gap: clamp(8px, 2.4vw, 14px);
   direction: ltr;
 }
 
 .back-pan-vertical span {
-  color: #fff;
-  font-family: "Courier New", monospace;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.035em;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", "Courier New", monospace;
+  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
 }
 
 .back-bottom-badges {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
   direction: ltr;
 }
 
 .shetab-badge {
-  color: rgba(255, 255, 255, 0.8);
+  padding: 2px 8px;
+  border: 1px solid rgba(212, 180, 117, 0.3);
+  border-radius: 4px;
+  color: var(--gold);
+  background: rgba(212, 180, 117, 0.08);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 0.58rem;
+  font-size: clamp(0.52rem, 1.6vw, 0.6rem);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
+/* ============ Card Actions & Trust Box ============ */
 .card-actions-wrapper {
   width: 100%;
-  max-width: 430px;
+  max-width: 420px;
   margin-inline: auto;
 }
 
 .card-actions-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
+  gap: 10px;
 }
 
 .outside-action-btn {
   display: inline-flex;
   min-width: 0;
-  min-height: 43px;
+  min-height: 46px;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 7px 9px;
-  border: 1px solid var(--line);
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
   border-radius: var(--radius-control);
-  color: #d9ccc2;
-  background: #1d1716;
-  font-size: 0.68rem;
-  font-weight: 700;
-  line-height: 1.5;
+  color: var(--ink);
+  background: var(--surface-raised);
+  font-size: 0.78rem;
+  font-weight: 800;
   cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
 .outside-action-btn:hover {
-  border-color: #6a5945;
-  color: #f0dfc2;
-  background: #28211d;
+  border-color: var(--border-crimson);
+  background: #221318;
+  transform: translateY(-1px);
 }
 
 .outside-action-btn .dot-icon {
-  width: 5px;
-  height: 5px;
-  color: var(--gold-soft);
+  width: 6px;
+  height: 6px;
+  color: var(--gold);
 }
 
 .outside-action-btn.btn-copy-main {
-  border-color: #315a49;
-  color: #d7e8d9;
-  background: #204b3a;
+  border-color: #c9243b;
+  color: #ffffff;
+  background: linear-gradient(135deg, #9e1629 0%, #6e0d1b 100%);
+  box-shadow: 0 6px 18px rgba(158, 22, 41, 0.3);
 }
 
 .outside-action-btn.btn-copy-main:hover {
-  border-color: #46735b;
-  background: #285a44;
+  border-color: #e3344d;
+  background: linear-gradient(135deg, #b51b31 0%, #821020 100%);
+}
+
+.outside-action-btn.btn-copy-main .dot-icon {
+  color: #fff;
 }
 
 .trust-card {
-  padding: 15px 19px;
-  border-color: #493d2d;
-  color: #c9bdb2;
-  background: #1a1513;
-  font-size: 0.79rem;
-  line-height: 1.95;
+  padding: 16px 20px;
+  border-color: var(--border-crimson);
+  color: var(--muted);
+  background: rgba(18, 11, 14, 0.9);
+  font-size: 0.82rem;
+  line-height: 2;
   text-align: center;
 }
 
 .trust-card b {
-  color: #dfc58e;
+  color: var(--gold);
   font-weight: 800;
 }
 
-.feedback-card {
-  padding: 22px;
-}
-
-.feedback-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.feedback-title {
-  color: #e2d2b2;
-  font-size: 1rem;
-  font-weight: 800;
-}
-
-.feedback-desc {
-  margin: 0 0 16px;
-  color: #c2b6ae;
-  font-size: 0.78rem;
-  line-height: 1.95;
-}
-
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
-
-.feedback-contact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.feedback-category {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: #c8bbb2;
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.feedback-select,
-.feedback-input,
-.feedback-textarea {
-  width: 100%;
-  border: 1px solid #3c302c;
-  border-radius: var(--radius-control);
-  color: #eee5dc;
-  background: #151110;
-  font: inherit;
-  font-size: 0.78rem;
-  transition: border-color 160ms ease;
-}
-
-.feedback-select {
-  min-height: 43px;
-  padding: 7px 10px;
-}
-
-.feedback-input {
-  min-height: 43px;
-  padding: 7px 10px;
-}
-
-.feedback-select option {
-  color: #eee5dc;
-  background: #1d1716;
-}
-
-.feedback-textarea {
-  min-height: 132px;
-  resize: vertical;
-  padding: 10px 12px;
-  line-height: 1.85;
-}
-
-.feedback-textarea::placeholder {
-  color: #857871;
-}
-
-.feedback-select:focus,
-.feedback-input:focus,
-.feedback-textarea:focus {
-  border-color: #8e7350;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(211, 183, 127, 0.08);
-}
-
-.feedback-honeypot {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-}
-
-.feedback-submit {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 8px 14px;
-  border: 1px solid #805060;
-  border-radius: var(--radius-control);
-  color: #f2e7e1;
-  background: #693548;
-  font-size: 0.76rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-.feedback-submit:hover:not(:disabled) {
-  border-color: #a26c7d;
-  background: #794054;
-}
-
-.feedback-submit:disabled {
-  opacity: 0.62;
-  cursor: wait;
-}
-
+/* ============ Footer ============ */
 footer {
   position: relative;
   z-index: 1;
   width: min(100%, var(--content-width));
   margin-inline: auto;
-  padding: 0 var(--page-gutter) 28px;
+  padding: 0 var(--page-gutter) 90px;
 }
 
 .footer-unified-box {
@@ -1352,34 +1165,34 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 22px;
-  padding: 14px 17px;
-  border: 1px solid var(--line-soft);
-  border-radius: 10px;
-  background: #161211;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
 }
 
 .footer-logos {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footer-logo-card {
   display: flex;
-  min-height: 44px;
+  min-height: 46px;
   align-items: center;
-  gap: 8px;
-  padding: 5px 9px;
-  border: 1px solid var(--line-soft);
-  border-radius: 7px;
-  background: #1b1514;
+  gap: 9px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-inset);
 }
 
 .footer-logo-img {
   display: grid;
-  width: 29px;
-  height: 29px;
+  width: 30px;
+  height: 30px;
   flex: 0 0 auto;
   place-items: center;
 }
@@ -1392,37 +1205,43 @@ footer {
 }
 
 .footer-logo-label {
-  color: #d4c6bd;
-  font-size: 0.59rem;
+  color: var(--ink);
+  font-size: 0.65rem;
   font-weight: 700;
 }
 
 .footer-text {
   flex: 1;
-  color: #a99a92;
-  font-size: 0.69rem;
-  line-height: 1.85;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.9;
   text-align: left;
 }
 
+/* ============ Floating Elements ============ */
 .back-to-top-btn {
   position: fixed;
   z-index: 9000;
-  bottom: 20px;
-  left: 20px;
+  bottom: 22px;
+  right: 22px;
   display: grid;
-  width: 41px;
-  height: 41px;
+  width: 42px;
+  height: 42px;
   place-items: center;
   transform: translateY(12px);
-  border: 1px solid #483b35;
+  border: 1px solid var(--border-crimson);
   border-radius: 50%;
-  color: #e2d4c6;
-  background: #1c1715;
+  color: #fff;
+  background: rgba(24, 14, 18, 0.92);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
   cursor: pointer;
-  transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+  transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease, background-color 180ms ease;
+}
+
+.back-to-top-btn:hover {
+  background: var(--crimson);
 }
 
 .back-to-top-btn.is-visible {
@@ -1436,29 +1255,25 @@ footer {
   width: 9px;
   height: 9px;
   transform: translateY(2px) rotate(45deg);
-  border-top: 1.5px solid currentColor;
-  border-left: 1.5px solid currentColor;
-}
-
-.back-to-top-btn .dot-icon {
-  display: none;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
 }
 
 .snack-toast {
   position: fixed;
-  z-index: 9999;
-  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 10001;
+  bottom: max(80px, env(safe-area-inset-bottom));
   left: 50%;
   width: max-content;
   max-width: min(90vw, 520px);
-  padding: 10px 16px;
+  padding: 11px 18px;
   transform: translate(-50%, 18px);
-  border: 1px solid #4d5545;
-  border-radius: 7px;
-  color: #e8eee0;
-  background: #26342a;
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.34);
-  font-size: 0.76rem;
+  border: 1px solid var(--border-crimson);
+  border-radius: 9px;
+  color: #fff;
+  background: #1c0d12;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  font-size: 0.78rem;
   font-weight: 700;
   text-align: center;
   opacity: 0;
@@ -1486,7 +1301,7 @@ footer {
 }
 
 .lightbox::backdrop {
-  background: rgba(9, 7, 7, 0.9);
+  background: rgba(5, 3, 4, 0.92);
 }
 
 .lightbox-panel {
@@ -1497,10 +1312,10 @@ footer {
   grid-template-rows: minmax(0, 1fr) auto;
   gap: 10px;
   margin: auto;
-  padding: 12px;
-  border: 1px solid #493c35;
-  border-radius: 10px;
-  background: #171211;
+  padding: 14px;
+  border: 1px solid var(--border-crimson);
+  border-radius: 12px;
+  background: var(--surface);
 }
 
 .lightbox-image-wrap {
@@ -1515,13 +1330,13 @@ footer {
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  border-radius: 4px;
+  border-radius: 6px;
   object-fit: contain;
 }
 
 .lightbox-toolbar {
   display: flex;
-  min-height: 40px;
+  min-height: 42px;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -1529,30 +1344,29 @@ footer {
 
 .lightbox-caption {
   min-width: 0;
-  color: #d9cec4;
-  font-size: 0.74rem;
+  color: var(--muted);
+  font-size: 0.78rem;
   text-align: center;
 }
 
 .lightbox-control {
   display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
   place-items: center;
-  border: 1px solid #493c35;
+  border: 1px solid var(--border-crimson);
   border-radius: 50%;
-  color: #e7dbcf;
-  background: #211a18;
+  color: #fff;
+  background: #1c0f13;
   font: inherit;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: border-color 160ms ease, background-color 160ms ease;
+  transition: background-color 160ms ease;
 }
 
 .lightbox-control:hover {
-  border-color: #806344;
-  background: #2a211c;
+  background: var(--crimson);
 }
 
 .lightbox-close {
@@ -1563,18 +1377,7 @@ footer {
   font-size: 1.25rem;
 }
 
-.reveal-ready {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 380ms ease, transform 380ms var(--ease);
-}
-
-.reveal-ready.is-revealed {
-  transform: none;
-  opacity: 1;
-}
-
-/* ============ Floating Player CSS ============ */
+/* ============ Floating Audio Player ============ */
 .floating-player {
   position: fixed;
   z-index: 10000;
@@ -1582,41 +1385,34 @@ footer {
   left: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 50px;
-  background: rgba(20, 24, 28, 0.85);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transform: translateY(0);
+  border: 1px solid var(--border-crimson);
+  border-radius: 999px;
+  background: rgba(14, 9, 12, 0.92);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.75), 0 0 16px rgba(143, 20, 36, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  animation: float-in 0.8s var(--ease) forwards;
 }
 
 .floating-player:hover {
-  border-color: var(--gold-soft);
-  box-shadow: 0 8px 32px rgba(224, 196, 126, 0.15);
-}
-
-@keyframes float-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  border-color: var(--crimson-bright);
+  box-shadow: 0 10px 34px rgba(184, 29, 51, 0.35);
 }
 
 .player-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 90px;
-  max-width: 140px;
+  min-width: 95px;
+  max-width: 145px;
   margin-right: 4px;
 }
 
 .player-title {
-  color: var(--gold-soft);
-  font-size: 0.65rem;
+  color: var(--gold);
+  font-size: 0.68rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
@@ -1630,6 +1426,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 6px;
+  direction: ltr;
 }
 
 .player-btn {
@@ -1638,28 +1435,30 @@ footer {
   height: 32px;
   place-items: center;
   padding: 0;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 50%;
   color: var(--ink);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .player-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--gold);
+  border-color: var(--border-crimson);
+  background: rgba(143, 20, 36, 0.28);
+  color: #fff;
 }
 
 .player-btn.play-pause {
-  background: var(--wine);
+  background: linear-gradient(135deg, #b81d33, #7a0f1e);
   color: #fff;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
+  box-shadow: 0 4px 12px rgba(184, 29, 51, 0.45);
 }
 
 .player-btn.play-pause:hover {
-  background: var(--rose);
+  background: linear-gradient(135deg, #d1243c, #8f1424);
 }
 
 .player-btn svg {
@@ -1673,6 +1472,7 @@ footer {
   height: 18px;
 }
 
+/* ============ Desktop Grid Layout ============ */
 @media (min-width: 960px) {
   main {
     display: grid;
@@ -1684,14 +1484,14 @@ footer {
       "guiding actions"
       "guiding trust";
     align-items: stretch;
-    gap: 20px;
+    gap: 22px;
   }
 
   .hero-card {
     grid-area: hero;
-    grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
     align-items: center;
-    gap: 12px 40px;
+    gap: 14px 42px;
     padding: 46px 52px;
   }
 
@@ -1723,218 +1523,72 @@ footer {
 
   .legacy-outer {
     grid-area: legacy;
-    grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
+    grid-template-columns: minmax(270px, 0.82fr) minmax(0, 1.18fr);
     align-items: stretch;
-    gap: 18px;
-    padding: 16px;
+    gap: 20px;
+    padding: 20px;
   }
 
-  .legacy-gallery {
-    aspect-ratio: 2 / 1;
-  }
-
-  .salavat-card { grid-area: salavat; }
   .guiding-card { grid-area: guiding; }
   .card-scene { grid-area: bank; align-self: center; }
   .card-actions-wrapper { grid-area: actions; align-self: start; }
   .trust-card { grid-area: trust; align-self: start; }
-  .feedback-card { grid-area: feedback; align-self: stretch; }
 }
 
+/* ============ Tablet & Mobile Responsive ============ */
 @media (max-width: 959px) {
-  .global-header {
-    flex-wrap: wrap;
-    gap: 4px 18px;
-    padding-block: 8px;
-  }
-
-  .site-nav {
-    order: 3;
-    width: 100%;
-    justify-content: flex-start;
-    gap: 24px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .site-nav a {
-    flex: 0 0 auto;
-  }
-
   main {
-    width: min(100%, 760px);
-    padding-block: 25px 42px;
-  }
-
-  .hero-card {
-    padding: 31px;
+    width: min(100%, 740px);
+    padding-block: 22px 42px;
   }
 
   .footer-unified-box {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 14px;
   }
 
   .footer-logos {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .footer-text {
-    padding-top: 10px;
-    border-top: 1px solid var(--line-soft);
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
     text-align: center;
-  }
-}
-
-/* تغییرات کارت برای موبایل (حالت عمودی و کوچک‌تر) */
-@media (max-width: 768px) {
-  .card-scene {
-    width: min(100%, 280px);
-    aspect-ratio: 0.63;
-    margin-block: 10px;
-  }
-
-  .card-front {
-    padding: 20px 16px;
-  }
-
-  .card-spiritual-quote {
-    margin-block: 16px;
-    padding: 12px;
-  }
-
-  .mag-stripe-real {
-    top: 0;
-    bottom: 0;
-    left: 16px;
-    right: auto;
-    width: 34px;
-    height: 100%;
-    background: linear-gradient(90deg, #0b0d0c, #252724 48%, #080a09);
-    box-shadow: inset 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .back-data-area {
-    padding: 18px 16px 18px 60px;
-  }
-
-  .back-middle-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-block: 16px;
-  }
-
-  .back-pan-vertical {
-    flex-wrap: wrap;
-    gap: 6px;
-    direction: ltr;
-  }
-
-  .back-pan-vertical span {
-    font-size: 1rem;
-  }
-
-  .floating-player {
-    bottom: 14px;
-    left: 14px;
-    padding: 6px 10px;
-    gap: 8px;
-  }
-
-  .player-info {
-    min-width: 70px;
-    max-width: 100px;
-  }
-
-  .player-title {
-    font-size: 0.58rem;
-  }
-
-  .player-btn {
-    width: 28px;
-    height: 28px;
-  }
-
-  .player-btn.play-pause {
-    width: 32px;
-    height: 32px;
-  }
-
-  .player-btn svg {
-    width: 14px;
-    height: 14px;
-  }
-
-  .player-btn.play-pause svg {
-    width: 16px;
-    height: 16px;
   }
 }
 
 @media (max-width: 600px) {
-  html {
-    scroll-padding-top: 112px;
-  }
-
-  .global-header {
-    gap: 5px 12px;
-    padding-inline: 16px;
-  }
-
-  .site-brand {
-    gap: 8px;
-  }
-
-  .site-brand-mark {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2rem;
-  }
-
-  .site-brand-copy strong {
-    font-size: 0.79rem;
-  }
-
-  .site-brand-copy small {
-    font-size: 0.58rem;
-  }
-
   .site-nav {
-    gap: 20px;
-  }
-
-  .site-nav a {
-    font-size: 0.71rem;
+    justify-content: center;
+    gap: 28px;
   }
 
   main {
-    gap: 16px;
-    padding: 20px 15px 35px;
+    gap: 18px;
+    padding: 18px 14px 36px;
   }
 
   .hero-card {
-    gap: 12px;
-    padding: 25px 20px;
+    gap: 14px;
+    padding: 24px 18px;
   }
 
   .mourning-badge {
-    font-size: 0.67rem;
-    line-height: 1.7;
+    margin-inline: auto;
+    font-size: 0.7rem;
   }
 
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     text-align: center;
+    margin-inline: auto;
   }
 
   .hero-desc {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     line-height: 2;
     text-align: justify;
     text-align-last: center;
@@ -1945,215 +1599,87 @@ footer {
   }
 
   .hero-action {
-    min-height: 41px;
-    flex: 1 1 130px;
-    gap: 6px;
-    padding-inline: 9px;
-    font-size: 0.7rem;
+    flex: 1 1 140px;
+    padding-inline: 12px;
+    font-size: 0.76rem;
   }
 
   .live-status-pill {
-    min-height: 0;
-    padding: 10px 12px;
-    font-size: 0.72rem;
-  }
-
-  .salavat-card,
-  .guiding-card,
-  .feedback-card {
-    padding: 19px 16px;
-  }
-
-  .feedback-contact-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .salavat-title {
-    font-size: 0.82rem;
-  }
-
-  .salavat-count {
-    font-size: 2.25rem;
-  }
-
-  .salavat-btn {
-    width: 100%;
-    padding-inline: 10px;
-    font-size: 0.72rem;
+    padding: 12px 14px;
+    font-size: 0.76rem;
   }
 
   .legacy-outer {
-    gap: 11px;
-    padding: 10px;
+    gap: 14px;
+    padding: 12px;
   }
 
   .legacy-text-box {
-    padding: 16px;
+    padding: 18px;
   }
 
   .legacy-title {
-    font-size: 0.94rem;
+    font-size: 0.98rem;
   }
 
   .legacy-body {
-    font-size: 0.77rem;
-  }
-
-  .legacy-gallery {
-    aspect-ratio: 2 / 1;
-  }
-
-  .guiding-text {
-    font-size: 0.82rem;
-  }
-
-  .guiding-text.arabic {
-    font-size: 0.96rem;
-  }
-
-  .blu-logo-svg {
-    height: 23px;
-  }
-
-  .blu-slogan {
-    font-size: 0.46rem;
-  }
-
-  .emv-chip {
-    width: 34px;
-    height: 26px;
-  }
-
-  .nfc-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .quote-title {
-    font-size: 0.82rem;
-  }
-
-  .quote-sub {
-    font-size: 0.65rem;
-  }
-
-  .back-holder-name {
     font-size: 0.8rem;
   }
 
-  .saman-title,
-  .shetab-badge {
-    font-size: 0.55rem;
+  .guiding-card {
+    padding: 20px 16px;
   }
 
-  .card-actions-row {
-    gap: 5px;
+  .guiding-text {
+    font-size: 0.86rem;
+  }
+
+  .guiding-text.arabic {
+    font-size: 1rem;
+  }
+
+  .card-scene {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1.586 / 1;
   }
 
   .outside-action-btn {
-    min-height: 42px;
-    gap: 4px;
-    padding-inline: 5px;
-    font-size: 0.6rem;
-  }
-
-  .outside-action-btn .dot-icon {
-    display: none;
-  }
-
-  .trust-card {
-    padding: 13px 15px;
-    font-size: 0.72rem;
-  }
-
-  .feedback-header {
-    align-items: flex-start;
-  }
-
-  .feedback-title {
-    font-size: 0.92rem;
-  }
-
-  .feedback-desc {
+    min-height: 44px;
     font-size: 0.74rem;
   }
 
-  .footer-unified-box {
-    padding: 13px;
-  }
-
-  .footer-logos {
-    gap: 6px;
+  .trust-card {
+    padding: 14px 16px;
+    font-size: 0.76rem;
   }
 
   .footer-logo-card {
-    min-width: 0;
-    flex: 1 1 0;
-    flex-direction: column;
-    gap: 4px;
-    padding: 7px 4px;
-    text-align: center;
+    flex: 1 1 130px;
+    justify-content: center;
   }
 
-  .footer-logo-label {
-    font-size: 0.53rem;
-    line-height: 1.6;
+  .floating-player {
+    bottom: 14px;
+    left: 14px;
+    padding: 7px 12px;
+    gap: 8px;
   }
 
-  .footer-text {
-    font-size: 0.63rem;
+  .player-info {
+    min-width: 80px;
+    max-width: 115px;
+  }
+
+  .player-title {
+    font-size: 0.62rem;
   }
 
   .back-to-top-btn {
     bottom: 14px;
-    left: 14px;
-    width: 37px;
-    height: 37px;
-  }
-
-  .snack-toast {
-    bottom: max(16px, env(safe-area-inset-bottom));
-    padding: 9px 13px;
-    font-size: 0.7rem;
-  }
-
-  .lightbox-panel {
-    padding: 7px;
-  }
-
-  .lightbox-close {
-    top: 13px;
-    left: 13px;
-  }
-}
-
-@media (max-width: 360px) {
-  .site-brand-copy small {
-    max-width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .reveal-ready {
-    transform: none;
-    opacity: 1;
-  }
-
-  .slide:not(.image-ready) {
-    animation: none;
+    right: 14px;
+    width: 38px;
+    height: 38px;
   }
 }
   </style>
@@ -2172,7 +1698,7 @@ footer {
   </header>
 
   <main id="mainContent">
-    <div class="hero-card tilt-target">
+    <div class="hero-card">
       <div class="mourning-badge">
         <span class="pulse-dot"></span>
         پویش هم‌عهدی ایام شهادت حضرت زهرا (س)
@@ -2192,7 +1718,7 @@ footer {
     </div>
 
     <div class="legacy-outer">
-      <div class="legacy-text-box tilt-target" id="legacyTextBox">
+      <div class="legacy-text-box" id="legacyTextBox">
         <div class="legacy-head">
           <div class="legacy-head-icon" aria-hidden="true">
             <span class="dot-icon"></span>
@@ -2213,19 +1739,19 @@ footer {
       <div class="legacy-image-box">
         <div class="legacy-gallery" id="legacyGallery" aria-label="گالری تصاویر گذشته">
           <div class="slide is-active">
-            <img src="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg" alt="تصویر ۱ از اجرای گذشته" loading="eager" fetchpriority="high" decoding="async">
+            <img referrerpolicy="no-referrer" src="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg" alt="تصویر ۱ از اجرای گذشته" loading="eager">
           </div>
           <div class="slide">
-            <img src="https://s41.uupload.ir/files/myrmhs/sabco/im2.jpg" alt="تصویر ۲ از اجرای گذشته" loading="lazy" decoding="async">
+            <img referrerpolicy="no-referrer" src="https://s41.uupload.ir/files/myrmhs/sabco/im2.jpg" alt="تصویر ۲ از اجرای گذشته" loading="lazy">
           </div>
           <div class="slide">
-            <img src="https://s11.uupload.ir/files/myrmhs/sabco/im3.jpg" alt="تصویر ۳ از اجرای گذشته" loading="lazy" decoding="async">
+            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im3.jpg" alt="تصویر ۳ از اجرای گذشته" loading="lazy">
           </div>
           <div class="slide">
-            <img src="https://s11.uupload.ir/files/myrmhs/sabco/im4.jpg" alt="تصویر ۴ از اجرای گذشته" loading="lazy" decoding="async">
+            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im4.jpg" alt="تصویر ۴ از اجرای گذشته" loading="lazy">
           </div>
           <div class="slide">
-            <img src="https://s11.uupload.ir/files/myrmhs/sabco/im5.jpg" alt="تصویر ۵ از اجرای گذشته" loading="lazy" decoding="async">
+            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im5.jpg" alt="تصویر ۵ از اجرای گذشته" loading="lazy">
           </div>
         </div>
 
@@ -2253,7 +1779,7 @@ footer {
       </div>
     </div>
 
-    <section class="guiding-card hover-highlight" aria-labelledby="guidingTitle">
+    <section class="guiding-card" aria-labelledby="guidingTitle">
       <div class="guiding-head">
         <div class="guiding-head-left">
           <div class="guiding-icon" aria-hidden="true">
@@ -2265,9 +1791,9 @@ footer {
       </div>
 
       <div class="guiding-body" id="guidingBody">
-        <p class="guiding-text" id="guidingText">…</p>
-        <span class="guiding-translation" id="guidingTranslation" style="display:none;">…</span>
-        <span class="guiding-source" id="guidingSource">…</span>
+        <p class="guiding-text arabic" id="guidingText">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</p>
+        <span class="guiding-translation" id="guidingTranslation">همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.</span>
+        <span class="guiding-source" id="guidingSource">سوره کوثر — آیه ۱ تا ۳</span>
       </div>
 
       <div class="guiding-actions">
@@ -2291,7 +1817,7 @@ footer {
                 <path d="M26.2 25C25.1 25 24.2 24.1 24.2 23V3.5C24.2 2.4 25.1 1.5 26.2 1.5C27.3 1.5 28.2 2.4 28.2 3.5V23C28.2 24.1 27.3 25 26.2 25Z" fill="white"/>
                 <path d="M41.2 25.4C36.6 25.4 33.5 22.4 33.5 17.7V11.5C33.5 10.4 34.4 9.5 35.5 9.5C36.6 9.5 37.5 10.4 37.5 11.5V17.4C37.5 20.1 38.9 21.7 41.2 21.7C43.5 21.7 44.9 20.1 44.9 17.4V11.5C44.9 10.4 45.8 9.5 46.9 9.5C48 9.5 48.9 10.4 48.9 11.5V17.7C48.9 22.4 45.8 25.4 41.2 25.4Z" fill="white"/>
               </svg>
-              <span class="blu-slogan">bank, but lovely</span>
+              <span class="blu-slogan">fatemiye 1405</span>
             </div>
             <div class="chip-nfc-row">
               <div class="emv-chip" aria-hidden="true">
@@ -2340,18 +1866,18 @@ footer {
 
     <div class="card-actions-wrapper">
       <div class="card-actions-row">
-        <button type="button" class="outside-action-btn" onclick="triggerFlip()">
+        <button type="button" class="outside-action-btn" id="flipCardBtn">
           <span>چرخش کارت</span>
           <span class="dot-icon"></span>
         </button>
-        <button type="button" class="outside-action-btn btn-copy-main" onclick="copyValue(event)">
+        <button type="button" class="outside-action-btn btn-copy-main" id="copyCardBtn">
           <span>کپی شماره کارت</span>
           <span class="dot-icon"></span>
         </button>
       </div>
     </div>
 
-    <div class="trust-card tilt-target">
+    <div class="trust-card">
       برای مشاهده اطلاعات حساب، روی کارت ضربه بزنید. پس از واریز، <b>نیازی به ارسال فیش یا پیگیری نیست</b>؛ اجر شما در دفتر خادمان این پویش ثبت خواهد شد.
     </div>
   </main>
@@ -2363,34 +1889,32 @@ footer {
         <img class="lightbox-image" id="lightboxImage" alt="">
       </div>
       <div class="lightbox-toolbar">
-        <button type="button" class="lightbox-control" id="lightboxNext" aria-label="تصویر بعدی" title="تصویر بعدی">‹</button>
+        <button type="button" class="lightbox-control" id="lightboxPrev" aria-label="تصویر قبلی" title="تصویر قبلی">‹</button>
         <span class="lightbox-caption" id="lightboxCaption"></span>
-        <button type="button" class="lightbox-control" id="lightboxPrev" aria-label="تصویر قبلی" title="تصویر قبلی">›</button>
+        <button type="button" class="lightbox-control" id="lightboxNext" aria-label="تصویر بعدی" title="تصویر بعدی">›</button>
       </div>
     </div>
   </dialog>
 
   <footer>
-    <div class="footer-unified-box tilt-target">
+    <div class="footer-unified-box">
       <div class="footer-logos">
         <div class="footer-logo-card" title="مکتب الرسول (ص)">
           <div class="footer-logo-img">
-            <!-- استفاده از دامنه جدید wsrv.nl برای واسط تصویر -->
             <img loading="lazy" referrerpolicy="no-referrer" 
                  src="https://wsrv.nl/?url=s15.uupload.ir/files/myrmhs/sabco/ra2.png" 
                  alt="لوگوی مکتب الرسول (ص)"
-                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#e0c47e; font-size:10px; font-weight:bold;\'>logo</span>';">
+                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#d4b475; font-size:10px; font-weight:bold;\'>logo</span>';">
           </div>
           <span class="footer-logo-label">مکتب الرسول (ص)</span>
         </div>
 
         <div class="footer-logo-card" title="مجتمع آموزشی صاحب کوثر (ص)">
           <div class="footer-logo-img">
-            <!-- استفاده از دامنه جدید wsrv.nl برای واسط تصویر -->
             <img loading="lazy" referrerpolicy="no-referrer" 
                  src="https://wsrv.nl/?url=s15.uupload.ir/files/myrmhs/sabco/sco2.png" 
                  alt="لوگوی صاحب کوثر (ص)"
-                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#e0c47e; font-size:10px; font-weight:bold;\'>logo</span>';">
+                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#d4b475; font-size:10px; font-weight:bold;\'>logo</span>';">
           </div>
           <span class="footer-logo-label">مجتمع آموزشی صاحب کوثر (ص)</span>
         </div>
@@ -2408,20 +1932,19 @@ footer {
 
   <div id="snackToast" class="snack-toast" role="status" aria-live="polite">✅ شماره کارت با موفقیت کپی شد</div>
 
-  <!-- Floating Audio Player -->
   <div class="floating-player" id="floatingPlayer">
     <div class="player-info">
-      <span class="player-title" id="playerTitle">در حال بارگذاری...</span>
+      <span class="player-title" id="playerTitle">چادرت را بتکان</span>
     </div>
     <div class="player-controls">
-      <button class="player-btn" id="nextBtn" aria-label="آهنگ بعدی">
+      <button class="player-btn" id="prevBtn" aria-label="آهنگ قبلی" title="آهنگ قبلی">
         <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
       </button>
-      <button class="player-btn play-pause" id="playPauseBtn" aria-label="پخش">
+      <button class="player-btn play-pause" id="playPauseBtn" aria-label="پخش" title="پخش / توقف">
         <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
-      <button class="player-btn" id="prevBtn" aria-label="آهنگ قبلی">
+      <button class="player-btn" id="nextBtn" aria-label="آهنگ بعدی" title="آهنگ بعدی">
         <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
       </button>
     </div>
@@ -2449,203 +1972,7 @@ footer {
       }
     }
 
-    /* ============ Floating Audio Player ============ */
-    (function initFloatingPlayer() {
-      var tracks = [
-        { title: "چادرت را بتکان", src: "https://s6.uupload.ir/filelink/SJekO4DGarFZ_5660e50398/pouyanfar_-_chadorat_ra_betekan_320k-_(madahionline.ir)_wqu.mp3" },
-        { title: "گل چادر گلدارت", src: "https://s6.uupload.ir/filelink/QK3pzIWSgnNt_3aa4bfface/نماهنگ_گل_چادر_گلدارت_dyl3.mp3" },
-        { title: "با چادرت چی کار کنم", src: "https://s6.uupload.ir/filelink/dNtahMjyAhCr_b071165f05/نماهنگ_با_چادرت_چی_کار_کنم_320_qqxn.mp3" },
-        { title: "این روزا میگذره علی", src: "https://s6.uupload.ir/filelink/cYWMzL6SWFPc_6245ac4167/این_روزا_میگذره_علی_320_pf0t.mp3" }
-      ];
-
-      var currentIndex = 0;
-      var audio = new Audio(tracks[currentIndex].src);
-      audio.loop = false;
-
-      var playPauseBtn = document.getElementById("playPauseBtn");
-      var playIcon = document.getElementById("playIcon");
-      var pauseIcon = document.getElementById("pauseIcon");
-      var prevBtn = document.getElementById("prevBtn");
-      var nextBtn = document.getElementById("nextBtn");
-      var titleEl = document.getElementById("playerTitle");
-
-      function updateUI() {
-        titleEl.textContent = tracks[currentIndex].title;
-        if (audio.paused) {
-          playIcon.style.display = "block";
-          pauseIcon.style.display = "none";
-          playPauseBtn.setAttribute("aria-label", "پخش");
-        } else {
-          playIcon.style.display = "none";
-          pauseIcon.style.display = "block";
-          playPauseBtn.setAttribute("aria-label", "توقف");
-        }
-      }
-
-      function loadTrack(index) {
-        currentIndex = index;
-        audio.src = tracks[currentIndex].src;
-        updateUI();
-      }
-
-      function playTrack() {
-        audio.play().catch(function(error) {
-          console.error("Playback failed:", error);
-          showToast("پخش آهنگ با خطا مواجه شد (لینک مستقیم بررسی شود)");
-          updateUI();
-        });
-        updateUI();
-      }
-
-      function pauseTrack() {
-        audio.pause();
-        updateUI();
-      }
-
-      playPauseBtn.addEventListener("click", function() {
-        if (audio.paused) {
-          playTrack();
-        } else {
-          pauseTrack();
-        }
-      });
-
-      prevBtn.addEventListener("click", function() {
-        var index = currentIndex - 1;
-        if (index < 0) index = tracks.length - 1;
-        loadTrack(index);
-        playTrack();
-      });
-
-      nextBtn.addEventListener("click", function() {
-        var index = currentIndex + 1;
-        if (index >= tracks.length) index = 0;
-        loadTrack(index);
-        playTrack();
-      });
-
-      audio.addEventListener("ended", function() {
-        var index = currentIndex + 1;
-        if (index >= tracks.length) index = 0;
-        loadTrack(index);
-        playTrack();
-      });
-
-      updateUI();
-    })();
-
-    /* ============ Guiding Light ============ */
-    var GUIDING_ITEMS = [
-      { type: "آیه", text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.", source: "سوره کوثر — آیه ۱ تا ۳" },
-      { type: "آیه", text: "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ", translation: "و تو را جز رحمتی برای جهانیان نفرستادیم.", source: "سوره انبیاء — آیه ۱۰۷" },
-      { type: "آیه", text: "إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ", translation: "بی‌گمان خداوند توکل‌کنندگان را دوست دارد.", source: "سوره آل‌عمران — آیه ۱۵۹" },
-      { type: "آیه", text: "وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ۝ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ", translation: "و هر کس از خدا بترسد، خداوند برای او راه نجاتی قرار می‌دهد؛ و او را از جایی که گمان نمی‌کند روزی می‌دهد.", source: "سوره طلاق — آیه ۲ و ۳" },
-      { type: "آیه", text: "قُلِ اللَّهُمَّ مَالِكَ الْمُلْكِ تُؤْتِي الْمُلْكَ مَن تَشَاءُ وَتَنزِعُ الْمُلْكَ مِمَّن تَشَاءُ", translation: "بگو: خدایا، ای فرمانروای همه! به هر که بخواهی حکومت می‌دهی و از هر که بخواهی حکومت را می‌گیری.", source: "سوره آل‌عمران — آیه ۲۶" },
-      { type: "حدیث", text: "فاطمه پاره‌ی تن من است؛ هر که او را اذیت کند، مرا اذیت کرده است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
-      { type: "حدیث", text: "فاطمه سرور زنان اهل بهشت است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
-      { type: "حدیث", text: "من و علی و فاطمه و حسن و حسین در یک خانه‌ایم؛ هر که با ما دشمنی کند، در آتش است.", source: "پیامبر اکرم (ص) — سنن ترمذی" },
-      { type: "حدیث", text: "خداوند به غضب فاطمه غضب می‌کند و به رضای او راضی می‌شود.", source: "پیامبر اکرم (ص) — مستدرک حاکم" },
-      { type: "حدیث", text: "هر کس فاطمه را بشناسد، او را شناخته است؛ و هر کس او را نشناسد، او را نشناخته است.", source: "امام صادق (ع)" },
-      { type: "جمله", text: "فاطمه (س) تنها زنی است که پدرش، همسرش و فرزندانش معصوم‌اند.", source: "از کلمات حکما درباره‌ی حضرت زهرا (س)" },
-      { type: "جمله", text: "در خانه‌ی فاطمه، عشق به علی (ع) و مهر به فرزندان، با عبادت و بندگی در هم آمیخته بود.", source: "سیره‌ی حضرت زهرا (س)" },
-      { type: "جمله", text: "مادر، پناه بی‌پناهان است؛ و فاطمه، مادر همه‌ی بی‌پناهانِ تاریخ.", source: "دل‌نوشته" },
-      { type: "داستان کوتاه", text: "شبی پیامبر (ص) به خانه‌ی فاطمه (س) آمد. دید فاطمه در محراب عبادت است و حسن و حسین (ع) در خواب. پیامبر (ص) آرام کنارشان نشست و تا سحر از آن‌ها مراقبت کرد. صبح، فاطمه (س) از دیدن این صحنه اشک ریخت و گفت: «پدر، چرا بیدار ماندی؟» پیامبر (ص) فرمود: «دخترم، دلم نمی‌خواست این دو گل خوشبوی مرا تنها بگذارم.»", source: "برگرفته از سیره‌ی نبوی" },
-      { type: "داستان کوتاه", text: "روزی فاطمه (س) به پیامبر (ص) گفت: «پدر، من خسته‌ام از کار خانه.» پیامبر (ص) فرمود: «دخترم، خداوند تسبیحات اربعه را به تو هدیه داده است.» و به او آموخت که هر روز ۳۴ بار الله اکبر، ۳۳ بار الحمدلله و ۳۳ بار سبحان الله بگوید. این شد تسبیحات حضرت زهرا (س).", source: "برگرفته از کتب حدیث" },
-      { type: "داستان کوتاه", text: "در روزهای آخر عمر پیامبر (ص)، فاطمه (س) تنها کسی بود که پیامبر (ص) اجازه می‌داد کنارش باشد. پیامبر (ص) در گوش او رازی گفت که فاطمه (س) گریه کرد، و سپس رازی دیگر گفت که خندید. پس از رحلت پیامبر (ص)، عایشه از فاطمه (س) پرسید چه شنیدی؟ فاطمه (س) فرمود: «اول گفت که در همین بیماری از دنیا می‌رود، گریه کردم؛ بعد گفت که من اولین نفر از اهل بیتم هستم که به او ملحق می‌شوم، خندیدم.»", source: "صحیح بخاری" },
-      { type: "جمله", text: "خانه‌ی کوچک فاطمه (س) و علی (ع)، بزرگ‌ترین مدرسه‌ی عشق و ایثار در تاریخ است.", source: "سیره‌ی اهل بیت (ع)" },
-      { type: "جمله", text: "فاطمه (س) با دست‌های خود آسیاب می‌کرد، آب می‌آورد و نان می‌پخت؛ اما هیچ‌گاه از یاری به همسر و فرزندانش خسته نشد.", source: "سیره‌ی حضرت زهرا (س)" },
-      { type: "جمله", text: "مادر، تنها کسی است که نامش با فداکاری، بی‌نشان در تاریخ ثبت شده است؛ مانند فاطمه (س).", source: "دل‌نوشته" }
-    ];
-
-    var currentGuidingIndex = -1;
-
-    function pickRandomGuidingIndex() {
-      if (GUIDING_ITEMS.length <= 1) return 0;
-      var next;
-      do {
-        next = Math.floor(Math.random() * GUIDING_ITEMS.length);
-      } while (next === currentGuidingIndex);
-      return next;
-    }
-
-    function renderGuiding(index) {
-      var item = GUIDING_ITEMS[index];
-      if (!item) return;
-
-      var typeEl = document.getElementById("guidingType");
-      var textEl = document.getElementById("guidingText");
-      var translationEl = document.getElementById("guidingTranslation");
-      var sourceEl = document.getElementById("guidingSource");
-
-      if (typeEl) typeEl.textContent = item.type;
-      if (textEl) {
-        textEl.textContent = item.text;
-        if (item.translation) {
-          textEl.classList.add("arabic");
-        } else {
-          textEl.classList.remove("arabic");
-        }
-      }
-
-      if (translationEl) {
-        if (item.translation) {
-          translationEl.textContent = item.translation;
-          translationEl.style.display = "block";
-        } else {
-          translationEl.textContent = "";
-          translationEl.style.display = "none";
-        }
-      }
-
-      if (sourceEl) sourceEl.textContent = item.source || "";
-    }
-
-    function showNextGuiding() {
-      var body = document.getElementById("guidingBody");
-      var btn = document.getElementById("guidingNextBtn");
-
-      if (btn) {
-        btn.classList.add("is-spinning");
-        setTimeout(function() {
-          btn.classList.remove("is-spinning");
-        }, 550);
-      }
-
-      if (body) body.classList.add("is-fading");
-
-      setTimeout(function() {
-        currentGuidingIndex = pickRandomGuidingIndex();
-        renderGuiding(currentGuidingIndex);
-        if (body) body.classList.remove("is-fading");
-      }, 300);
-    }
-
-    document.getElementById("guidingNextBtn").addEventListener("click", showNextGuiding);
-    currentGuidingIndex = pickRandomGuidingIndex();
-    renderGuiding(currentGuidingIndex);
-
-    (function initScrollReveal() {
-      var revealTargets = document.querySelectorAll(
-        ".hero-card, .legacy-outer, .guiding-card, .card-scene, .card-actions-wrapper, .trust-card, footer"
-      );
-      if (!("IntersectionObserver" in window)) {
-        revealTargets.forEach(function(element) { element.classList.add("is-revealed"); });
-        return;
-      }
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-revealed");
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -24px 0px" });
-      revealTargets.forEach(function(element) {
-        element.classList.add("reveal-ready");
-        observer.observe(element);
-      });
-    })();
-
-    /* ============ Card flip ============ */
+    /* ============ Card flip & Copy ============ */
     function triggerFlip() {
       var card = document.getElementById("cardElement");
       if (!card) return;
@@ -2654,49 +1981,6 @@ footer {
       card.setAttribute("aria-pressed", isFlipped ? "true" : "false");
     }
 
-    var cardElement = document.getElementById("cardElement");
-    var cardGlare = document.querySelector(".card-glare");
-
-    cardElement.addEventListener("click", triggerFlip);
-    cardElement.addEventListener("pointermove", function(e) {
-      if (e.pointerType === "touch" || !cardGlare) return;
-      var rect = cardElement.getBoundingClientRect();
-      cardGlare.style.setProperty("--glare-x", ((e.clientX - rect.left) / rect.width * 100) + "%");
-      cardGlare.style.setProperty("--glare-y", ((e.clientY - rect.top) / rect.height * 100) + "%");
-    });
-    cardElement.addEventListener("pointerleave", function() {
-      if (!cardGlare) return;
-      cardGlare.style.setProperty("--glare-x", "50%");
-      cardGlare.style.setProperty("--glare-y", "50%");
-    });
-
-    function updateGlareFromTilt(event) {
-      if (!cardGlare || typeof event.gamma !== "number" || typeof event.beta !== "number") return;
-      var x = Math.max(12, Math.min(88, 50 + event.gamma * 1.15));
-      var y = Math.max(12, Math.min(88, 50 + (event.beta - 35) * 0.9));
-      cardGlare.style.setProperty("--glare-x", x + "%");
-      cardGlare.style.setProperty("--glare-y", y + "%");
-    }
-
-    cardElement.addEventListener("touchstart", function() {
-      if (!window.DeviceOrientationEvent) return;
-      if (typeof window.DeviceOrientationEvent.requestPermission === "function") {
-        window.DeviceOrientationEvent.requestPermission().then(function(permission) {
-          if (permission === "granted") window.addEventListener("deviceorientation", updateGlareFromTilt, { passive: true });
-        }).catch(function() {});
-      } else {
-        window.addEventListener("deviceorientation", updateGlareFromTilt, { passive: true });
-      }
-    }, { once: true, passive: true });
-
-    cardElement.addEventListener("keydown", function(e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        triggerFlip();
-      }
-    });
-
-    /* ============ Copy card number ============ */
     function copyValue(e) {
       if (e && e.stopPropagation) e.stopPropagation();
       triggerHaptic(18);
@@ -2737,6 +2021,162 @@ footer {
       document.body.removeChild(textArea);
     }
 
+    var cardElement = document.getElementById("cardElement");
+    var flipCardBtn = document.getElementById("flipCardBtn");
+    var copyCardBtn = document.getElementById("copyCardBtn");
+    var cardGlare = document.querySelector(".card-glare");
+
+    if (cardElement) {
+      cardElement.addEventListener("click", triggerFlip);
+      cardElement.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          triggerFlip();
+        }
+      });
+      cardElement.addEventListener("pointermove", function(e) {
+        if (e.pointerType === "touch" || !cardGlare) return;
+        var rect = cardElement.getBoundingClientRect();
+        cardGlare.style.setProperty("--glare-x", ((e.clientX - rect.left) / rect.width * 100) + "%");
+        cardGlare.style.setProperty("--glare-y", ((e.clientY - rect.top) / rect.height * 100) + "%");
+      });
+    }
+
+    if (flipCardBtn) flipCardBtn.addEventListener("click", triggerFlip);
+    if (copyCardBtn) copyCardBtn.addEventListener("click", copyValue);
+
+    /* ============ Floating Audio Player ============ */
+    (function initFloatingPlayer() {
+      var tracks = [
+        { title: "چادرت را بتکان", src: "https://s6.uupload.ir/filelink/SJekO4DGarFZ_5660e50398/pouyanfar_-_chadorat_ra_betekan_320k-_(madahionline.ir)_wqu.mp3" },
+        { title: "گل چادر گلدارت", src: "https://s6.uupload.ir/filelink/QK3pzIWSgnNt_3aa4bfface/نماهنگ_گل_چادر_گلدارت_dyl3.mp3" },
+        { title: "با چادرت چی کار کنم", src: "https://s6.uupload.ir/filelink/dNtahMjyAhCr_b071165f05/نماهنگ_با_چادرت_چی_کار_کنم_320_qqxn.mp3" },
+        { title: "این روزا میگذره علی", src: "https://s6.uupload.ir/filelink/cYWMzL6SWFPc_6245ac4167/این_روزا_میگذره_علی_320_pf0t.mp3" }
+      ];
+
+      var currentIndex = 0;
+      var audio = new Audio(tracks[currentIndex].src);
+      audio.loop = false;
+
+      var playPauseBtn = document.getElementById("playPauseBtn");
+      var playIcon = document.getElementById("playIcon");
+      var pauseIcon = document.getElementById("pauseIcon");
+      var prevBtn = document.getElementById("prevBtn");
+      var nextBtn = document.getElementById("nextBtn");
+      var titleEl = document.getElementById("playerTitle");
+
+      function updateUI() {
+        if (titleEl) titleEl.textContent = tracks[currentIndex].title;
+        if (audio.paused) {
+          if (playIcon) playIcon.style.display = "block";
+          if (pauseIcon) pauseIcon.style.display = "none";
+          if (playPauseBtn) playPauseBtn.setAttribute("aria-label", "پخش");
+        } else {
+          if (playIcon) playIcon.style.display = "none";
+          if (pauseIcon) pauseIcon.style.display = "block";
+          if (playPauseBtn) playPauseBtn.setAttribute("aria-label", "توقف");
+        }
+      }
+
+      function loadTrack(index) {
+        currentIndex = index;
+        audio.src = tracks[currentIndex].src;
+        updateUI();
+      }
+
+      function playTrack() {
+        audio.play().catch(function() {
+          showToast("پخش آهنگ با خطا مواجه شد");
+          updateUI();
+        });
+        updateUI();
+      }
+
+      if (playPauseBtn) {
+        playPauseBtn.addEventListener("click", function() {
+          if (audio.paused) playTrack();
+          else { audio.pause(); updateUI(); }
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function() {
+          var index = (currentIndex - 1 + tracks.length) % tracks.length;
+          loadTrack(index);
+          playTrack();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function() {
+          var index = (currentIndex + 1) % tracks.length;
+          loadTrack(index);
+          playTrack();
+        });
+      }
+
+      audio.addEventListener("ended", function() {
+        var index = (currentIndex + 1) % tracks.length;
+        loadTrack(index);
+        playTrack();
+      });
+
+      updateUI();
+    })();
+
+    /* ============ Guiding Light ============ */
+    var GUIDING_ITEMS = [
+      { type: "آیه", text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.", source: "سوره کوثر — آیه ۱ تا ۳" },
+      { type: "حدیث", text: "فاطمه پاره‌ی تن من است؛ هر که او را اذیت کند، مرا اذیت کرده است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
+      { type: "حدیث", text: "فاطمه سرور زنان اهل بهشت است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
+      { type: "حدیث", text: "خداوند به غضب فاطمه غضب می‌کند و به رضای او راضی می‌شود.", source: "پیامبر اکرم (ص) — مستدرک حاکم" },
+      { type: "جمله", text: "مادر، پناه بی‌پناهان است؛ و فاطمه، مادر همه‌ی بی‌پناهانِ تاریخ.", source: "دل‌نوشته" },
+      { type: "داستان کوتاه", text: "روزی فاطمه (س) به پیامبر (ص) گفت: «پدر، من خسته‌ام از کار خانه.» پیامبر (ص) فرمود: «دخترم، خداوند تسبیحات اربعه را به تو هدیه داده است.» و به او آموخت که هر روز ۳۴ بار الله اکبر، ۳۳ بار الحمدلله و ۳۳ بار سبحان الله بگوید.", source: "برگرفته از کتب حدیث" }
+    ];
+
+    var currentGuidingIndex = 0;
+
+    function renderGuiding(index) {
+      var item = GUIDING_ITEMS[index];
+      if (!item) return;
+
+      var typeEl = document.getElementById("guidingType");
+      var textEl = document.getElementById("guidingText");
+      var translationEl = document.getElementById("guidingTranslation");
+      var sourceEl = document.getElementById("guidingSource");
+
+      if (typeEl) typeEl.textContent = item.type;
+      if (textEl) {
+        textEl.textContent = item.text;
+        if (item.translation) textEl.classList.add("arabic");
+        else textEl.classList.remove("arabic");
+      }
+      if (translationEl) {
+        if (item.translation) {
+          translationEl.textContent = item.translation;
+          translationEl.style.display = "block";
+        } else {
+          translationEl.style.display = "none";
+        }
+      }
+      if (sourceEl) sourceEl.textContent = item.source || "";
+    }
+
+    var guidingNextBtn = document.getElementById("guidingNextBtn");
+    if (guidingNextBtn) {
+      guidingNextBtn.addEventListener("click", function() {
+        var body = document.getElementById("guidingBody");
+        guidingNextBtn.classList.add("is-spinning");
+        setTimeout(function() { guidingNextBtn.classList.remove("is-spinning"); }, 520);
+        if (body) body.classList.add("is-fading");
+        setTimeout(function() {
+          currentGuidingIndex = (currentGuidingIndex + 1) % GUIDING_ITEMS.length;
+          renderGuiding(currentGuidingIndex);
+          if (body) body.classList.remove("is-fading");
+        }, 220);
+      });
+    }
+
     /* ============ Legacy photo slider ============ */
     (function initLegacySlider() {
       var gallery = document.getElementById("legacyGallery");
@@ -2745,100 +2185,24 @@ footer {
       var slides = gallery.querySelectorAll(".slide");
       var prevBtn = document.getElementById("sliderPrevBtn");
       var nextBtn = document.getElementById("sliderNextBtn");
-      var dotsWrap = document.getElementById("sliderDots");
+      var dots = document.querySelectorAll("#sliderDots .slider-dot");
 
       if (slides.length <= 1) return;
 
-      var dots;
-      if (dotsWrap) {
-        var existing = dotsWrap.querySelectorAll(".slider-dot");
-        if (existing.length !== slides.length) {
-          dotsWrap.innerHTML = "";
-          for (var di = 0; di < slides.length; di++) {
-            var s = document.createElement("span");
-            s.className = "slider-dot" + (di === 0 ? " is-active" : "");
-            dotsWrap.appendChild(s);
-          }
-        }
-        dots = dotsWrap.querySelectorAll(".slider-dot");
-      } else {
-        dots = [];
-      }
-
       var currentIndex = 0;
-      var AUTOPLAY_MS = 3800;
-      var ANIM_MS = 720;
       var isAnimating = false;
       var timer = null;
-      var lightbox = document.getElementById("galleryLightbox");
-      var lightboxImage = document.getElementById("lightboxImage");
-      var lightboxCaption = document.getElementById("lightboxCaption");
-      var pointerStartX = 0;
-      var pointerStartY = 0;
-      var pointerLastX = 0;
-      var pointerLastY = 0;
-      var pointerStartedOnImage = false;
-      var suppressGalleryClick = false;
-
-      function renderLightboxImage(index) {
-        var image = slides[index].querySelector("img");
-        if (!image || !lightboxImage) return;
-        lightboxImage.src = image.currentSrc || image.src;
-        lightboxImage.alt = image.alt;
-        if (lightboxCaption) lightboxCaption.textContent = image.alt || "تصویر گالری";
-      }
-
-      function openLightbox() {
-        if (!lightbox) return;
-        renderLightboxImage(currentIndex);
-        if (lightbox.showModal) lightbox.showModal();
-        else lightbox.setAttribute("open", "");
-        stop();
-      }
-
-      function closeLightbox() {
-        if (!lightbox) return;
-        if (lightbox.close) lightbox.close();
-        else lightbox.removeAttribute("open");
-        start();
-      }
-
-      var galleryImages = gallery.querySelectorAll("img");
-      for (var imageIndex = 0; imageIndex < galleryImages.length; imageIndex++) {
-        (function(image) {
-          function markImageReady(isError) {
-            image.classList.add("image-ready");
-            image.closest(".slide").classList.add("image-ready");
-            if (isError) image.classList.add("image-error");
-          }
-          image.addEventListener("load", function() { markImageReady(false); }, { once: true });
-          image.addEventListener("error", function() { markImageReady(true); }, { once: true });
-          if (image.complete) markImageReady(image.naturalWidth === 0);
-        })(galleryImages[imageIndex]);
-      }
 
       function setActiveDot(i) {
         for (var d = 0; d < dots.length; d++) {
-          if (d === i) {
-            dots[d].classList.add("is-active");
-          } else {
-            dots[d].classList.remove("is-active");
-          }
+          dots[d].classList.toggle("is-active", d === i);
         }
       }
 
       function settle() {
         for (var i = 0; i < slides.length; i++) {
-          var s = slides[i];
-          s.classList.remove(
-            "is-leaving", "is-leaving-reverse",
-            "is-entering", "is-entering-reverse"
-          );
-          if (i === currentIndex) {
-            s.classList.add("is-active");
-          } else {
-            s.classList.remove("is-active");
-          }
+          slides[i].classList.remove("is-leaving", "is-leaving-reverse", "is-entering", "is-entering-reverse");
+          slides[i].classList.toggle("is-active", i === currentIndex);
         }
         setActiveDot(currentIndex);
         isAnimating = false;
@@ -2854,11 +2218,7 @@ footer {
         var next = slides[nextIndex];
 
         for (var i = 0; i < slides.length; i++) {
-          slides[i].classList.remove(
-            "is-leaving", "is-leaving-reverse",
-            "is-entering", "is-entering-reverse"
-          );
-          slides[i].classList.remove("is-active");
+          slides[i].classList.remove("is-leaving", "is-leaving-reverse", "is-entering", "is-entering-reverse", "is-active");
         }
 
         next.classList.add("is-active");
@@ -2873,31 +2233,22 @@ footer {
 
         currentIndex = nextIndex;
         setActiveDot(currentIndex);
-        if (lightbox && lightbox.open) renderLightboxImage(currentIndex);
-
-        setTimeout(settle, ANIM_MS + 30);
+        setTimeout(settle, 580);
       }
-
-      function advance() { go(1); }
-      function goBack() { go(-1); }
 
       function start() {
         stop();
-        timer = setInterval(advance, AUTOPLAY_MS);
+        timer = setInterval(function() { go(1); }, 4000);
       }
 
       function stop() {
-        if (timer) {
-          clearInterval(timer);
-          timer = null;
-        }
+        if (timer) { clearInterval(timer); timer = null; }
       }
 
       if (nextBtn) {
         nextBtn.addEventListener("click", function(e) {
           e.preventDefault();
-          e.stopPropagation();
-          advance();
+          go(1);
           start();
         });
       }
@@ -2905,117 +2256,23 @@ footer {
       if (prevBtn) {
         prevBtn.addEventListener("click", function(e) {
           e.preventDefault();
-          e.stopPropagation();
-          goBack();
+          go(-1);
           start();
         });
       }
 
-      if (dotsWrap) {
-        dotsWrap.style.pointerEvents = "auto";
-        for (var k = 0; k < dots.length; k++) {
-          (function(idx) {
-            dots[idx].style.pointerEvents = "auto";
-            dots[idx].addEventListener("click", function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (isAnimating) return;
-              if (idx === currentIndex) {
-                start();
-                return;
-              }
-              var dir = idx > currentIndex ? 1 : -1;
-              var steps = Math.abs(idx - currentIndex);
-              var stepCount = 0;
-              function step() {
-                if (stepCount >= steps) { start(); return; }
-                stepCount++;
-                go(dir);
-                setTimeout(step, ANIM_MS + 40);
-              }
-              step();
-            });
-          })(k);
-        }
-      }
-
-      gallery.addEventListener("pointerdown", function(e) {
-        pointerStartedOnImage = !!(e.target.closest && e.target.closest(".slide.is-active img"));
-        if (!pointerStartedOnImage) return;
-        pointerStartX = e.clientX;
-        pointerStartY = e.clientY;
-        pointerLastX = e.clientX;
-        pointerLastY = e.clientY;
-        stop();
-      });
-
-      gallery.addEventListener("pointermove", function(e) {
-        if (!pointerStartedOnImage) return;
-        pointerLastX = e.clientX;
-        pointerLastY = e.clientY;
-      });
-
-      function finishPointerSwipe(endX, endY) {
-        if (!pointerStartedOnImage) return;
-        pointerStartedOnImage = false;
-        var deltaX = endX - pointerStartX;
-        var deltaY = endY - pointerStartY;
-        if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15) {
-          suppressGalleryClick = true;
-          go(deltaX < 0 ? 1 : -1);
-          setTimeout(function() { suppressGalleryClick = false; }, 350);
-        }
-        start();
-      }
-
-      gallery.addEventListener("pointerup", function(e) {
-        finishPointerSwipe(e.clientX, e.clientY);
-      });
-
-      gallery.addEventListener("pointercancel", function() {
-        finishPointerSwipe(pointerLastX, pointerLastY);
-      });
-
-      gallery.addEventListener("click", function(e) {
-        if (suppressGalleryClick) {
-          e.preventDefault();
-          return;
-        }
-        if (e.target.closest && e.target.closest(".slide.is-active img")) openLightbox();
-      });
-
-      var lightboxClose = document.getElementById("lightboxClose");
-      var lightboxPrev = document.getElementById("lightboxPrev");
-      var lightboxNext = document.getElementById("lightboxNext");
-      if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
-      if (lightboxPrev) lightboxPrev.addEventListener("click", goBack);
-      if (lightboxNext) lightboxNext.addEventListener("click", advance);
-      if (lightbox) {
-        lightbox.addEventListener("click", function(e) {
-          if (e.target === lightbox) closeLightbox();
-        });
-        lightbox.addEventListener("close", start);
-      }
-
-      document.addEventListener("visibilitychange", function() {
-        if (document.hidden) {
-          stop();
-        } else {
-          start();
-        }
-      });
-
-      var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (prefersReduced) {
-        settle();
-        return;
+      for (var k = 0; k < dots.length; k++) {
+        (function(idx) {
+          dots[idx].addEventListener("click", function() {
+            if (isAnimating || idx === currentIndex) return;
+            go(idx > currentIndex ? 1 : -1);
+            start();
+          });
+        })(k);
       }
 
       settle();
       start();
-
-      gallery.addEventListener("mouseenter", stop);
-      gallery.addEventListener("mouseleave", start);
     })();
 
     /* ============ Back to top ============ */
@@ -3023,45 +2280,19 @@ footer {
       var btn = document.getElementById("backToTopBtn");
       if (!btn) return;
 
-      var SHOW_AFTER = 300;
-      var ticking = false;
-
-      function updateVisibility() {
+      window.addEventListener("scroll", function() {
         var scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-        if (scrolled > SHOW_AFTER) {
-          btn.classList.add("is-visible");
-        } else {
-          btn.classList.remove("is-visible");
-        }
-        ticking = false;
-      }
-
-      function onScroll() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(updateVisibility);
-        }
-      }
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-      updateVisibility();
+        btn.classList.toggle("is-visible", scrolled > 300);
+      }, { passive: true });
 
       btn.addEventListener("click", function() {
-        try {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        } catch (e) {
-          window.scrollTo(0, 0);
-        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     })();
 
-    /* ============ Spiritual particles (desktop only) ============ */
+    /* ============ Spiritual particles ============ */
     (function initParticlesSystem() {
-      var isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
-      var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (isSmallScreen || prefersReduced) return;
-
+      if (window.matchMedia("(max-width: 768px)").matches) return;
       var canvas = document.getElementById('spiritualCanvas');
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
@@ -3079,11 +2310,11 @@ footer {
       function Particle() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.4 + 0.6;
+        this.size = Math.random() * 2.2 + 0.6;
         this.speedX = (Math.random() - 0.5) * 0.35;
         this.speedY = -Math.random() * 0.5 - 0.2;
         this.opacity = Math.random() * 0.6 + 0.2;
-        this.hue = 345 + Math.random() * 20;
+        this.hue = 348 + Math.random() * 14;
       }
 
       Particle.prototype.update = function() {
@@ -3096,31 +2327,14 @@ footer {
       };
 
       Particle.prototype.draw = function() {
-        var alpha = this.opacity;
-        var grad = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, this.size * 3.2
-        );
-        grad.addColorStop(0, 'hsla(' + this.hue + ', 90%, 62%, ' + alpha + ')');
-        grad.addColorStop(0.4, 'hsla(' + this.hue + ', 85%, 48%, ' + (alpha * 0.5) + ')');
-        grad.addColorStop(1, 'hsla(' + this.hue + ', 80%, 40%, 0)');
-        ctx.fillStyle = grad;
+        ctx.fillStyle = 'hsla(' + this.hue + ', 90%, 60%, ' + this.opacity + ')';
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 3.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = 'hsla(' + this.hue + ', 95%, 70%, ' + alpha + ')';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 0.9, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       };
 
-      function initParticles() {
-        particlesArray = [];
-        var count = window.innerWidth < 1200 ? 50 : 70;
-        for (var i = 0; i < count; i++) {
-          particlesArray.push(new Particle());
-        }
+      for (var i = 0; i < 55; i++) {
+        particlesArray.push(new Particle());
       }
 
       function animateParticles() {
@@ -3132,22 +2346,17 @@ footer {
         animationId = requestAnimationFrame(animateParticles);
       }
 
-      initParticles();
-      window.addEventListener('resize', initParticles);
       animateParticles();
 
       document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-          if (animationId) {
-            cancelAnimationFrame(animationId);
-            animationId = null;
-          }
-        } else if (!animationId) {
+        if (document.hidden && animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        } else if (!document.hidden && !animationId) {
           animateParticles();
         }
       });
     })();
-
   </script>
 </body>
 </html>
