@@ -561,7 +561,7 @@ main {
 }
 
 .salavat-btn.is-cooling .salavat-progress {
-  animation: progress-drain 3s linear forwards;
+  animation: progress-drain 1s linear forwards;
 }
 
 @keyframes progress-drain {
@@ -2147,143 +2147,12 @@ footer {
     </div>
   </div>
 
-  <!-- اسکریپت فایربیس (نسخه سازگار - بدون مشکل CORS در اجرای محلی) -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
-  <!-- اسکریپت صلوات‌شمار -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2XjhsIxGmFn9LNbCHiUmzoQVttOAhxUQ",
-      authDomain: "salavatfatemiye.firebaseapp.com",
-      databaseURL: "https://salavatfatemiye-default-rtdb.firebaseio.com",
-      projectId: "salavatfatemiye",
-      storageBucket: "salavatfatemiye.firebasestorage.app",
-      messagingSenderId: "549826831043",
-      appId: "1:549826831043:web:1ce68b45e57c0dd92eb876",
-      measurementId: "G-GG6RPT7H0H"
-    };
-
-    // مقداردهی اولیه فایربیس
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const salavatRef = db.ref('salavat_counter');
-
-    const countDisplay = document.getElementById('salavatCount');
-    const btn = document.getElementById('salavatBtn');
-    const progressBar = document.getElementById('salavatProgress');
-    
-    const COOLDOWN_MS = 3000;
-    let isCoolingDown = false;
-    let cooldownTimeout = null;
-    let localOptimisticCount = 0; // برای آپدیت آنی
-
-    // ۱. دریافت و نمایش زنده عدد از سرور
-    salavatRef.on('value', (snapshot) => {
-      const val = snapshot.val() || 0;
-      localOptimisticCount = val;
-      countDisplay.textContent = val;
-      
-      // افکت کوچک برای تغییر عدد
-      countDisplay.style.transform = 'scale(1.1)';
-      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
-    });
-
-    // تابع آزاد کردن دکمه
-    function forceUnlock() {
-      isCoolingDown = false;
-      btn.classList.remove('is-cooling');
-      progressBar.style.animation = 'none';
-      progressBar.offsetHeight; // ترفند ریست انیمیشن
-      progressBar.style.animation = '';
-      localStorage.removeItem('salavatCooldownEnd');
-      if (cooldownTimeout) clearTimeout(cooldownTimeout);
-    }
-
-    // ۲. شروع کول‌داون
-    function startCooldown() {
-      isCoolingDown = true;
-      btn.classList.add('is-cooling');
-      
-      // ذخیره زمان پایان
-      const endTime = Date.now() + COOLDOWN_MS;
-      localStorage.setItem('salavatCooldownEnd', endTime);
-
-      if (cooldownTimeout) clearTimeout(cooldownTimeout);
-      cooldownTimeout = setTimeout(forceUnlock, COOLDOWN_MS);
-    }
-
-    // ۳. بررسی وضعیت در شروع
-    function checkCooldownOnLoad() {
-      forceUnlock(); // اول دکمه را آزاد کن
-
-      const savedEnd = localStorage.getItem('salavatCooldownEnd');
-      if (savedEnd) {
-        const remaining = parseInt(savedEnd) - Date.now();
-        if (remaining > 0 && remaining <= COOLDOWN_MS) {
-          isCoolingDown = true;
-          btn.classList.add('is-cooling');
-          
-          progressBar.style.animation = 'none';
-          progressBar.style.transform = `scaleX(${remaining / COOLDOWN_MS})`;
-          progressBar.offsetHeight;
-          
-          cooldownTimeout = setTimeout(forceUnlock, remaining);
-        } else {
-          localStorage.removeItem('salavatCooldownEnd');
-        }
-      }
-    }
-
-    // ۴. افکت موج
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement('span');
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add('salavat-ripple');
-      
-      const ripple = button.getElementsByClassName('salavat-ripple')[0];
-      if (ripple) ripple.remove();
-      button.appendChild(circle);
-    }
-
-    // ۵. کلیک روی دکمه (استفاده از سیستم اتمیک increment)
-    btn.addEventListener('click', (e) => {
-      if (isCoolingDown) return; 
-
-      createRipple(e);
-
-      // آپدیت آنی رابط کاربری (Optimistic UI) بدون صبر کردن برای سرور
-      localOptimisticCount++;
-      countDisplay.textContent = localOptimisticCount;
-      countDisplay.style.transform = 'scale(1.1)';
-      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
-
-      // ثبت در فایربیس با استفاده از متد Increment که در صورت کلیک همزمان کاربران، هیچ مشکلی ایجاد نمی‌کند
-      salavatRef.set(firebase.database.ServerValue.increment(1)).catch(err => {
-          console.error("Error saving to Firebase: ", err);
-          if(window.showToast) {
-            window.showToast("خطا در ارتباط با سرور فایربیس.");
-          }
-      });
-
-      startCooldown();
-    });
-
-    checkCooldownOnLoad();
-  </script>
-
   <!-- اسکریپت‌های اصلی سایت -->
   <script>
     'use strict';
 
     var CARD_PAN = "6219861904253118";
 
-    // این فانکشن به حالت سراسری (Global) منتقل شده تا بقیه بخش‌ها هم به آن دسترسی داشته باشند
     window.showToast = function(message) {
       var t = document.getElementById("snackToast");
       if (!t) return;
@@ -2680,6 +2549,121 @@ footer {
         }
       });
     })();
+  </script>
+
+  <!-- اسکریپت صلوات‌شمار با سرعت بالا (CounterAPI) - بدون فیلتر -->
+  <script>
+    const countDisplay = document.getElementById('salavatCount');
+    const btn = document.getElementById('salavatBtn');
+    const progressBar = document.getElementById('salavatProgress');
+    
+    // شناسه اختصاصی شما برای سایت
+    const NAMESPACE = 'sabco_fatemiye_1405_v1'; 
+    const KEY = 'salavat_count';
+    const API_URL = `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}`;
+
+    const COOLDOWN_MS = 1000; // یک ثانیه تاخیر
+    let isCoolingDown = false;
+    let cooldownTimeout = null;
+    let localOptimisticCount = 0;
+
+    // دریافت آمار بقیه کاربران هر ۲ ثانیه
+    function fetchCount() {
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.count !== undefined) {
+            if (data.count > localOptimisticCount || localOptimisticCount === 0) {
+              localOptimisticCount = data.count;
+              countDisplay.textContent = localOptimisticCount;
+            }
+          }
+        })
+        .catch(err => console.error('خطا در دریافت اطلاعات', err));
+    }
+    
+    fetchCount();
+    setInterval(fetchCount, 2000); 
+
+    function forceUnlock() {
+      isCoolingDown = false;
+      btn.classList.remove('is-cooling');
+      progressBar.style.animation = 'none';
+      progressBar.offsetHeight; 
+      progressBar.style.animation = '';
+      localStorage.removeItem('salavatCooldownEnd');
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+    }
+
+    function startCooldown() {
+      isCoolingDown = true;
+      btn.classList.add('is-cooling');
+      const endTime = Date.now() + COOLDOWN_MS;
+      localStorage.setItem('salavatCooldownEnd', endTime);
+
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+      cooldownTimeout = setTimeout(forceUnlock, COOLDOWN_MS);
+    }
+
+    function checkCooldownOnLoad() {
+      forceUnlock();
+      const savedEnd = localStorage.getItem('salavatCooldownEnd');
+      if (savedEnd) {
+        const remaining = parseInt(savedEnd) - Date.now();
+        if (remaining > 0 && remaining <= COOLDOWN_MS) {
+          isCoolingDown = true;
+          btn.classList.add('is-cooling');
+          progressBar.style.animation = 'none';
+          progressBar.style.transform = `scaleX(${remaining / COOLDOWN_MS})`;
+          progressBar.offsetHeight;
+          cooldownTimeout = setTimeout(forceUnlock, remaining);
+        } else {
+          localStorage.removeItem('salavatCooldownEnd');
+        }
+      }
+    }
+
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add('salavat-ripple');
+      
+      const ripple = button.getElementsByClassName('salavat-ripple')[0];
+      if (ripple) ripple.remove();
+      button.appendChild(circle);
+    }
+
+    btn.addEventListener('click', (e) => {
+      if (isCoolingDown) return; 
+
+      createRipple(e);
+
+      // آپدیت آنی برای القای حس سرعت
+      localOptimisticCount++;
+      countDisplay.textContent = localOptimisticCount;
+      countDisplay.style.transform = 'scale(1.1)';
+      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+
+      // ثبت در سرور
+      fetch(API_URL + '/up')
+        .then(response => response.json())
+        .then(data => {
+          if(data && data.count !== undefined) {
+             localOptimisticCount = data.count;
+             countDisplay.textContent = localOptimisticCount;
+          }
+        })
+        .catch(err => console.error("خطا در ثبت صلوات", err));
+
+      startCooldown();
+    });
+
+    checkCooldownOnLoad();
   </script>
 </body>
 </html>
