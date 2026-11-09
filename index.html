@@ -2147,6 +2147,9 @@ footer {
     </div>
   </div>
 
+  <!-- کتابخانه MQTT برای مخابره بلادرنگ بین گوشی‌ها -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+
   <!-- اسکریپت‌های اصلی سایت -->
   <script>
     'use strict';
@@ -2551,40 +2554,116 @@ footer {
     })();
   </script>
 
-  <!-- اسکریپت صلوات‌شمار اختصاصی با سرور گوگل (کاملاً ضد فیلتر) -->
+  <!-- سیستم دوگانه: گوگل شیت (بدون فیلتر) + MQTT (برای مخابره درجا) -->
   <script>
-    // لینک شما با موفقیت در این بخش قرار گرفت:
-    const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbxpzJzNuNRk5BJ5QlDXV7lGetbh1F5iadcnGJM2UaZX4yUU_0oSNtwzqxnU6E04B1hhIw/exec";
-
     const countDisplay = document.getElementById('salavatCount');
     const btn = document.getElementById('salavatBtn');
     const progressBar = document.getElementById('salavatProgress');
+    
+    // لینک شما با موفقیت در این بخش قرار گرفت:
+    const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbxpzJzNuNRk5BJ5QlDXV7lGetbh1F5iadcnGJM2UaZX4yUU_0oSNtwzqxnU6E04B1hhIw/exec";
 
-    let localCount = 0;
-    let isCooling = false;
+    // تنظیمات سرور مخابراتی MQTT (برای حس درجا آپدیت شدن بدون فیلترشکن)
+    const MQTT_BROKER = "broker.hivemq.com";
+    const MQTT_PORT = 8884; // پورت امن WebSocket
+    const MQTT_TOPIC = "sabco_fatemiye_1405_instant_sync";
+    
+    // اختصاص یک آیدی تصادفی به هر شخصی که وارد سایت می‌شود
+    const myClientId = "user_" + Math.random().toString(36).substr(2, 9);
+    let mqttClient = null;
 
-    // ۱. دریافت آمار زنده از گوگل (هر ۳ ثانیه)
-    function fetchCount() {
-      // استفاده از زمان برای جلوگیری از کش شدن مرورگر
-      const url = GOOGLE_API_URL + '?_=' + Date.now();
-      
-      fetch(url)
-        .then(res => res.json())
+    const COOLDOWN_MS = 1000; // محدودیت ۱ ثانیه‌ای برای هر کلیک
+    let isCoolingDown = false;
+    let cooldownTimeout = null;
+    let globalCount = 0;
+
+    // آپدیت کردن ظاهر عدد با افکت پالس
+    function updateUI(newCount) {
+      if (newCount > globalCount || globalCount === 0) {
+        globalCount = newCount;
+        countDisplay.textContent = globalCount;
+        countDisplay.style.transform = 'scale(1.1)';
+        setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+      }
+    }
+
+    // ۱. دریافت آمار دقیق از گوگل شیت (هر ۱۵ ثانیه یکبار)
+    function syncDatabase() {
+      const noCacheUrl = GOOGLE_API_URL + '?_=' + Date.now();
+      fetch(noCacheUrl, { cache: 'no-store' })
+        .then(response => response.json())
         .then(data => {
           if (data && data.count !== undefined) {
-            if (data.count > localCount || localCount === 0) {
-              localCount = data.count;
-              countDisplay.textContent = localCount;
-            }
+            updateUI(data.count);
           }
         })
-        .catch(err => console.error('خطا در دریافت آمار:', err));
+        .catch(err => console.error('خطا در دریافت اطلاعات', err));
     }
-    
-    fetchCount();
-    setInterval(fetchCount, 3000);
 
-    // افکت کلیک
+    // ۲. اتصال به سرور مخابراتی درجا (MQTT)
+    function connectRealTime() {
+      mqttClient = new Paho.MQTT.Client(MQTT_BROKER, MQTT_PORT, "/mqtt", myClientId);
+      
+      mqttClient.onMessageArrived = function(message) {
+        // وقتی پیامی آمد، اگر فرستنده‌اش خودم نبودم، یعنی شخص دیگری کلیک کرده!
+        if (message.payloadString !== myClientId) {
+           globalCount++; // عدد را فوراً بالا ببر
+           updateUI(globalCount);
+        }
+      };
+
+      mqttClient.connect({
+        useSSL: true,
+        onSuccess: function() {
+          mqttClient.subscribe(MQTT_TOPIC); // گوش دادن به کانال
+        },
+        onFailure: function() {}
+      });
+    }
+
+    // اجرا در هنگام لود شدن صفحه
+    syncDatabase();
+    setInterval(syncDatabase, 15000); // پشتیبان هر ۱۵ ثانیه
+    connectRealTime();
+
+    function forceUnlock() {
+      isCoolingDown = false;
+      btn.classList.remove('is-cooling');
+      progressBar.style.animation = 'none';
+      progressBar.offsetHeight; 
+      progressBar.style.animation = '';
+      localStorage.removeItem('salavatCooldownEnd');
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+    }
+
+    function startCooldown() {
+      isCoolingDown = true;
+      btn.classList.add('is-cooling');
+      const endTime = Date.now() + COOLDOWN_MS;
+      localStorage.setItem('salavatCooldownEnd', endTime);
+
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+      cooldownTimeout = setTimeout(forceUnlock, COOLDOWN_MS);
+    }
+
+    function checkCooldownOnLoad() {
+      forceUnlock();
+      const savedEnd = localStorage.getItem('salavatCooldownEnd');
+      if (savedEnd) {
+        const remaining = parseInt(savedEnd) - Date.now();
+        if (remaining > 0 && remaining <= COOLDOWN_MS) {
+          isCoolingDown = true;
+          btn.classList.add('is-cooling');
+          progressBar.style.animation = 'none';
+          progressBar.style.transform = `scaleX(${remaining / COOLDOWN_MS})`;
+          progressBar.offsetHeight;
+          cooldownTimeout = setTimeout(forceUnlock, remaining);
+        } else {
+          localStorage.removeItem('salavatCooldownEnd');
+        }
+      }
+    }
+
     function createRipple(event) {
       const button = event.currentTarget;
       const circle = document.createElement('span');
@@ -2594,46 +2673,36 @@ footer {
       circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
       circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
       circle.classList.add('salavat-ripple');
+      
       const ripple = button.getElementsByClassName('salavat-ripple')[0];
       if (ripple) ripple.remove();
       button.appendChild(circle);
     }
 
-    // ۲. ارسال صلوات با کلیک
+    // ۳. کلیک روی دکمه (ذخیره در گوگل + مخابره درجا)
     btn.addEventListener('click', (e) => {
-      if (isCooling) return; 
+      if (isCoolingDown) return; 
       createRipple(e);
 
-      // قفل کردن دکمه برای ۱ ثانیه
-      isCooling = true;
-      btn.classList.add('is-cooling');
-      progressBar.style.animation = 'none';
-      progressBar.offsetHeight; 
-      progressBar.style.animation = 'progress-drain 1s linear forwards';
-      
-      setTimeout(() => {
-          isCooling = false;
-          btn.classList.remove('is-cooling');
-      }, 1000);
+      // الف: آپدیت فوری در گوشی خود شخص
+      globalCount++;
+      updateUI(globalCount);
 
-      // آپدیت سریع عدد روی صفحه برای القای حس سرعت
-      localCount++;
-      countDisplay.textContent = localCount;
-      countDisplay.style.transform = 'scale(1.1)';
-      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+      // ب: ارسال پیام درجا (در کسر ثانیه) به بقیه گوشی‌های متصل
+      if (mqttClient && mqttClient.isConnected()) {
+        let msg = new Paho.MQTT.Message(myClientId); 
+        msg.destinationName = MQTT_TOPIC;
+        mqttClient.send(msg);
+      }
 
-      // ارسال مستقیم دستور افزایش عدد به گوگل شیت
+      // ج: ذخیره عدد در دیتابیس گوگل برای ماندگاری اطلاعات
       const upUrl = GOOGLE_API_URL + '?up=1&_=' + Date.now();
-      fetch(upUrl)
-        .then(res => res.json())
-        .then(data => {
-          if(data && data.count !== undefined) {
-             localCount = data.count;
-             countDisplay.textContent = localCount;
-          }
-        })
-        .catch(err => console.error("خطا در ثبت صلوات:", err));
+      fetch(upUrl, { cache: 'no-store' }).catch(err => {});
+
+      startCooldown();
     });
+
+    checkCooldownOnLoad();
   </script>
 </body>
 </html>
