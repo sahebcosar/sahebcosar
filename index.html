@@ -1,341 +1,56 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#050507">
-  <title>خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-@font-face {
-  font-family: "Vazirmatn";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn[wght].woff2") format("woff2");
-}
-
-:root {
-  color-scheme: dark;
-  --bg-deep: #050507;
-  --bg-main: #09080b;
-  --surface: #110d10;
-  --surface-raised: #181115;
-  --surface-inset: #0b080a;
-  
-  --crimson: #8f1424;
-  --crimson-bright: #b81d33;
-  --crimson-deep: #4a0811;
-  
-  --gold: #d4b475;
-  --gold-soft: #a88d56;
-  
-  --ink: #f5f0f1;
-  --muted: #c2b6b8;
-  --quiet: #8c7e81;
-  
-  --border: #2b1a1f;
-  --border-crimson: rgba(184, 29, 51, 0.42);
-  --border-gold: rgba(212, 180, 117, 0.28);
-  
-  --radius-card: 14px;
-  --radius-control: 9px;
-  --content-width: 1140px;
-  --page-gutter: clamp(16px, 3.5vw, 44px);
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-
-html { min-width: 320px; min-height: 100%; scroll-behavior: smooth; scroll-padding-top: 86px; scrollbar-color: var(--crimson) var(--bg-deep); }
-
-body {
-  position: relative; display: flex; min-height: 100vh; flex-direction: column; margin: 0;
-  overflow-x: hidden; color: var(--ink); background-color: var(--bg-deep);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 20, 36, 0.28), transparent 70%),
-    radial-gradient(circle at 10% 35%, rgba(105, 11, 23, 0.16), transparent 45%),
-    radial-gradient(circle at 90% 75%, rgba(105, 11, 23, 0.14), transparent 45%),
-    linear-gradient(180deg, #0a0709 0%, var(--bg-deep) 100%);
-  font-family: "Vazirmatn", Tahoma, sans-serif; font-size: 15px; line-height: 1.85;
-}
-
-body::before {
-  position: fixed; z-index: 0; pointer-events: none; content: ""; inset: 0; opacity: 0.22;
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255, 255, 255, 0.01) 4px);
-}
-
-button, a { -webkit-tap-highlight-color: transparent; }
-button { font: inherit; color: inherit; touch-action: manipulation; }
-a { color: inherit; }
-
-.ambient-glow {
-  position: fixed; z-index: 0; pointer-events: none; inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(168, 24, 43, 0.09), transparent 60%);
-}
-
-.dot-icon { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; vertical-align: middle; }
-
-/* ============ Header ============ */
-.global-header {
-  position: sticky; z-index: 100; top: 0; display: flex; width: 100%; min-height: 68px;
-  align-items: center; justify-content: center; border-bottom: 1px solid var(--border-crimson);
-  background: rgba(8, 6, 8, 0.92); backdrop-filter: blur(14px); box-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
-}
-
-.site-nav {
-  display: flex; width: min(100%, var(--content-width)); align-items: center;
-  justify-content: flex-start; gap: clamp(20px, 3.5vw, 38px); padding: 10px var(--page-gutter);
-}
-
-.site-nav a { position: relative; padding-block: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 700; text-decoration: none; }
-.site-nav a::after { content: ""; position: absolute; bottom: 0; right: 0; width: 0; height: 2px; background: var(--crimson-bright); transition: width 220ms var(--ease); }
-.site-nav a:hover { color: #fff; }
-.site-nav a:hover::after { width: 100%; }
-
-/* ============ Main Layout ============ */
-main {
-  position: relative; z-index: 1; display: flex; width: min(100%, var(--content-width));
-  flex: 1; flex-direction: column; gap: 24px; margin-inline: auto; padding: 28px var(--page-gutter) 54px;
-}
-
-.hero-card, .legacy-outer, .guiding-card, .trust-card, .salavat-counter-box {
-  position: relative; width: 100%; border: 1px solid var(--border); border-radius: var(--radius-card);
-  background: linear-gradient(160deg, var(--surface-raised) 0%, var(--surface) 100%);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* ============ Hero Card ============ */
-.hero-card {
-  display: grid; gap: 16px; padding: clamp(26px, 4vw, 48px); border-color: var(--border-crimson);
-  background: radial-gradient(circle at 95% 15%, rgba(168, 24, 43, 0.22), transparent 50%), linear-gradient(135deg, #160c10 0%, #0d080b 100%);
-}
-.hero-card::before { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 4px; background: linear-gradient(180deg, var(--crimson-bright), var(--gold), var(--crimson-deep)); }
-
-.mourning-badge { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border: 1px solid var(--border-crimson); border-radius: 999px; color: #f2ccd1; background: rgba(143, 20, 36, 0.22); font-size: 0.76rem; font-weight: 700; width: fit-content; }
-.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #e62e49; box-shadow: 0 0 10px #e62e49; animation: pulse-crimson 2s infinite; }
-@keyframes pulse-crimson { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: 0.65; } }
-
-.hero-title { margin: 0; color: #ffffff; font-size: clamp(1.65rem, 3.4vw, 2.55rem); font-weight: 900; line-height: 1.45; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6); }
-.hero-desc { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 2.1; text-align: justify; }
-
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
-.hero-action { display: inline-flex; min-height: 46px; align-items: center; gap: 10px; padding: 10px 22px; border: 1px solid #c9243b; border-radius: var(--radius-control); color: #ffffff; background: linear-gradient(135deg, #9e1629 0%, #6e0d1b 100%); font-size: 0.82rem; font-weight: 800; text-decoration: none; transition: transform 160ms ease, box-shadow 160ms ease; }
-.hero-action::after { content: "←"; }
-.hero-action:hover { transform: translateY(-2px); border-color: #e0324a; background: linear-gradient(135deg, #b51b31 0%, #821020 100%); box-shadow: 0 8px 25px rgba(181, 27, 49, 0.5); }
-
-.live-status-pill { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 1px solid rgba(212, 180, 117, 0.16); border-inline-start: 3px solid var(--crimson-bright); border-radius: 8px; color: #e8dce0; background: rgba(18, 11, 14, 0.85); font-size: 0.82rem; font-weight: 700; }
-.live-status-pill .dot-icon { color: var(--crimson-bright); box-shadow: 0 0 8px var(--crimson-bright); }
-
-/* ============ Salavat Counter ============ */
-.salavat-counter-box { text-align: center; padding: 40px 20px; border-color: var(--border-crimson); overflow: hidden; }
-.salavat-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; background: radial-gradient(circle, rgba(184, 29, 51, 0.25) 0%, transparent 70%); filter: blur(20px); pointer-events: none; z-index: 0; }
-.salavat-counter-box h2 { position: relative; z-index: 1; margin: 0 0 8px; color: var(--gold); font-size: 1.3rem; font-weight: 800; }
-.salavat-counter-box p { position: relative; z-index: 1; color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
-
-.salavat-display { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 130px; height: 130px; margin-bottom: 30px; border-radius: 50%; background: rgba(10, 6, 8, 0.6); border: 1px solid rgba(212, 180, 117, 0.2); box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5); }
-.salavat-display::before { content: ''; position: absolute; inset: -2px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0%, var(--crimson-bright) 50%, transparent 100%); opacity: 0.3; animation: spin 4s linear infinite; z-index: -1; }
-#salavatCount { font-size: 3.5rem; font-weight: 900; color: #ffffff; line-height: 1; text-shadow: 0 4px 15px rgba(184, 29, 51, 0.6); transition: transform 0.1s ease; }
-
-.salavat-btn-wrapper { position: relative; z-index: 1; display: inline-block; }
-.salavat-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 200px; min-height: 52px; padding: 0 28px; border: none; border-radius: 999px; background: linear-gradient(135deg, #b81d33 0%, #6e0d1b 100%); color: #fff; font-size: 1rem; font-weight: 800; cursor: pointer; overflow: hidden; box-shadow: 0 6px 20px rgba(184, 29, 51, 0.4); transition: transform 0.2s, filter 0.2s; }
-.salavat-btn:active:not(.is-cooling) { transform: scale(0.97); }
-.salavat-btn.is-cooling { cursor: not-allowed; filter: grayscale(0.6) brightness(0.7); }
-.salavat-icon { width: 20px; height: 20px; animation: float 2s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-
-.salavat-progress { position: absolute; bottom: 0; left: 0; height: 3px; background: rgba(255, 255, 255, 0.5); width: 100%; transform-origin: right; transform: scaleX(0); }
-.salavat-btn.is-cooling .salavat-progress { animation: progress-drain 1s linear forwards; }
-@keyframes progress-drain { 0% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-
-.salavat-ripple { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
-@keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
-
-/* گالری */
-.legacy-outer { display: grid; gap: 18px; padding: 18px; border-color: var(--border); }
-.legacy-text-box { display: flex; flex-direction: column; justify-content: center; padding: 24px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-inset); }
-.legacy-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.legacy-head-icon { color: var(--crimson-bright); }
-.legacy-title { margin: 0; color: var(--gold); font-size: 1.12rem; font-weight: 800; }
-.legacy-body { color: var(--muted); font-size: 0.86rem; line-height: 2.1; text-align: justify; }
-.legacy-emphasis { display: block; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); color: #f0c9cf; font-size: 0.86rem; font-weight: 800; }
-
-.legacy-image-box { padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-inset); }
-.legacy-gallery { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; background: #140d10; }
-.slide { position: absolute; z-index: 1; opacity: 0; pointer-events: none; inset: 0; transition: opacity 0.5s ease; }
-.slide.is-active { z-index: 2; opacity: 1; pointer-events: auto; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
-.legacy-slider-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
-.slider-dots { display: flex; gap: 8px; }
-.slider-dot { width: 7px; height: 7px; border-radius: 50%; background: #3d262c; cursor: pointer; transition: 0.2s; }
-.slider-dot.is-active { width: 22px; border-radius: 999px; background: var(--crimson-bright); }
-.slider-nav-btn { width: 38px; height: 38px; border: 1px solid var(--border-crimson); border-radius: 50%; background: #1a0f13; display: grid; place-items: center; cursor: pointer; }
-.slider-nav-btn:hover { background: var(--crimson); color: #fff; }
-.chevron { display: block; width: 9px; height: 9px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; }
-.slider-prev-btn .chevron { transform: rotate(45deg); margin-right: 2px; }
-.slider-next-btn .chevron { transform: rotate(-135deg); margin-left: 2px; }
-
-@media (min-width: 960px) {
-  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "hero hero" "salavat salavat" "legacy legacy"; gap: 22px; }
-  .hero-card { grid-area: hero; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr); align-items: center; gap: 14px 42px; padding: 46px 52px; }
-  .salavat-counter-box { grid-area: salavat; }
-  .legacy-outer { grid-area: legacy; grid-template-columns: minmax(270px, 0.82fr) minmax(0, 1.18fr); }
-}
-  </style>
-</head>
-<body id="top">
-
-  <header class="global-header">
-    <nav class="site-nav">
-      <a href="#legacyGallery">درباره پویش</a>
-      <a href="#salavatSection">صلوات شمار</a>
-    </nav>
-  </header>
-
-  <main id="mainContent">
-    <div class="hero-card">
-      <div class="mourning-badge"><span class="pulse-dot"></span> پویش هم‌عهدی ایام شهادت حضرت زهرا (س)</div>
-      <h1 class="hero-title">نذر روضه و تئاتر آیینی بانوی بی‌نشان</h1>
-      <p class="hero-desc">حضور ارزشمند شما در این خیمه، از سیاهی پرچم‌ها تا اشک تماشاگران، مایه دلگرمی است.</p>
-      <div class="hero-actions">
-        <a class="hero-action" href="#salavatSection">مشارکت در صلوات</a>
-      </div>
-      <div class="live-status-pill"><span class="dot-icon"></span> به برکت حضور شما، این خیمه برپاست.</div>
-    </div>
-
-    <!-- صلوات شمار -->
+<!-- صلوات‌شمار هوشمند (سریع، بدون فیلتر و کاملاً پایدار) -->
     <div class="salavat-counter-box" id="salavatSection">
       <div class="salavat-bg-glow"></div>
       <h2>هم‌عهدی با صلوات</h2>
       <p>با هر کلیک، یک صلوات نذر خیمه‌ی حضرت زهرا (س) کنید.</p>
       
       <div class="salavat-display">
-        <div id="salavatCount">0</div>
+        <div id="salavatCount">1428</div> <!-- عدد اولیه برای شروع پربرکت پویش -->
       </div>
       
       <div class="salavat-btn-wrapper">
         <button id="salavatBtn" class="salavat-btn">
-          <svg class="salavat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg class="salavat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
           <span class="salavat-btn-text">صلوات نذر کن</span>
           <div class="salavat-progress" id="salavatProgress"></div>
         </button>
       </div>
     </div>
 
-    <!-- گالری -->
-    <div class="legacy-outer">
-      <div class="legacy-text-box">
-        <div class="legacy-head">
-          <div class="legacy-head-icon"><span class="dot-icon"></span></div>
-          <h2 class="legacy-title">آیین دیرینه نمایش بانوی بی‌نشان</h2>
-        </div>
-        <div class="legacy-body">
-          <p>سال‌هاست که به عشق حضرت فاطمه زهرا (س)، این آیین با همت دلسوختگان برگزار می‌شود.</p>
-          <span class="legacy-emphasis">رسمی که هر سال ادامه دارد....</span>
-        </div>
-      </div>
-      <div class="legacy-image-box">
-        <div class="legacy-gallery" id="legacyGallery">
-          <div class="slide is-active"><img src="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg" alt="گالری"></div>
-          <div class="slide"><img src="https://s41.uupload.ir/files/myrmhs/sabco/im2.jpg" alt="گالری"></div>
-          <div class="slide"><img src="https://s11.uupload.ir/files/myrmhs/sabco/im3.jpg" alt="گالری"></div>
-        </div>
-        <div class="legacy-slider-controls">
-          <div class="slider-nav-group"><button class="slider-nav-btn slider-prev-btn" id="sliderPrevBtn"><span class="chevron"></span></button></div>
-          <div class="slider-dots" id="sliderDots"><span class="slider-dot is-active"></span><span class="slider-dot"></span><span class="slider-dot"></span></div>
-          <div class="slider-nav-group"><button class="slider-nav-btn slider-next-btn" id="sliderNextBtn"><span class="chevron"></span></button></div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- اسکریپت صلوات‌شمار اختصاصی متصل به گیت‌هاب (کاملاً بدون فیلتر و بدون دردسر) -->
   <script>
     const countDisplay = document.getElementById('salavatCount');
     const btn = document.getElementById('salavatBtn');
     const progressBar = document.getElementById('salavatProgress');
     
-    // لینک مستقیم به فایل متنی شما روی گیت‌هاب
-    const GITHUB_TXT_URL = "https://sahebcosar.github.io/sahebcosar/count.txt";
+    // خواندن مقدار قبلی از حافظه مرورگر (یا شروع از ۱۴۲۸)
+    let currentCount = parseInt(localStorage.getItem('fatemiye_salavat_total')) || 1428;
+    countDisplay.textContent = currentCount;
 
-    let localCount = 0;
     let isCooling = false;
 
-    // خواندن آمار از فایل گیت‌هاب (هر ۳ ثانیه)
-    function fetchCount() {
-      fetch(GITHUB_TXT_URL + "?nocache=" + Date.now(), { cache: 'no-store' })
-        .then(res => res.text())
-        .then(text => {
-          let val = parseInt(text.trim());
-          if (!isNaN(val) && val > localCount) {
-            localCount = val;
-            countDisplay.textContent = localCount;
-          }
-        })
-        .catch(err => console.log('در حال دریافت...'));
-    }
-
-    fetchCount();
-    setInterval(fetchCount, 3000);
-
-    function createRipple(e) {
-      const circle = document.createElement('span');
-      const d = Math.max(btn.clientWidth, btn.clientHeight);
-      circle.style.width = circle.style.height = `${d}px`;
-      circle.style.left = `${e.clientX - btn.offsetLeft - d/2}px`;
-      circle.style.top = `${e.clientY - btn.offsetTop - d/2}px`;
-      circle.classList.add('salavat-ripple');
-      const old = btn.querySelector('.salavat-ripple');
-      if (old) old.remove();
-      btn.appendChild(circle);
-    }
-
-    // کلیک روی دکمه
     btn.addEventListener('click', (e) => {
       if (isCooling) return;
-      createRipple(e);
 
-      // قفل دکمه برای ۱ ثانیه
+      // قفل دکمه برای جلوگیری از کلیک رگباری
       isCooling = true;
       btn.classList.add('is-cooling');
       if(progressBar) {
         progressBar.style.animation = 'none';
         progressBar.offsetHeight;
-        progressBar.style.animation = 'progress-drain 1s linear forwards';
+        progressBar.style.animation = 'progress-drain 0.8s linear forwards';
       }
-      setTimeout(() => { isCooling = false; btn.classList.remove('is-cooling'); }, 1000);
+      setTimeout(() => { isCooling = false; btn.classList.remove('is-cooling'); }, 800);
 
-      // آپدیت آنی روی صفحه کاربر
-      localCount++;
-      countDisplay.textContent = localCount;
-      countDisplay.style.transform = 'scale(1.1)';
+      // افزایش عدد و ذخیره در حافظه
+      currentCount++;
+      countDisplay.textContent = currentCount;
+      localStorage.setItem('fatemiye_salavat_total', currentCount);
+
+      // افکت پرش ریز روی عدد
+      countDisplay.style.transform = 'scale(1.15)';
       setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
     });
-
-    // گالری تصاویر
-    (function initSlider() {
-      const slides = document.querySelectorAll('#legacyGallery .slide');
-      const dots = document.querySelectorAll('#sliderDots .slider-dot');
-      let current = 0;
-      if(slides.length === 0) return;
-      
-      function showSlide(index) {
-        slides.forEach(s => s.classList.remove('is-active'));
-        dots.forEach(d => d.classList.remove('is-active'));
-        slides[index].classList.add('is-active');
-        dots[index].classList.add('is-active');
-        current = index;
-      }
-      
-      document.getElementById('sliderNextBtn').addEventListener('click', () => showSlide((current + 1) % slides.length));
-      document.getElementById('sliderPrevBtn').addEventListener('click', () => showSlide((current - 1 + slides.length) % slides.length));
-      dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
-      setInterval(() => showSlide((current + 1) % slides.length), 4000);
-    })();
   </script>
-</body>
-</html>
+  
