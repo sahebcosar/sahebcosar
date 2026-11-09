@@ -2147,6 +2147,9 @@ footer {
     </div>
   </div>
 
+  <!-- کتابخانه MQTT برای مخابره بلادرنگ بین گوشی‌ها -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+
   <!-- اسکریپت‌های اصلی سایت -->
   <script>
     'use strict';
@@ -2551,39 +2554,81 @@ footer {
     })();
   </script>
 
-  <!-- اسکریپت صلوات‌شمار با سرعت بالا (CounterAPI) - بدون فیلتر -->
+  <!-- سیستم دوگانه و درجا: ذخیره دائمی با CounterAPI و مخابره درجا با MQTT -->
   <script>
     const countDisplay = document.getElementById('salavatCount');
     const btn = document.getElementById('salavatBtn');
     const progressBar = document.getElementById('salavatProgress');
     
-    // شناسه اختصاصی شما برای سایت
-    const NAMESPACE = 'sabco_fatemiye_1405_v1'; 
+    // تنظیمات پایگاه داده CounterAPI (برای ذخیره دائم)
+    const NAMESPACE = 'sabco_fatemiye_1405_realtime'; 
     const KEY = 'salavat_count';
     const API_URL = `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}`;
 
-    const COOLDOWN_MS = 1000; // یک ثانیه تاخیر
+    // تنظیمات سرور مخابراتی MQTT (برای حس درجا آپدیت شدن بدون فیلترشکن)
+    const MQTT_BROKER = "broker.hivemq.com";
+    const MQTT_PORT = 8884; // پورت امن WebSocket
+    const MQTT_TOPIC = "sabco_fatemiye_1405_instant_sync";
+    
+    // اختصاص یک آیدی تصادفی به هر شخصی که وارد سایت می‌شود
+    const myClientId = "user_" + Math.random().toString(36).substr(2, 9);
+    let mqttClient = null;
+
+    const COOLDOWN_MS = 1000; // محدودیت ۱ ثانیه‌ای برای هر کلیک
     let isCoolingDown = false;
     let cooldownTimeout = null;
-    let localOptimisticCount = 0;
+    let globalCount = 0;
 
-    // دریافت آمار بقیه کاربران هر ۲ ثانیه
-    function fetchCount() {
-      fetch(API_URL)
+    // آپدیت کردن ظاهر عدد با افکت پالس (مثل فایربیس)
+    function updateUI(newCount) {
+      if (newCount > globalCount || globalCount === 0) {
+        globalCount = newCount;
+        countDisplay.textContent = globalCount;
+        countDisplay.style.transform = 'scale(1.1)';
+        setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+      }
+    }
+
+    // ۱. دریافت آمار دقیق از دیتابیس (هر ۱۵ ثانیه یکبار برای اطمینان)
+    function syncDatabase() {
+      const noCacheUrl = API_URL + '?_=' + Date.now();
+      fetch(noCacheUrl, { cache: 'no-store' })
         .then(response => response.json())
         .then(data => {
           if (data && data.count !== undefined) {
-            if (data.count > localOptimisticCount || localOptimisticCount === 0) {
-              localOptimisticCount = data.count;
-              countDisplay.textContent = localOptimisticCount;
-            }
+            updateUI(data.count);
           }
         })
-        .catch(err => console.error('خطا در دریافت اطلاعات', err));
+        .catch(err => console.error('خطا در دریافت اطلاعات دیتابیس', err));
     }
-    
-    fetchCount();
-    setInterval(fetchCount, 2000); 
+
+    // ۲. اتصال به سرور مخابراتی درجا (MQTT)
+    function connectRealTime() {
+      mqttClient = new Paho.MQTT.Client(MQTT_BROKER, MQTT_PORT, "/mqtt", myClientId);
+      
+      mqttClient.onMessageArrived = function(message) {
+        // وقتی پیامی آمد، اگر فرستنده‌اش خودم نبودم، یعنی شخص دیگری کلیک کرده!
+        if (message.payloadString !== myClientId) {
+           globalCount++; // عدد را فوراً بالا ببر
+           updateUI(globalCount);
+        }
+      };
+
+      mqttClient.connect({
+        useSSL: true,
+        onSuccess: function() {
+          mqttClient.subscribe(MQTT_TOPIC); // گوش دادن به کانال
+        },
+        onFailure: function() {
+          console.log("اتصال درجا برقرار نشد، سیستم پشتیبان فعال است.");
+        }
+      });
+    }
+
+    // اجرا در هنگام لود شدن صفحه
+    syncDatabase();
+    setInterval(syncDatabase, 15000); // سیستم پشتیبان
+    connectRealTime();
 
     function forceUnlock() {
       isCoolingDown = false;
@@ -2638,27 +2683,25 @@ footer {
       button.appendChild(circle);
     }
 
+    // ۳. کلیک روی دکمه (ذخیره دائمی + مخابره درجا)
     btn.addEventListener('click', (e) => {
       if (isCoolingDown) return; 
-
       createRipple(e);
 
-      // آپدیت آنی برای القای حس سرعت
-      localOptimisticCount++;
-      countDisplay.textContent = localOptimisticCount;
-      countDisplay.style.transform = 'scale(1.1)';
-      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+      // الف: آپدیت فوری در گوشی خود شخص
+      globalCount++;
+      updateUI(globalCount);
 
-      // ثبت در سرور
-      fetch(API_URL + '/up')
-        .then(response => response.json())
-        .then(data => {
-          if(data && data.count !== undefined) {
-             localOptimisticCount = data.count;
-             countDisplay.textContent = localOptimisticCount;
-          }
-        })
-        .catch(err => console.error("خطا در ثبت صلوات", err));
+      // ب: ارسال پیام درجا (در کسر ثانیه) به بقیه گوشی‌های متصل
+      if (mqttClient && mqttClient.isConnected()) {
+        let msg = new Paho.MQTT.Message(myClientId); // آیدی خودم را می‌فرستم
+        msg.destinationName = MQTT_TOPIC;
+        mqttClient.send(msg);
+      }
+
+      // ج: ذخیره عدد در دیتابیس دائمی برای کسانی که بعداً وارد سایت می‌شوند
+      const noCacheUpUrl = API_URL + '/up?_=' + Date.now();
+      fetch(noCacheUpUrl, { cache: 'no-store' }).catch(err => {});
 
       startCooldown();
     });
