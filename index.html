@@ -3,23 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#050507">
-  <meta name="description" content="خیمه‌گاه فاطمی | نذر روضه و تئاتر آیینی بانوی بی‌نشان - پویش هم‌عهدی ایام شهادت حضرت زهرا (س)">
+  <meta name="theme-color" content="#050507" id="metaThemeColor">
+
+  <title>خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان</title>
+
+  <!-- ===== SEO ===== -->
+  <meta name="description" content="پویش نذر روضه و تئاتر آیینی بانوی بی‌نشان — ایام شهادت حضرت زهرا (س). با هر صلوات و هر کمک، خیمه‌ی فاطمی برپا می‌ماند.">
+  <meta name="keywords" content="خیمه فاطمی, بانوی بی‌نشان, تئاتر آیینی, فاطمیه, نذر روضه, صلوات, حضرت زهرا">
+  <meta name="author" content="خادمان خیمه فاطمی">
+  <link rel="canonical" href="https://sahebcosar.github.io/sahebcosar/">
+
+  <!-- ===== Open Graph ===== -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fa_IR">
   <meta property="og:title" content="خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان">
-  <meta property="og:description" content="نذر روضه و تئاتر آیینی بانوی بی‌نشان؛ پویش هم‌عهدی ایام شهادت حضرت زهرا (س)">
-  <meta property="og:image" content="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg">
-  <meta property="og:image:alt" content="تصویری از اجرای گذشته تئاتر آیینی بانوی بی‌نشان">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="no-referrer">
-  <title>خیمه‌گاه فاطمی | تئاتر آیینی بانوی بی‌نشان</title>
+  <meta property="og:description" content="پویش نذر روضه و تئاتر آیینی بانوی بی‌نشان — ایام شهادت حضرت زهرا (س).">
+  <meta property="og:url" content="https://sahebcosar.github.io/sahebcosar/">
+  <meta property="og:image" content="https://sahebcosar.github.io/sahebcosar/images/im1.jpg">
+  <meta property="og:image:alt" content="خیمه‌گاه فاطمی">
 
+  <!-- ===== Twitter ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="خیمه‌گاه فاطمی | بانوی بی‌نشان">
+  <meta name="twitter:description" content="پویش نذر روضه و تئاتر آیینی بانوی بی‌نشان">
+  <meta name="twitter:image" content="https://sahebcosar.github.io/sahebcosar/images/im1.jpg">
+
+  <!-- ===== Favicon (inline SVG) ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238f1424'/%3E%3Cpath d='M32 12c-6 8-10 14-10 22 0 6 4 10 10 10s10-4 10-10c0-8-4-14-10-22z' fill='%23d4b475'/%3E%3C/svg%3E">
+
+  <!-- ===== Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
 
   <style>
+/* ============================================================
+   FONT FACE
+   ============================================================ */
 @font-face {
   font-family: "Vazirmatn";
   font-style: normal;
@@ -28,6 +48,9 @@
   src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn[wght].woff2") format("woff2");
 }
 
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
   color-scheme: dark;
   --bg-deep: #050507;
@@ -35,1324 +58,861 @@
   --surface: #110d10;
   --surface-raised: #181115;
   --surface-inset: #0b080a;
-  
+  --surface-glass: rgba(17, 13, 16, 0.78);
+
   --crimson: #8f1424;
   --crimson-bright: #b81d33;
+  --crimson-glow: #e62e49;
   --crimson-deep: #4a0811;
-  
+
   --gold: #d4b475;
   --gold-soft: #a88d56;
-  
+
   --ink: #f5f0f1;
   --muted: #c2b6b8;
-  --quiet: #8c7e81;
-  
+  --quiet: #a3969a;   /* بهبود کنتراست */
+
   --border: #2b1a1f;
   --border-crimson: rgba(184, 29, 51, 0.42);
   --border-gold: rgba(212, 180, 117, 0.28);
-  
-  --radius-card: 14px;
-  --radius-control: 9px;
+
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+
   --content-width: 1140px;
   --page-gutter: clamp(16px, 3.5vw, 44px);
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur-base: 260ms;
+  --dur-slow: 480ms;
+
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-crimson: 0 8px 28px rgba(184, 29, 51, 0.45);
+
+  --fs-xs: 0.72rem;
+  --fs-sm: 0.82rem;
+  --fs-base: 0.94rem;
+  --fs-md: 1.12rem;
+  --fs-lg: clamp(1.3rem, 2.4vw, 1.55rem);
+  --fs-xl: clamp(1.65rem, 3.4vw, 2.55rem);
+
+  --bg-texture-opacity: 0.14;
+  --bg-image-opacity: 0.20;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-deep: #f4ece6;
+  --bg-main: #faf3ed;
+  --surface: #fdf8f3;
+  --surface-raised: #fffaf5;
+  --surface-inset: #f3e9e1;
+  --surface-glass: rgba(253, 248, 243, 0.82);
+
+  --crimson: #9e1629;
+  --crimson-bright: #b81d33;
+  --crimson-glow: #d4233f;
+  --crimson-deep: #6e0d1b;
+
+  --gold: #9a7a3f;
+  --gold-soft: #7d6330;
+
+  --ink: #1c1215;
+  --muted: #5a4448;
+  --quiet: #6e5b60;
+
+  --border: #e2d2c8;
+  --border-crimson: rgba(184, 29, 51, 0.32);
+  --border-gold: rgba(154, 122, 63, 0.30);
+
+  --shadow-card: 0 14px 36px rgba(74, 8, 17, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-crimson: 0 8px 28px rgba(184, 29, 51, 0.22);
+
+  --bg-texture-opacity: 0.10;
+  --bg-image-opacity: 0.08;
 }
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   min-width: 320px;
   min-height: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 86px;
+  scroll-padding-top: 90px;
   scrollbar-color: var(--crimson) var(--bg-deep);
+  -webkit-text-size-adjust: 100%;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
 body {
   position: relative;
   display: flex;
-  min-height: 100vh;
-  min-height: 100dvh;
   flex-direction: column;
-  margin: 0;
+  min-height: 100vh;
   overflow-x: hidden;
+  font-family: "Vazirmatn", Tahoma, system-ui, sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.85;
   color: var(--ink);
   background-color: var(--bg-deep);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 20, 36, 0.28), transparent 70%),
-    radial-gradient(circle at 10% 35%, rgba(105, 11, 23, 0.16), transparent 45%),
-    radial-gradient(circle at 90% 75%, rgba(105, 11, 23, 0.14), transparent 45%),
-    linear-gradient(180deg, #0a0709 0%, var(--bg-deep) 100%);
-  font-family: "Vazirmatn", Tahoma, sans-serif;
-  font-size: 15px;
-  line-height: 1.85;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 20, 36, 0.24), transparent 70%),
+    radial-gradient(circle at 10% 35%, rgba(105, 11, 23, 0.14), transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(105, 11, 23, 0.12), transparent 45%),
+    linear-gradient(180deg, var(--bg-main) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  transition: background-color var(--dur-slow) var(--ease-out), color var(--dur-slow) var(--ease-out);
 }
 
-body::before {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  content: "";
-  inset: 0;
-  opacity: 0.22;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(255, 255, 255, 0.01) 4px
-  );
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  right: 16px;
+  z-index: 999;
+  padding: 10px 18px;
+  border-radius: var(--radius-control);
+  background: var(--crimson-bright);
+  color: #fff;
+  font-weight: 800;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { top: 12px; }
+
+/* Background layers */
+.bg-fabric, .bg-image, .bg-grain, .bg-vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+}
+.bg-fabric {
+  opacity: var(--bg-texture-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.12 0 0 0 0 0.18 0 0 0 0.6 0'/></filter><rect width='120' height='120' filter='url(%23n)'/><g stroke='rgba(255,255,255,0.06)' stroke-width='1'><path d='M0 0H120M0 8H120M0 16H120M0 24H120M0 32H120M0 40H120M0 48H120M0 56H120M0 64H120M0 72H120M0 80H120M0 88H120M0 96H120M0 104H120M0 112H120'/></g></svg>");
+  background-repeat: repeat; background-size: 120px 120px;
+  mix-blend-mode: overlay;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.bg-image {
+  opacity: var(--bg-image-opacity);
+  background-image:
+    radial-gradient(ellipse at center, transparent 40%, var(--bg-deep) 90%),
+    url("./images/im1.jpg"),
+    url("https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg");
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  filter: blur(2px) saturate(0.7) sepia(0.15);
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.bg-grain {
+  opacity: 0.30;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.012) 4px);
+  mix-blend-mode: overlay;
+}
+.bg-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.35) 100%);
+}
+[data-theme="light"] .bg-vignette {
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(154,122,63,0.08) 100%);
 }
 
-button,
-input,
-select,
-textarea {
-  color: inherit;
-  font: inherit;
-}
-
-button,
-a,
-[role="button"] {
-  -webkit-tap-highlight-color: transparent;
-}
-
-a {
-  color: inherit;
-}
-
-button {
-  touch-action: manipulation;
-}
-
-button:focus-visible,
-a:focus-visible,
-[role="button"]:focus-visible {
-  outline: 2px solid var(--crimson-bright);
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
+  border-radius: 4px;
 }
-
-[id] {
-  scroll-margin-top: 90px;
-}
-
-.ambient-glow {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(168, 24, 43, 0.09), transparent 60%);
-}
-
-#spiritualCanvas {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  inset: 0;
-  opacity: 0.22;
-}
+::selection { background: var(--crimson-bright); color: #fff; }
 
 .dot-icon {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: currentColor;
-  vertical-align: middle;
+  display: inline-block; width: 7px; height: 7px;
+  border-radius: 50%; background: currentColor; vertical-align: middle;
 }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; cursor: pointer; border: none; background: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 
-.skip-link {
-  position: fixed;
-  z-index: 10000;
-  top: 10px;
-  right: 12px;
-  padding: 8px 16px;
-  transform: translateY(-160%);
-  border-radius: var(--radius-control);
-  color: #fff;
-  background: var(--crimson);
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform 160ms ease;
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
-/* ============ Header ============ */
+/* ============================================================
+   HEADER
+   ============================================================ */
 .global-header {
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  display: flex;
-  width: 100%;
-  min-height: 68px;
-  align-items: center;
-  justify-content: center;
+  position: sticky; top: 0; z-index: 100;
+  display: flex; width: 100%; min-height: 68px;
+  align-items: center; justify-content: center;
   border-bottom: 1px solid var(--border-crimson);
-  background: rgba(8, 6, 8, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.35);
+  transition: background var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out);
 }
-
 .site-nav {
-  display: flex;
-  width: min(100%, var(--content-width));
-  align-items: center;
-  justify-content: flex-start;
-  gap: clamp(20px, 3.5vw, 38px);
+  display: flex; width: min(100%, var(--content-width));
+  align-items: center; justify-content: flex-start;
+  gap: clamp(16px, 2.4vw, 30px);
   padding: 10px var(--page-gutter);
 }
-
 .site-nav a {
-  position: relative;
-  padding-block: 6px;
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 180ms ease;
+  position: relative; padding-block: 8px;
+  color: var(--muted); font-size: var(--fs-sm); font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-fast) var(--ease-out);
 }
-
 .site-nav a::after {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background: var(--crimson-bright);
-  content: "";
-  transition: width 220ms var(--ease);
+  content: ""; position: absolute; bottom: 2px; right: 0;
+  width: 0; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--crimson-bright), var(--gold));
+  transition: width var(--dur-base) var(--ease-out);
 }
+.site-nav a:hover, .site-nav a:focus-visible { color: var(--ink); }
+.site-nav a:hover::after, .site-nav a:focus-visible::after { width: 100%; }
 
-.site-nav a:hover,
-.site-nav a:focus-visible {
-  color: #fff;
+.theme-toggle {
+  margin-inline-start: auto;
+  display: inline-grid; place-items: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--border); border-radius: 50%;
+  background: var(--surface); color: var(--gold);
+  transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
+.theme-toggle:hover { border-color: var(--border-gold); transform: rotate(15deg) scale(1.05); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
-.site-nav a:hover::after {
-  width: 100%;
-}
-
-/* ============ Main Layout ============ */
+/* ============================================================
+   MAIN
+   ============================================================ */
 main {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  width: min(100%, var(--content-width));
-  flex: 1;
-  flex-direction: column;
-  align-items: stretch;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; flex: 1;
   gap: 24px;
+  width: min(100%, var(--content-width));
   margin-inline: auto;
   padding: 28px var(--page-gutter) 54px;
 }
 
-.hero-card,
-.legacy-outer,
-.guiding-card,
-.trust-card {
-  position: relative;
-  width: 100%;
+.hero-card, .legacy-outer, .salavat-counter-box, .quran-card, .bank-card, .about-card {
+  position: relative; width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   background: linear-gradient(160deg, var(--surface-raised) 0%, var(--surface) 100%);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
 }
 
-/* ============ Hero Card ============ */
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-  overflow: hidden;
+  display: grid; gap: 16px;
   padding: clamp(26px, 4vw, 48px);
+  overflow: hidden;
   border-color: var(--border-crimson);
   background:
     radial-gradient(circle at 95% 15%, rgba(168, 24, 43, 0.22), transparent 50%),
-    linear-gradient(135deg, #160c10 0%, #0d080b 100%);
+    linear-gradient(135deg, var(--surface-raised) 0%, var(--surface) 100%);
 }
-
+[data-theme="light"] .hero-card {
+  background:
+    radial-gradient(circle at 95% 15%, rgba(184, 29, 51, 0.08), transparent 50%),
+    linear-gradient(135deg, var(--surface-raised) 0%, var(--surface) 100%);
+}
 .hero-card::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 4px;
+  content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 4px;
   background: linear-gradient(180deg, var(--crimson-bright), var(--gold), var(--crimson-deep));
-  content: "";
 }
-
+.hero-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 85% 90%, rgba(212, 180, 117, 0.06), transparent 40%);
+}
 .mourning-badge {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 10px;
+  display: inline-flex; align-items: center; gap: 10px; width: fit-content;
   padding: 6px 14px;
-  border: 1px solid var(--border-crimson);
-  border-radius: 999px;
-  color: #f2ccd1;
+  border: 1px solid var(--border-crimson); border-radius: var(--radius-pill);
   background: rgba(143, 20, 36, 0.22);
-  font-size: 0.76rem;
-  font-weight: 700;
+  color: #f2ccd1;
+  font-size: var(--fs-xs); font-weight: 700;
+  backdrop-filter: blur(6px);
 }
-
+[data-theme="light"] .mourning-badge {
+  background: rgba(184, 29, 51, 0.10); color: var(--crimson-deep);
+}
 .pulse-dot {
-  width: 8px;
-  height: 8px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: #e62e49;
-  box-shadow: 0 0 10px #e62e49;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--crimson-glow);
+  box-shadow: 0 0 10px var(--crimson-glow);
   animation: pulse-crimson 2s infinite;
 }
-
 @keyframes pulse-crimson {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.25); opacity: 0.65; }
+  50%      { transform: scale(1.25); opacity: 0.65; }
 }
-
 .hero-title {
-  margin: 0;
-  max-width: 24ch;
-  color: #ffffff;
-  font-family: "Vazirmatn", Tahoma, sans-serif;
-  font-size: clamp(1.65rem, 3.4vw, 2.55rem);
-  font-weight: 900;
-  line-height: 1.45;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+  margin: 0; color: var(--ink);
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-xl); font-weight: 400;
+  line-height: 1.45; letter-spacing: -0.01em;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
 }
-
+[data-theme="light"] .hero-title { text-shadow: 0 1px 8px rgba(74,8,17,0.08); }
 .hero-desc {
-  max-width: 68ch;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 2.1;
-  text-align: justify;
+  margin: 0; color: var(--muted);
+  font-size: var(--fs-base); line-height: 2.1;
+  text-align: justify; text-wrap: pretty;
 }
-
 .hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin-top: 6px;
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px;
 }
-
 .hero-action {
-  display: inline-flex;
-  min-height: 46px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 22px;
-  border: 1px solid #c9243b;
-  border-radius: var(--radius-control);
-  color: #ffffff;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 46px; padding: 10px 22px;
+  border: 1px solid #c9243b; border-radius: var(--radius-control);
+  color: #fff;
   background: linear-gradient(135deg, #9e1629 0%, #6e0d1b 100%);
-  box-shadow: 0 6px 20px rgba(158, 22, 41, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  font-size: var(--fs-sm); font-weight: 800; letter-spacing: -0.01em;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
-
-.hero-action::after {
-  content: "←";
-}
-
+.hero-action::after { content: "←"; transition: transform var(--dur-fast) var(--ease-out); }
 .hero-action:hover {
   transform: translateY(-2px);
   border-color: #e0324a;
   background: linear-gradient(135deg, #b51b31 0%, #821020 100%);
-  box-shadow: 0 8px 25px rgba(181, 27, 49, 0.5);
+  box-shadow: var(--shadow-crimson);
 }
-
+.hero-action:hover::after { transform: translateX(-4px); }
+.hero-action:active { transform: translateY(0); }
 .hero-action-secondary {
-  border-color: var(--border);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: none;
-}
-
-.hero-action-secondary:hover {
-  border-color: var(--border-crimson);
-  background: rgba(143, 20, 36, 0.14);
-  box-shadow: none;
-}
-
-.live-status-pill {
-  display: flex;
-  min-height: 68px;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border: 1px solid rgba(212, 180, 117, 0.16);
-  border-inline-start: 3px solid var(--crimson-bright);
-  border-radius: 8px;
-  color: #e8dce0;
-  background: rgba(18, 11, 14, 0.85);
-  font-size: 0.82rem;
-  font-weight: 700;
-  line-height: 1.85;
-}
-
-.live-status-pill .dot-icon {
-  color: var(--crimson-bright);
-  box-shadow: 0 0 8px var(--crimson-bright);
-}
-
-/* ============ Legacy & Gallery Section ============ */
-.legacy-outer {
-  display: grid;
-  gap: 18px;
-  padding: 18px;
-  border-color: var(--border);
-}
-
-.legacy-text-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface-inset);
-}
-
-.legacy-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.legacy-head-icon {
-  display: inline-flex;
-  align-items: center;
-  color: var(--crimson-bright);
-}
-
-.legacy-title {
-  margin: 0;
+  border-color: var(--border-gold);
   color: var(--gold);
-  font-size: 1.12rem;
-  font-weight: 800;
-  line-height: 1.6;
+  background: rgba(212, 180, 117, 0.06);
 }
+.hero-action-secondary:hover {
+  border-color: var(--gold);
+  color: #fff;
+  background: linear-gradient(135deg, #a88d56 0%, #7d6330 100%);
+  box-shadow: 0 8px 24px rgba(168, 141, 86, 0.35);
+}
+.live-status-pill {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--border-gold);
+  border-inline-start: 3px solid var(--crimson-bright);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--ink);
+  font-size: var(--fs-sm); font-weight: 700;
+}
+.live-status-pill .dot-icon { color: var(--crimson-bright); box-shadow: 0 0 8px var(--crimson-bright); }
 
-.legacy-body {
+/* ============================================================
+   SALAVAT
+   ============================================================ */
+.salavat-counter-box {
+  padding: 40px 20px 44px;
+  overflow: hidden;
+  border-color: var(--border-crimson);
+  text-align: center;
+}
+.salavat-bg-glow {
+  position: absolute; top: 50%; left: 50%; z-index: 0;
+  width: 240px; height: 240px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(184, 29, 51, 0.28) 0%, transparent 70%);
+  filter: blur(24px);
+  transform: translate(-50%, -50%);
+}
+[data-theme="light"] .salavat-bg-glow {
+  background: radial-gradient(circle, rgba(184, 29, 51, 0.14) 0%, transparent 70%);
+}
+.salavat-counter-box h2 {
+  position: relative; z-index: 1;
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-lg); font-weight: 400;
+}
+.salavat-counter-box p {
+  position: relative; z-index: 1;
+  margin-bottom: 26px;
+  color: var(--muted); font-size: var(--fs-sm);
+}
+.salavat-display {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 132px; height: 132px;
+  margin-bottom: 32px;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  background: var(--surface-inset);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.4);
+}
+.salavat-display::before {
+  content: ""; position: absolute; inset: -2px; z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, var(--crimson-bright) 50%, transparent 100%);
+  opacity: 0.3;
+  animation: spin 4s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#salavatCount {
+  font-size: 3.5rem; font-weight: 900; line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 15px rgba(184, 29, 51, 0.45);
+  transition: transform 0.12s var(--ease-spring);
+}
+.salavat-btn-wrapper {
+  position: relative; z-index: 1;
+  display: inline-block;
+}
+.salavat-btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-width: 210px; min-height: 52px;
+  padding: 0 28px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, #b81d33 0%, #6e0d1b 100%);
+  color: #fff;
+  font-size: 1rem; font-weight: 800;
+  box-shadow: 0 6px 20px rgba(184, 29, 51, 0.4);
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.salavat-btn:hover:not(.is-cooling) {
+  box-shadow: 0 10px 32px rgba(184, 29, 51, 0.55);
+  filter: brightness(1.06);
+}
+.salavat-btn:active:not(.is-cooling) { transform: scale(0.97); }
+.salavat-btn.is-cooling { cursor: not-allowed; filter: grayscale(0.6) brightness(0.7); }
+.salavat-icon { width: 20px; height: 20px; animation: float 2s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+.salavat-progress {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: rgba(255,255,255,0.5);
+  transform: scaleX(0); transform-origin: right;
+}
+.salavat-btn.is-cooling .salavat-progress { animation: progress-drain 1s linear forwards; }
+@keyframes progress-drain {
+  0%   { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+.salavat-ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple-anim 0.6s linear;
+}
+@keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+/* ============================================================
+   QURAN CARD
+   ============================================================ */
+.quran-card {
+  padding: clamp(28px, 4vw, 44px);
+  text-align: center;
+  border-color: var(--border-gold);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212, 180, 117, 0.10), transparent 60%),
+    linear-gradient(160deg, var(--surface-raised) 0%, var(--surface) 100%);
+}
+.quran-card h2 {
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-lg); font-weight: 400;
+}
+.quran-arabic {
+  margin: 0 0 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-control);
+  background: var(--surface-inset);
+  color: var(--ink);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 2.4;
+  direction: rtl;
+  font-weight: 600;
+}
+.quran-translation {
+  margin: 0 auto;
+  max-width: 680px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
   line-height: 2.1;
   text-align: justify;
 }
-
-.legacy-body p {
-  margin: 0 0 12px;
+.quran-source {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 6px 16px;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-pill);
+  color: var(--gold);
+  font-size: var(--fs-xs);
+  font-weight: 700;
 }
-
-.legacy-body p:last-of-type {
-  margin-bottom: 0;
-}
-
-.legacy-emphasis {
+.occasion-tag {
   display: block;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  color: #f0c9cf;
-  font-size: 0.86rem;
-  font-weight: 800;
+  margin-top: 14px;
+  color: var(--quiet);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
-.legacy-image-box {
-  min-width: 0;
-  padding: 10px;
+/* ============================================================
+   BANK CARD
+   ============================================================ */
+.bank-card {
+  padding: clamp(22px, 3.5vw, 36px);
+  border-color: var(--border-crimson);
+  overflow: hidden;
+}
+.bank-card h2 {
+  margin: 0 0 6px;
+  color: var(--gold);
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-lg); font-weight: 400;
+}
+.bank-card .bank-intro {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  line-height: 2;
+}
+.bank-visual {
+  position: relative;
+  padding: 26px 24px;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(212, 180, 117, 0.14), transparent 50%),
+    linear-gradient(135deg, #1a0f13 0%, #2a1218 50%, #140d10 100%);
+  color: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  user-select: none;
+  -webkit-user-select: none;
+}
+[data-theme="light"] .bank-visual {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(154, 122, 63, 0.14), transparent 50%),
+    linear-gradient(135deg, #2a1218 0%, #3d1a22 50%, #1a0f13 100%);
+}
+.bank-visual:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+.bank-visual:active { transform: translateY(0); }
+.bank-visual::after {
+  content: ""; position: absolute; top: -40%; left: -40%;
+  width: 80%; height: 180%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%);
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+.bank-visual h3 {
+  margin: 0 0 4px;
+  color: var(--gold);
+  font-size: var(--fs-sm); font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.bank-owner {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: var(--fs-base);
+  font-weight: 700;
+}
+.bank-number {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 18px 0 12px;
+  direction: ltr;
+  font-family: "Plus Jakarta Sans", "Vazirmatn", monospace;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.bank-number span { flex: 1; text-align: center; }
+.bank-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  font-size: var(--fs-xs);
+}
+.bank-meta .shetab {
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.bank-hint {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px dashed var(--border-gold);
+  border-radius: var(--radius-control);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.9;
+  text-align: center;
+}
+.copy-toast {
+  position: fixed;
+  bottom: 24px; left: 50%;
+  z-index: 999;
+  padding: 12px 22px;
+  border: 1px solid rgba(80, 200, 120, 0.4);
+  border-radius: var(--radius-pill);
+  background: rgba(20, 60, 35, 0.95);
+  color: #d8ffe4;
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translate(-50%, 20px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.copy-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ============================================================
+   LEGACY / GALLERY
+   ============================================================ */
+.legacy-outer {
+  display: grid; gap: 18px;
+  padding: 18px;
+}
+.legacy-text-box {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-control);
   background: var(--surface-inset);
 }
+.legacy-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.legacy-head-icon { color: var(--crimson-bright); line-height: 0; }
+.legacy-title {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-md); font-weight: 400;
+}
+.legacy-body {
+  color: var(--muted); font-size: var(--fs-sm); line-height: 2.1;
+  text-align: justify; text-wrap: pretty;
+}
+.legacy-body p { margin: 0 0 12px; }
+.legacy-emphasis {
+  display: block;
+  margin-top: 16px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--crimson-bright);
+  font-size: var(--fs-sm); font-weight: 800;
+}
+[data-theme="light"] .legacy-emphasis { color: var(--crimson-deep); }
 
+.legacy-image-box {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface-inset);
+}
 .legacy-gallery {
-  position: relative;
-  width: 100%;
+  position: relative; width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 8px;
-  background: #140d10;
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
   isolation: isolate;
-  touch-action: pan-y;
 }
-
 .slide {
-  position: absolute;
-  z-index: 1;
-  display: block;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  inset: 0;
+  position: absolute; inset: 0; z-index: 1;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
 }
-
-.slide.is-active {
-  z-index: 2;
-  opacity: 1;
-  pointer-events: auto;
-}
-
+.slide.is-active { z-index: 2; opacity: 1; pointer-events: auto; }
 .slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #140d10;
+  width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 1;
-  user-select: none;
-  -webkit-user-drag: none;
+  transform: scale(1.02);
+  transition: transform 8s linear;
 }
-
+.slide.is-active img { transform: scale(1.08); }
+.legacy-gallery::after {
+  content: ""; position: absolute; inset: 0; z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%);
+}
 .legacy-slider-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  display: flex; align-items: center; justify-content: space-between;
   margin-top: 12px;
-  padding-inline: 4px;
 }
-
-.slider-nav-group {
-  display: flex;
-  align-items: center;
-}
-
-.slider-dots {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
+.slider-dots { display: flex; align-items: center; gap: 8px; }
 .slider-dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px; padding: 0;
   border-radius: 50%;
-  background: #3d262c;
-  cursor: pointer;
-  transition: background-color 180ms ease, width 180ms ease;
+  background: var(--border);
+  transition: width var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-
-.slider-dot.is-active {
-  width: 22px;
-  border-radius: 999px;
-  background: var(--crimson-bright);
-}
-
+.slider-dot.is-active { width: 22px; border-radius: var(--radius-pill); background: var(--crimson-bright); }
 .slider-nav-btn {
-  position: relative;
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  padding: 0;
-  border: 1px solid var(--border-crimson);
-  border-radius: 50%;
-  color: var(--ink);
-  background: #1a0f13;
-  cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  display: grid; place-items: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--border-crimson); border-radius: 50%;
+  background: var(--surface);
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
-
 .slider-nav-btn:hover {
   border-color: var(--crimson-bright);
-  color: #fff;
-  background: var(--crimson);
+  background: var(--crimson); color: #fff;
+  transform: scale(1.06);
 }
-
-.slider-nav-btn:active {
-  transform: scale(0.94);
-}
-
-.slider-nav-btn .chevron {
-  display: block;
-  width: 9px;
-  height: 9px;
+.slider-nav-btn:active { transform: scale(0.96); }
+.chevron {
+  display: block; width: 9px; height: 9px;
   border-top: 2px solid currentColor;
   border-right: 2px solid currentColor;
 }
+.slider-prev-btn .chevron { margin-right: 2px; transform: rotate(45deg); }
+.slider-next-btn .chevron { margin-left: 2px;  transform: rotate(-135deg); }
 
-.slider-prev-btn .chevron {
-  transform: rotate(45deg);
-  margin-right: 2px;
+/* ============================================================
+   ABOUT / CONTACT
+   ============================================================ */
+.about-card {
+  display: grid; gap: 20px;
+  padding: clamp(22px, 3.5vw, 36px);
 }
-
-.slider-next-btn .chevron {
-  transform: rotate(-135deg);
-  margin-left: 2px;
-}
-
-/* ============ Guiding Light Section ============ */
-.guiding-card {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 26px;
-  border-color: var(--border);
-}
-
-.guiding-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
-
-.guiding-head-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.guiding-icon {
-  display: grid;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid var(--border-crimson);
-  border-radius: 50%;
-  color: var(--crimson-bright);
-  background: rgba(143, 20, 36, 0.16);
-}
-
-.guiding-title {
+.about-card h2 {
   margin: 0;
   color: var(--gold);
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-family: "Lalezar", "Vazirmatn", Tahoma, sans-serif;
+  font-size: var(--fs-lg); font-weight: 400;
 }
-
-.guiding-type {
-  padding: 4px 12px;
-  border: 1px solid var(--border-crimson);
-  border-radius: 999px;
-  color: #f5cbd1;
-  background: rgba(143, 20, 36, 0.24);
-  font-size: 0.7rem;
-  font-weight: 700;
+.about-grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
-
-.guiding-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: 10px;
-  transition: opacity 180ms ease;
-}
-
-.guiding-body.is-fading {
-  opacity: 0.2;
-}
-
-.guiding-text {
-  margin: 0 0 14px;
-  color: #ffffff;
-  font-size: 0.95rem;
-  line-height: 2.2;
-  text-align: center;
-}
-
-.guiding-text.arabic {
-  color: var(--gold);
-  font-size: 1.12rem;
-  font-weight: 700;
-  line-height: 2.35;
-  direction: rtl;
-}
-
-.guiding-translation {
-  display: block;
-  margin-bottom: 12px;
-  padding: 10px 14px;
-  border-inline-start: 3px solid var(--crimson-bright);
-  border-radius: 6px;
-  color: var(--muted);
-  background: rgba(143, 20, 36, 0.1);
-  font-size: 0.82rem;
-  line-height: 2;
-  text-align: center;
-}
-
-.guiding-source {
-  display: block;
-  margin-bottom: 16px;
-  color: var(--gold-soft);
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-.guiding-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.guiding-next-btn {
-  display: inline-flex;
-  min-height: 42px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border: 1px solid var(--border-crimson);
-  border-radius: var(--radius-control);
-  color: var(--ink);
-  background: #1a0f13;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
-}
-
-.guiding-next-btn:hover {
-  border-color: var(--crimson-bright);
-  color: #fff;
-  background: var(--crimson);
-}
-
-.guiding-next-btn .dot-icon {
-  width: 6px;
-  height: 6px;
-  color: var(--gold);
-}
-
-.rotate-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.guiding-next-btn.is-spinning .rotate-icon {
-  animation: rotate-icon 520ms ease;
-}
-
-@keyframes rotate-icon {
-  to { transform: rotate(360deg); }
-}
-
-/* ============ Realistic Bank Card ============ */
-.card-scene {
-  position: relative;
-  width: min(100%, 420px);
-  aspect-ratio: 1.586 / 1;
-  margin-inline: auto;
-  perspective: 1400px;
-  -webkit-perspective: 1400px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  transition: transform 680ms var(--ease);
-}
-
-.card-scene.is-flipped .card-inner {
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-}
-
-.card-side {
-  position: absolute;
-  overflow: hidden;
-  border: 1px solid rgba(212, 180, 117, 0.28);
-  border-radius: 16px;
-  background:
-    radial-gradient(circle at 88% 18%, rgba(168, 22, 43, 0.42), transparent 55%),
-    radial-gradient(circle at 12% 85%, rgba(110, 11, 25, 0.35), transparent 55%),
-    linear-gradient(135deg, #1c1317 0%, #0d090b 55%, #170a0e 100%);
-  box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.75),
-    0 0 25px rgba(143, 20, 36, 0.18),
-    inset 0 1px 1px rgba(255, 255, 255, 0.16);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  inset: 0;
-}
-
-.card-side::after {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  content: "";
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
-      transparent 1px,
-      transparent 8px
-    );
-}
-
-.card-glare {
-  position: absolute;
-  z-index: 3;
-  pointer-events: none;
-  inset: 0;
-  background: radial-gradient(
-    circle at var(--glare-x, 50%) var(--glare-y, 50%),
-    rgba(255, 235, 238, 0.18),
-    transparent 55%
-  );
-  opacity: 0.7;
-}
-
-.card-front {
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(16px, 4.5vw, 24px);
-  transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
-}
-
-.front-header,
-.chip-nfc-row {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  direction: ltr;
-}
-
-.blu-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.blu-logo-svg {
-  width: auto;
-  height: clamp(22px, 5vw, 28px);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-.blu-slogan {
-  margin-top: 2px;
-  color: rgba(245, 240, 241, 0.75);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(0.48rem, 1.4vw, 0.55rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-.chip-nfc-row {
-  gap: 10px;
-}
-
-.emv-chip {
-  width: clamp(38px, 9vw, 46px);
-  height: clamp(28px, 6.8vw, 34px);
-  overflow: hidden;
-  border: 1px solid #6b5019;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #f3dd9d 0%, #c49f4f 50%, #947126 100%);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-.emv-chip svg {
-  width: 100%;
-  height: 100%;
-  opacity: 0.78;
-}
-
-.nfc-icon {
-  width: clamp(18px, 4.5vw, 22px);
-  height: clamp(18px, 4.5vw, 22px);
-  opacity: 0.85;
-}
-
-.card-spiritual-quote {
-  position: relative;
-  z-index: 4;
-  margin-top: auto;
-  padding: clamp(9px, 2.5vw, 13px) clamp(11px, 3vw, 15px);
-  border: 1px solid rgba(184, 29, 51, 0.3);
-  border-inline-start: 3px solid var(--crimson-bright);
-  border-radius: 8px;
-  background: rgba(10, 6, 8, 0.68);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.quote-title,
-.quote-sub {
-  display: block;
-}
-
-.quote-title {
-  margin-bottom: 3px;
-  color: var(--gold);
-  font-size: clamp(0.75rem, 2.3vw, 0.86rem);
-  font-weight: 800;
-}
-
-.quote-sub {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(0.62rem, 1.9vw, 0.7rem);
-  line-height: 1.75;
-}
-
-.card-back {
-  z-index: 1;
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-}
-
-.mag-stripe-real {
-  position: absolute;
-  z-index: 4;
-  top: clamp(14px, 3.8vw, 20px);
-  right: 0;
-  left: 0;
-  height: clamp(32px, 8vw, 42px);
-  background: linear-gradient(180deg, #050505 0%, #1c1c1c 48%, #070707 100%);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.back-data-area {
-  position: absolute;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(54px, 14vw, 72px) clamp(16px, 4.5vw, 24px) clamp(12px, 3.2vw, 18px);
-  direction: rtl;
-  inset: 0;
-}
-
-.back-top-brand {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  direction: ltr;
-}
-
-.saman-title {
-  color: rgba(255, 255, 255, 0.85);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(0.58rem, 1.8vw, 0.66rem);
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.saman-symbol {
-  width: 12px;
-  height: 12px;
-  border: 2px solid var(--crimson-bright);
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--crimson-bright);
-}
-
-.back-middle-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(6px, 1.8vw, 10px);
-  margin-block: auto;
-  padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.42);
-}
-
-.back-holder-name {
-  color: var(--gold);
-  font-size: clamp(0.78rem, 2.4vw, 0.9rem);
-  font-weight: 800;
-}
-
-.back-pan-vertical {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 2.4vw, 14px);
-  direction: ltr;
-}
-
-.back-pan-vertical span {
-  color: #ffffff;
-  font-family: "Plus Jakarta Sans", "Courier New", monospace;
-  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
-}
-
-.back-bottom-badges {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  direction: ltr;
-}
-
-.shetab-badge {
-  padding: 2px 8px;
-  border: 1px solid rgba(212, 180, 117, 0.3);
-  border-radius: 4px;
-  color: var(--gold);
-  background: rgba(212, 180, 117, 0.08);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(0.52rem, 1.6vw, 0.6rem);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-}
-
-/* ============ Card Actions & Trust Box ============ */
-.card-actions-wrapper {
-  width: 100%;
-  max-width: 420px;
-  margin-inline: auto;
-}
-
-.card-actions-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.outside-action-btn {
-  display: inline-flex;
-  min-width: 0;
-  min-height: 46px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 12px;
+.about-item {
+  padding: 16px 18px;
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
-  color: var(--ink);
-  background: var(--surface-raised);
-  font-size: 0.78rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
-}
-
-.outside-action-btn:hover {
-  border-color: var(--border-crimson);
-  background: #221318;
-  transform: translateY(-1px);
-}
-
-.outside-action-btn .dot-icon {
-  width: 6px;
-  height: 6px;
-  color: var(--gold);
-}
-
-.outside-action-btn.btn-copy-main {
-  border-color: #c9243b;
-  color: #ffffff;
-  background: linear-gradient(135deg, #9e1629 0%, #6e0d1b 100%);
-  box-shadow: 0 6px 18px rgba(158, 22, 41, 0.3);
-}
-
-.outside-action-btn.btn-copy-main:hover {
-  border-color: #e3344d;
-  background: linear-gradient(135deg, #b51b31 0%, #821020 100%);
-}
-
-.trust-card {
-  padding: 16px 20px;
-  border-color: var(--border-crimson);
-  color: var(--muted);
-  background: rgba(18, 11, 14, 0.9);
-  font-size: 0.82rem;
-  line-height: 2;
-  text-align: center;
-}
-
-.trust-card b {
-  color: var(--gold);
-  font-weight: 800;
-}
-
-/* ============ Footer ============ */
-footer {
-  position: relative;
-  z-index: 1;
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-  padding: 0 var(--page-gutter) 90px;
-}
-
-.footer-unified-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px;
-  padding: 16px 20px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-}
-
-.footer-logos {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-logo-card {
-  display: flex;
-  min-height: 46px;
-  align-items: center;
-  gap: 9px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
   background: var(--surface-inset);
 }
-
-.footer-logo-img {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 auto;
-  place-items: center;
+.about-item h3 {
+  margin: 0 0 6px;
+  color: var(--crimson-bright);
+  font-size: var(--fs-sm); font-weight: 800;
 }
-
-.footer-logo-img img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.footer-logo-label {
-  color: var(--ink);
-  font-size: 0.65rem;
-  font-weight: 700;
-}
-
-.footer-text {
-  flex: 1;
+[data-theme="light"] .about-item h3 { color: var(--crimson-deep); }
+.about-item p {
+  margin: 0;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: var(--fs-xs);
   line-height: 1.9;
-  text-align: left;
 }
-
-/* ============ Floating Elements ============ */
-.back-to-top-btn {
-  position: fixed;
-  z-index: 9000;
-  bottom: 22px;
-  right: 22px;
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  transform: translateY(12px);
+.social-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 4px;
+}
+.social-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
   border: 1px solid var(--border-crimson);
-  border-radius: 50%;
-  color: #fff;
-  background: rgba(24, 14, 18, 0.92);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  visibility: hidden;
-  cursor: pointer;
-  transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease, background-color 180ms ease;
-}
-
-.back-to-top-btn:hover {
-  background: var(--crimson);
-}
-
-.back-to-top-btn.is-visible {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top-btn .arrow {
-  display: block;
-  width: 9px;
-  height: 9px;
-  transform: translateY(2px) rotate(45deg);
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-}
-
-.snack-toast {
-  position: fixed;
-  z-index: 10001;
-  bottom: max(80px, env(safe-area-inset-bottom));
-  left: 50%;
-  width: max-content;
-  max-width: min(90vw, 520px);
-  padding: 11px 18px;
-  transform: translate(-50%, 18px);
-  border: 1px solid var(--border-crimson);
-  border-radius: 9px;
-  color: #fff;
-  background: #1c0d12;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
-}
-
-.snack-toast.active {
-  transform: translate(-50%, 0);
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ============ Floating Audio Player ============ */
-.floating-player {
-  position: fixed;
-  z-index: 10000;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 14px;
-  border: 1px solid var(--border-crimson);
-  border-radius: 999px;
-  background: rgba(14, 9, 12, 0.92);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.75), 0 0 16px rgba(143, 20, 36, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.floating-player:hover {
-  border-color: var(--crimson-bright);
-  box-shadow: 0 10px 34px rgba(184, 29, 51, 0.35);
-}
-
-.player-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 95px;
-  max-width: 145px;
-  margin-right: 4px;
-}
-
-.player-title {
-  color: var(--gold);
-  font-size: 0.68rem;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  direction: rtl;
-  text-align: right;
-  width: 100%;
-}
-
-.player-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  direction: ltr;
-}
-
-.player-btn {
-  display: grid;
-  width: 32px;
-  height: 32px;
-  place-items: center;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: 50%;
+  border-radius: var(--radius-pill);
+  background: rgba(143, 20, 36, 0.10);
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.04);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-size: var(--fs-xs); font-weight: 700;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-
-.player-btn:hover {
-  border-color: var(--border-crimson);
-  background: rgba(143, 20, 36, 0.28);
-  color: #fff;
+.social-btn:hover {
+  background: rgba(143, 20, 36, 0.25);
+  border-color: var(--crimson-bright);
+  transform: translateY(-1px);
 }
+.social-btn svg { width: 16px; height: 16px; }
 
-.player-btn.play-pause {
-  background: linear-gradient(135deg, #b81d33, #7a0f1e);
-  color: #fff;
-  width: 38px;
-  height: 38px;
-  box-shadow: 0 4px 12px rgba(184, 29, 51, 0.45);
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  position: relative; z-index: 1;
+  padding: 28px var(--page-gutter);
+  border-top: 1px solid var(--border);
+  background: var(--surface-glass);
+  text-align: center;
+  color: var(--quiet);
+  font-size: var(--fs-xs);
+  line-height: 2;
 }
-
-.player-btn.play-pause:hover {
-  background: linear-gradient(135deg, #d1243c, #8f1424);
+.site-footer .footer-verse {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  font-style: italic;
 }
+.site-footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.site-footer a:hover { color: var(--ink); }
 
-.player-btn svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-.player-btn.play-pause svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* ============ Desktop Grid Layout ============ */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (min-width: 960px) {
   main {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      "hero hero"
-      "legacy guiding"
-      "bank actions"
-      "trust trust";
-    align-items: stretch;
+      "hero    hero"
+      "salavat salavat"
+      "quran   quran"
+      "bank    bank"
+      "legacy  legacy"
+      "about   about";
     gap: 22px;
   }
-
   .hero-card {
     grid-area: hero;
     grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
@@ -1360,744 +920,470 @@ footer {
     gap: 14px 42px;
     padding: 46px 52px;
   }
-
-  .mourning-badge {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .hero-title {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .hero-desc {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .hero-actions {
-    grid-column: 1;
-    grid-row: 4;
-  }
-
-  .live-status-pill {
-    grid-column: 2;
-    grid-row: 2 / 5;
-    align-self: center;
-  }
-
+  .mourning-badge   { grid-column: 1 / -1; grid-row: 1; }
+  .hero-title       { grid-column: 1; grid-row: 2; }
+  .hero-desc        { grid-column: 1; grid-row: 3; }
+  .hero-actions     { grid-column: 1; grid-row: 4; }
+  .live-status-pill { grid-column: 2; grid-row: 2 / 5; align-self: center; }
+  .salavat-counter-box { grid-area: salavat; }
+  .quran-card { grid-area: quran; }
+  .bank-card { grid-area: bank; }
   .legacy-outer {
     grid-area: legacy;
+    grid-template-columns: minmax(270px, 0.82fr) minmax(0, 1.18fr);
   }
-
-  .guiding-card {
-    grid-area: guiding;
-  }
-
-  .card-scene {
-    grid-area: bank;
-    align-self: center;
-  }
-
-  .card-actions-wrapper {
-    grid-area: actions;
-    align-self: start;
-  }
-
-  .trust-card {
-    grid-area: trust;
-    grid-align: center;
-  }
+  .about-card { grid-area: about; }
 }
 
 @media (max-width: 959px) {
-  main {
-    width: min(100%, 740px);
-    padding-block: 22px 42px;
-  }
-  .footer-unified-box {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-  }
-  .footer-logos {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .footer-text {
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
+  main { width: min(100%, 740px); padding-block: 22px 42px; }
 }
 
 @media (max-width: 600px) {
-  .site-nav {
-    justify-content: center;
-    gap: 28px;
-  }
-  main {
-    gap: 18px;
-    padding: 18px 14px 36px;
-  }
-  .hero-card {
-    gap: 14px;
-    padding: 24px 18px;
-  }
-  .hero-title {
-    font-size: 1.65rem;
-    text-align: center;
-    margin-inline: auto;
-  }
-  .hero-desc {
-    font-size: 0.85rem;
-    line-height: 2;
-    text-align: justify;
-    text-align-last: center;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .hero-action {
-    flex: 1 1 140px;
-    padding-inline: 12px;
-    font-size: 0.76rem;
-  }
-  .live-status-pill {
-    padding: 12px 14px;
-    font-size: 0.76rem;
-  }
-  .legacy-outer {
-    gap: 14px;
-    padding: 12px;
-  }
-  .legacy-text-box {
-    padding: 18px;
-  }
-  .legacy-title {
-    font-size: 0.98rem;
-  }
-  .legacy-body {
-    font-size: 0.8rem;
-  }
+  .site-nav { justify-content: flex-start; gap: 16px; padding-inline-end: 10px; font-size: 0.76rem; }
+  .theme-toggle { width: 34px; height: 34px; flex-shrink: 0; }
+  main { gap: 18px; padding: 18px 14px 36px; }
+  .hero-card { gap: 14px; padding: 24px 18px; }
+  .hero-title { font-size: 1.65rem; text-align: center; }
+  .hero-desc  { font-size: 0.85rem; text-align: center; }
+  .hero-actions { justify-content: center; }
+  .hero-action { flex: 1 1 140px; font-size: 0.76rem; }
+  .live-status-pill { justify-content: center; text-align: center; }
+  .legacy-outer { grid-template-columns: 1fr; }
+  .salavat-display { width: 112px; height: 112px; }
+  #salavatCount { font-size: 2.9rem; }
+  .bank-number { font-size: 0.92rem; letter-spacing: 0.04em; }
+}
+
+@media (max-width: 380px) {
+  .salavat-btn { min-width: 180px; padding-inline: 20px; font-size: 0.9rem; }
 }
   </style>
 </head>
 <body id="top">
 
-  <a class="skip-link" href="#mainContent">رفتن به محتوای اصلی</a>
-  <canvas id="spiritualCanvas" aria-hidden="true"></canvas>
-  <div class="ambient-glow" aria-hidden="true"></div>
+  <a href="#mainContent" class="skip-link">پرش به محتوای اصلی</a>
+
+  <!-- Background layers -->
+  <div class="bg-image"    aria-hidden="true"></div>
+  <div class="bg-fabric"   aria-hidden="true"></div>
+  <div class="bg-grain"    aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
 
   <header class="global-header">
     <nav class="site-nav" aria-label="ناوبری اصلی">
       <a href="#legacyGallery">درباره پویش</a>
-      <a href="#guidingTitle">نور هدایت</a>
-      <a href="#cardElement">مشارکت در نذر</a>
+      <a href="#salavatSection">صلوات‌شمار</a>
+      <a href="#bankSection">کمک مالی</a>
+      <a href="#aboutSection">ارتباط با ما</a>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="تغییر حالت روشن و تاریک">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
     </nav>
   </header>
 
   <main id="mainContent">
-    <div class="hero-card">
-      <div class="mourning-badge">
-        <span class="pulse-dot"></span>
-        پویش هم‌عهدی ایام شهادت حضرت زهرا (س)
-      </div>
-      <h1 class="hero-title">نذر روضه و تئاتر آیینی بانوی بی‌نشان</h1>
-      <p class="hero-desc">
-        حضور ارزشمند شما در این خیمه، از سیاهی پرچم‌ها تا اشک تماشاگران، مایه دلگرمی است. برکت همراهی شما صرف امور جاری نمایش از جمله طراحی دکور، نورپردازی، تهیه لباس و پذیرایی از عزاداران حضرت صدیقه طاهره (س) خواهد شد.
-      </p>
+    <!-- HERO -->
+    <section class="hero-card reveal" aria-labelledby="heroTitle">
+      <div class="mourning-badge"><span class="pulse-dot" aria-hidden="true"></span> پویش هم‌عهدی ایام شهادت حضرت زهرا (س)</div>
+      <h1 class="hero-title" id="heroTitle">نذر روضه و تئاتر آیینی بانوی بی‌نشان</h1>
+      <p class="hero-desc">حضور ارزشمند شما در این خیمه، از سیاهی پرچم‌ها تا اشک تماشاگران، مایه دلگرمی است. برکت همراهی شما صرف امور جاری نمایش از جمله طراحی دکور، نورپردازی، تهیه لباس و پذیرایی از عزاداران حضرت صدیقه طاهره (س) خواهد شد.</p>
       <div class="hero-actions">
-        <a class="hero-action" href="#cardElement">مشارکت در نذر</a>
-        <a class="hero-action hero-action-secondary" href="#legacyGallery">مشاهده روایت پویش</a>
+        <a class="hero-action" href="#salavatSection">مشارکت در صلوات</a>
+        <a class="hero-action hero-action-secondary" href="#bankSection">کمک مالی</a>
       </div>
-      <div class="live-status-pill">
-        <span class="dot-icon"></span>
-        به برکت حضور و نفس‌های گرم شما، این خیمه برپاست.
-      </div>
-    </div>
+      <div class="live-status-pill"><span class="dot-icon" aria-hidden="true"></span> به برکت حضور شما، این خیمه برپاست.</div>
+    </section>
 
-    <!-- گالری و متن قدیمی -->
-    <div class="legacy-outer" id="legacyGallery">
-      <div class="legacy-text-box" id="legacyTextBox">
-        <div class="legacy-head">
-          <div class="legacy-head-icon" aria-hidden="true">
-            <span class="dot-icon"></span>
-          </div>
-          <h2 class="legacy-title">آیین دیرینه نمایش بانوی بی‌نشان</h2>
-        </div>
-        <div class="legacy-body">
-          <p>
-            سال‌هاست که به عشق حضرت فاطمه زهرا (س)، این آیین با همت دلسوختگان برگزار می‌شود. هر سال، نمایش «بانوی بی‌نشان» تلاشی است برای روایت گوشه‌ای از مظلومیت آن حضرت.
-          </p>
-          <p>
-            هر اجرا، فصلی تازه از این مسیر نورانی است که با همراهی شما ادامه دارد.
-          </p>
-          <span class="legacy-emphasis">رسمی که توسط پایه (9) هر سال ادامه دارد....</span>
-        </div>
+    <!-- SALAVAT -->
+    <section class="salavat-counter-box reveal reveal-delay-1" id="salavatSection" aria-labelledby="salavatTitle">
+      <div class="salavat-bg-glow" aria-hidden="true"></div>
+      <h2 id="salavatTitle">هم‌عهدی با صلوات</h2>
+      <p>با هر کلیک، یک صلوات نذر خیمه‌ی حضرت زهرا (س) کنید.</p>
+
+      <div class="salavat-display">
+        <div id="salavatCount" aria-live="polite" aria-atomic="true">0</div>
       </div>
 
-      <div class="legacy-image-box">
-        <div class="legacy-gallery" aria-label="گالری تصاویر گذشته">
-          <div class="slide is-active">
-            <img referrerpolicy="no-referrer" src="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg" alt="تصویر ۱ از اجرای گذشته" loading="eager">
-          </div>
-          <div class="slide">
-            <img referrerpolicy="no-referrer" src="https://s41.uupload.ir/files/myrmhs/sabco/im2.jpg" alt="تصویر ۲ از اجرای گذشته" loading="lazy">
-          </div>
-          <div class="slide">
-            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im3.jpg" alt="تصویر ۳ از اجرای گذشته" loading="lazy">
-          </div>
-          <div class="slide">
-            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im4.jpg" alt="تصویر ۴ از اجرای گذشته" loading="lazy">
-          </div>
-          <div class="slide">
-            <img referrerpolicy="no-referrer" src="https://s11.uupload.ir/files/myrmhs/sabco/im5.jpg" alt="تصویر ۵ از اجرای گذشته" loading="lazy">
-          </div>
-        </div>
-
-        <div class="legacy-slider-controls">
-          <div class="slider-nav-group">
-            <button type="button" class="slider-nav-btn slider-prev-btn" id="sliderPrevBtn" aria-label="تصویر قبلی" title="تصویر قبلی">
-              <span class="chevron" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <div class="slider-dots" id="sliderDots" aria-hidden="true">
-            <span class="slider-dot is-active"></span>
-            <span class="slider-dot"></span>
-            <span class="slider-dot"></span>
-            <span class="slider-dot"></span>
-            <span class="slider-dot"></span>
-          </div>
-
-          <div class="slider-nav-group">
-            <button type="button" class="slider-nav-btn slider-next-btn" id="sliderNextBtn" aria-label="تصویر بعدی" title="تصویر بعدی">
-              <span class="chevron" aria-hidden="true"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بخش نور هدایت (شامل ۱۰۰ متن منتخب از آیات، احادیث و دل‌نوشته‌ها) -->
-    <section class="guiding-card" aria-labelledby="guidingTitle">
-      <div class="guiding-head">
-        <div class="guiding-head-left">
-          <div class="guiding-icon" aria-hidden="true">
-            <span class="dot-icon"></span>
-          </div>
-          <h2 class="guiding-title" id="guidingTitle">نور هدایت</h2>
-        </div>
-        <span class="guiding-type" id="guidingType">آیه</span>
-      </div>
-
-      <div class="guiding-body" id="guidingBody">
-        <p class="guiding-text arabic" id="guidingText">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</p>
-        <span class="guiding-translation" id="guidingTranslation">همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.</span>
-        <span class="guiding-source" id="guidingSource">سوره کوثر — آیه ۱ تا ۳</span>
-      </div>
-
-      <div class="guiding-actions">
-        <button type="button" class="guiding-next-btn" id="guidingNextBtn">
-          <span>مطلب بعدی</span>
-          <span class="rotate-icon" aria-hidden="true">
-            <span class="dot-icon"></span>
-          </span>
+      <div class="salavat-btn-wrapper">
+        <button id="salavatBtn" class="salavat-btn" type="button" aria-label="نذر صلوات">
+          <svg class="salavat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span class="salavat-btn-text">صلوات نذر کن</span>
+          <div class="salavat-progress" id="salavatProgress" aria-hidden="true"></div>
         </button>
       </div>
     </section>
 
-    <!-- بخش نذر و کارت بانکی -->
-    <div class="card-scene" id="cardElement" role="button" tabindex="0" aria-label="کارت بانکی - برای چرخش کلیک کنید" aria-pressed="false">
-      <div class="card-inner" id="cardInner">
-        <div class="card-side card-front">
-          <div class="card-glare"></div>
-          <div class="front-header">
-            <div class="blu-brand">
-              <svg class="blu-logo-svg" viewBox="0 0 76 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M11.6 25.4C7.2 25.4 4 22.3 4 17.6V3.5C4 2.4 4.9 1.5 6 1.5C7.1 1.5 8 2.4 8 3.5V10.8C9.1 9.8 10.6 9.2 12.3 9.2C16.5 9.2 19.6 12.5 19.6 17.3C19.6 22.1 16.3 25.4 11.6 25.4ZM11.8 12.8C9.5 12.8 7.9 14.6 7.9 17.3C7.9 20 9.5 21.8 11.8 21.8C14.1 21.8 15.6 20 15.6 17.3C15.6 14.6 14.1 12.8 11.8 12.8Z" fill="white"/>
-                <path d="M26.2 25C25.1 25 24.2 24.1 24.2 23V3.5C24.2 2.4 25.1 1.5 26.2 1.5C27.3 1.5 28.2 2.4 28.2 3.5V23C28.2 24.1 27.3 25 26.2 25Z" fill="white"/>
-                <path d="M41.2 25.4C36.6 25.4 33.5 22.4 33.5 17.7V11.5C33.5 10.4 34.4 9.5 35.5 9.5C36.6 9.5 37.5 10.4 37.5 11.5V17.4C37.5 20.1 38.9 21.7 41.2 21.7C43.5 21.7 44.9 20.1 44.9 17.4V11.5C44.9 10.4 45.8 9.5 46.9 9.5C48 9.5 48.9 10.4 48.9 11.5V17.7C48.9 22.4 45.8 25.4 41.2 25.4Z" fill="white"/>
-              </svg>
-              <span class="blu-slogan">fatemiye 1405</span>
-            </div>
-            <div class="chip-nfc-row">
-              <div class="emv-chip" aria-hidden="true">
-                <svg viewBox="0 0 50 40" fill="none" stroke="#463204" stroke-width="1.2">
-                  <path d="M0 13H18M0 27H18M32 13H50M32 27H50M18 0V40M32 0V40"/>
-                  <rect x="18" y="10" width="14" height="20" rx="3" fill="none"/>
-                </svg>
-              </div>
-              <svg class="nfc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
-                <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
-                <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
-              </svg>
-            </div>
-          </div>
+    <!-- QURAN -->
+    <section class="quran-card reveal reveal-delay-2" aria-labelledby="quranTitle">
+      <h2 id="quranTitle">نور هدایت</h2>
+      <p class="quran-arabic">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</p>
+      <p class="quran-translation">همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.</p>
+      <span class="quran-source">سوره کوثر — آیه ۱ تا ۳</span>
+      <span class="occasion-tag">پویش فاطمیه ۱۴۰۵</span>
+    </section>
 
-          <div class="card-spiritual-quote">
-            <span class="quote-title">نذر قدم‌های مادر پهلوشکسته...</span>
-            <span class="quote-sub">روشنایی این خیمه و تار و پود این صحنه، از مِهر شما جاریست.</span>
+    <!-- BANK -->
+    <section class="bank-card reveal reveal-delay-2" id="bankSection" aria-labelledby="bankTitle">
+      <h2 id="bankTitle">نذر قدم‌های مادر پهلوشکسته...</h2>
+      <p class="bank-intro">روشنایی این خیمه و تار و پود این صحنه، از مِهر شما جاریست.</p>
+
+      <div class="bank-visual" id="bankVisual" role="button" tabindex="0" aria-label="کپی شماره کارت ۶۲۱۹ ۸۶۱۹ ۰۴۲۵ ۳۱۱۸">
+        <h3>بانک سامان</h3>
+        <p class="bank-owner">محمدمهدی شریفی</p>
+        <div class="bank-number" id="bankNumber">
+          <span>6219</span>
+          <span>8619</span>
+          <span>0425</span>
+          <span>3118</span>
+        </div>
+        <div class="bank-meta">
+          <span class="shetab">SHETAB</span>
+          <span>برای کپی، لمس کنید</span>
+        </div>
+      </div>
+
+      <p class="bank-hint">برای مشاهده اطلاعات حساب، روی کارت ضربه بزنید. پس از واریز، نیازی به ارسال فیش یا پیگیری نیست؛ اجر شما در دفتر خادمان این پویش ثبت خواهد شد.</p>
+    </section>
+
+    <!-- LEGACY -->
+    <section class="legacy-outer reveal reveal-delay-3" aria-labelledby="legacyTitle">
+      <div class="legacy-text-box">
+        <div class="legacy-head">
+          <div class="legacy-head-icon" aria-hidden="true"><span class="dot-icon"></span></div>
+          <h2 class="legacy-title" id="legacyTitle">آیین دیرینه نمایش بانوی بی‌نشان</h2>
+        </div>
+        <div class="legacy-body">
+          <p>سال‌هاست که به عشق حضرت فاطمه زهرا (س)، این آیین با همت دلسوختگان برگزار می‌شود. هر سال، نمایش «بانوی بی‌نشان» تلاشی است برای روایت گوشه‌ای از مظلومیت آن حضرت.</p>
+          <p>هر اجرا، فصلی تازه از این مسیر نورانی است که با همراهی شما ادامه دارد.</p>
+          <span class="legacy-emphasis">رسمی که هر سال، به همت دانش‌آموزان پایه نهم، ادامه دارد....</span>
+        </div>
+      </div>
+      <div class="legacy-image-box">
+        <div class="legacy-gallery" id="legacyGallery">
+          <div class="slide is-active">
+            <img src="./images/im1.jpg" alt="اجرای نمایش بانوی بی‌نشان" loading="lazy"
+                 onerror="this.onerror=null;this.src='https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg'">
+          </div>
+          <div class="slide">
+            <img src="./images/im2.jpg" alt="صحنه نمایش بانوی بی‌نشان" loading="lazy"
+                 onerror="this.onerror=null;this.src='https://s41.uupload.ir/files/myrmhs/sabco/im2.jpg'">
+          </div>
+          <div class="slide">
+            <img src="./images/im3.jpg" alt="تماشاگران نمایش بانوی بی‌نشان" loading="lazy"
+                 onerror="this.onerror=null;this.src='https://s11.uupload.ir/files/myrmhs/sabco/im3.jpg'">
           </div>
         </div>
-
-        <div class="card-side card-back">
-          <div class="mag-stripe-real"></div>
-          <div class="back-data-area">
-            <div class="back-top-brand">
-              <span class="saman-title">Saman Bank</span>
-              <span class="saman-symbol"></span>
-            </div>
-            <div class="back-middle-info">
-              <div class="back-holder-name">محمدمهدی شریفی</div>
-              <div class="back-pan-vertical">
-                <span>6219</span>
-                <span>8619</span>
-                <span>0425</span>
-                <span>3118</span>
-              </div>
-            </div>
-            <div class="back-bottom-badges">
-              <span class="shetab-badge">SHETAB</span>
-            </div>
+        <div class="legacy-slider-controls">
+          <div class="slider-nav-group">
+            <button class="slider-nav-btn slider-prev-btn" id="sliderPrevBtn" type="button" aria-label="تصویر قبلی">
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="slider-dots" id="sliderDots" role="tablist" aria-label="انتخاب تصویر">
+            <span class="slider-dot is-active" role="tab" aria-selected="true"  aria-label="تصویر ۱"></span>
+            <span class="slider-dot"           role="tab" aria-selected="false" aria-label="تصویر ۲"></span>
+            <span class="slider-dot"           role="tab" aria-selected="false" aria-label="تصویر ۳"></span>
+          </div>
+          <div class="slider-nav-group">
+            <button class="slider-nav-btn slider-next-btn" id="sliderNextBtn" type="button" aria-label="تصویر بعدی">
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="card-actions-wrapper">
-      <div class="card-actions-row">
-        <button type="button" class="outside-action-btn" id="flipCardBtn">
-          <span>چرخش کارت</span>
-          <span class="dot-icon"></span>
-        </button>
-        <button type="button" class="outside-action-btn btn-copy-main" id="copyCardBtn">
-          <span>کپی شماره کارت</span>
-          <span class="dot-icon"></span>
-        </button>
+    <!-- ABOUT / CONTACT -->
+    <section class="about-card reveal reveal-delay-3" id="aboutSection" aria-labelledby="aboutTitle">
+      <h2 id="aboutTitle">درباره پویش و راه‌های ارتباطی</h2>
+      <div class="about-grid">
+        <div class="about-item">
+          <h3>خادمان خیمه</h3>
+          <p>این پویش با همت دانش‌آموزان پایه نهم و همراهی دلسوختگان حضرت زهرا (س) برگزار می‌شود.</p>
+        </div>
+        <div class="about-item">
+          <h3>محل اجرا</h3>
+          <p>آیین نمایش «بانوی بی‌نشان» در ایام فاطمیه، در فضایی که هر سال به همت خادمان برپا می‌شود.</p>
+        </div>
+        <div class="about-item">
+          <h3>شفافیت مالی</h3>
+          <p>تمام کمک‌ها صرف دکور، نورپردازی، لباس و پذیرایی عزاداران می‌شود. نیازی به ارسال فیش نیست.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="trust-card">
-      برای مشاهده اطلاعات حساب، روی کارت ضربه بزنید. پس از واریز، <b>نیازی به ارسال فیش یا پیگیری نیست</b>؛ اجر شما در دفتر خادمان این پویش ثبت خواهد شد.
-    </div>
+      <div class="social-row" aria-label="شبکه‌های اجتماعی">
+        <a class="social-btn" href="https://eitaa.com/" target="_blank" rel="noopener noreferrer" aria-label="کانال ایتا">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          کانال ایتا
+        </a>
+        <a class="social-btn" href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="کانال تلگرام">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          تلگرام
+        </a>
+        <a class="social-btn" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="اینستاگرام">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          اینستاگرام
+        </a>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="footer-unified-box">
-      <div class="footer-logos">
-        <div class="footer-logo-card" title="مکتب الرسول (ص)">
-          <div class="footer-logo-img">
-            <img loading="lazy" referrerpolicy="no-referrer" 
-                 src="https://wsrv.nl/?url=s15.uupload.ir/files/myrmhs/sabco/ra2.png" 
-                 alt="لوگوی مکتب الرسول (ص)"
-                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#d4b475; font-size:10px; font-weight:bold;\'>logo</span>';">
-          </div>
-          <span class="footer-logo-label">مکتب الرسول (ص)</span>
-        </div>
-
-        <div class="footer-logo-card" title="مجتمع آموزشی صاحب کوثر (ص)">
-          <div class="footer-logo-img">
-            <img loading="lazy" referrerpolicy="no-referrer" 
-                 src="https://wsrv.nl/?url=s15.uupload.ir/files/myrmhs/sabco/sco2.png" 
-                 alt="لوگوی صاحب کوثر (ص)"
-                 onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#d4b475; font-size:10px; font-weight:bold;\'>logo</span>';">
-          </div>
-          <span class="footer-logo-label">مجتمع آموزشی صاحب کوثر (ص)</span>
-        </div>
-      </div>
-
-      <div class="footer-text">
-        روایت عاشقی، با همت خالصانه و خادمی دانش‌آموزان مکتب الرسول (ص) و مربیان مجتمع آموزشی صاحب کوثر (ص)
-      </div>
-    </div>
+  <footer class="site-footer">
+    <p class="footer-verse">«این روزا می‌گذره علی...»</p>
+    <p>© پویش خیمه‌گاه فاطمی — فاطمیه ۱۴۰۵ · ساخته‌شده با مِهر برای خادمان حضرت زهرا (س)</p>
   </footer>
 
-  <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="بازگشت به بالا" title="بازگشت به بالا">
-    <span class="arrow" aria-hidden="true"></span>
-  </button>
-
-  <div id="snackToast" class="snack-toast" role="status" aria-live="polite">✅ شماره کارت با موفقیت کپی شد</div>
-
-  <!-- پلیر شناور صوتی -->
-  <div class="floating-player" id="floatingPlayer">
-    <div class="player-info">
-      <span class="player-title" id="playerTitle">این روزا میگذره علی</span>
-    </div>
-    <div class="player-controls">
-      <button class="player-btn" id="prevBtn" aria-label="آهنگ قبلی" title="آهنگ قبلی">
-        <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-      </button>
-      <button class="player-btn play-pause" id="playPauseBtn" aria-label="پخش" title="پخش / توقف">
-        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-      </button>
-      <button class="player-btn" id="nextBtn" aria-label="آهنگ بعدی" title="آهنگ بعدی">
-        <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-      </button>
-    </div>
-  </div>
+  <div class="copy-toast" id="copyToast" role="status" aria-live="polite">✅ شماره کارت با موفقیت کپی شد</div>
 
   <script>
-    'use strict';
+  /* ============================================================
+     THEME
+     ============================================================ */
+  (function initTheme() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const meta = document.getElementById('metaThemeColor');
 
-    var CARD_PAN = "6219861904253118";
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    applyTheme(saved || (prefersLight ? 'light' : 'dark'));
 
-    window.showToast = function(message) {
-      var t = document.getElementById("snackToast");
-      if (!t) return;
-      t.textContent = message;
-      t.classList.add("active");
-      if (t._hideTimeout) clearTimeout(t._hideTimeout);
-      t._hideTimeout = setTimeout(function() {
-        t.classList.remove("active");
-      }, 2800);
-    }
+    toggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
 
-    function triggerHaptic(duration) {
-      if (navigator.vibrate && window.matchMedia("(pointer: coarse)").matches) {
-        navigator.vibrate(duration || 16);
-      }
-    }
-
-    function triggerFlip() {
-      var card = document.getElementById("cardElement");
-      if (!card) return;
-      triggerHaptic(14);
-      var isFlipped = card.classList.toggle("is-flipped");
-      card.setAttribute("aria-pressed", isFlipped ? "true" : "false");
-    }
-
-    function copyValue(e) {
-      if (e && e.stopPropagation) e.stopPropagation();
-      triggerHaptic(18);
-
-      var card = document.getElementById("cardElement");
-      if (card && !card.classList.contains("is-flipped")) {
-        card.classList.add("is-flipped");
-        card.setAttribute("aria-pressed", "true");
-      }
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(CARD_PAN).then(function() {
-          showToast("✅ شماره کارت با موفقیت کپی شد");
-        }).catch(function() {
-          fallbackCopy(CARD_PAN);
-        });
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        if (meta) meta.setAttribute('content', '#f4ece6');
       } else {
-        fallbackCopy(CARD_PAN);
+        root.removeAttribute('data-theme');
+        if (meta) meta.setAttribute('content', '#050507');
       }
     }
+  })();
 
-    function fallbackCopy(text) {
-      var textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-9999px";
-      textArea.style.top = "0";
-      textArea.setAttribute("readonly", "");
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
+  /* ============================================================
+     REVEAL
+     ============================================================ */
+  (function initReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  /* ============================================================
+     SALAVAT COUNTER — با fallback محلی و صف همگام‌سازی
+     ============================================================ */
+  (function initSalavat() {
+    const countDisplay = document.getElementById('salavatCount');
+    const btn = document.getElementById('salavatBtn');
+    const progressBar = document.getElementById('salavatProgress');
+    const API_URL = "https://api.counterapi.dev/v1/sabco_fatemiye_1405_quick/salavat";
+    const LS_COUNT = 'salavat_local_count';
+    const LS_PENDING = 'salavat_pending';
+
+    let localCount = parseInt(localStorage.getItem(LS_COUNT) || '0', 10);
+    let pending = parseInt(localStorage.getItem(LS_PENDING) || '0', 10);
+    let isCooling = false;
+
+    countDisplay.textContent = localCount;
+
+    function persist() {
       try {
-        document.execCommand('copy');
-        showToast("✅ شماره کارت با موفقیت کپی شد");
-      } catch (err) {
-        alert("شماره کارت: " + text);
+        localStorage.setItem(LS_COUNT, String(localCount));
+        localStorage.setItem(LS_PENDING, String(pending));
+      } catch (_) {}
+    }
+
+    function syncPending() {
+      if (pending <= 0) return;
+      // یک درخواست up برای هر pending (حداکثر ۵ تا در هر دور)
+      const batch = Math.min(pending, 5);
+      let done = 0;
+      for (let i = 0; i < batch; i++) {
+        fetch(API_URL + "/up?nocache=" + Date.now(), { cache: 'no-store' })
+          .then(res => res.json())
+          .then(() => {
+            done++;
+            pending = Math.max(0, pending - 1);
+            persist();
+          })
+          .catch(() => {});
       }
-      document.body.removeChild(textArea);
     }
 
-    var cardElement = document.getElementById("cardElement");
-    var flipCardBtn = document.getElementById("flipCardBtn");
-    var copyCardBtn = document.getElementById("copyCardBtn");
-    var cardGlare = document.querySelector(".card-glare");
-
-    if (cardElement) {
-      cardElement.addEventListener("click", triggerFlip);
-      cardElement.addEventListener("keydown", function(e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          triggerFlip();
-        }
-      });
-      cardElement.addEventListener("pointermove", function(e) {
-        if (e.pointerType === "touch" || !cardGlare) return;
-        var rect = cardElement.getBoundingClientRect();
-        cardGlare.style.setProperty("--glare-x", ((e.clientX - rect.left) / rect.width * 100) + "%");
-        cardGlare.style.setProperty("--glare-y", ((e.clientY - rect.top) / rect.height * 100) + "%");
-      });
+    function fetchCount() {
+      fetch(API_URL + "?nocache=" + Date.now(), { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.count === 'number') {
+            const serverCount = data.count;
+            const optimistic = Math.max(serverCount + pending, localCount);
+            if (optimistic > localCount) {
+              localCount = optimistic;
+              countDisplay.textContent = localCount;
+              persist();
+            }
+          }
+        })
+        .catch(() => {});
     }
 
-    if (flipCardBtn) flipCardBtn.addEventListener("click", triggerFlip);
-    if (copyCardBtn) copyCardBtn.addEventListener("click", copyValue);
+    fetchCount();
+    syncPending();
+    setInterval(fetchCount, 4000);
 
-    // بخش ۱۰۰ متن نور هدایت (آیات، احادیث و دل‌نوشته‌ها)
-    var GUIDING_ITEMS = [
-      { type: "آیه", text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.", source: "سوره کوثر — آیه ۱ تا ۳" },
-      { type: "حدیث", text: "فاطمه پاره‌ی تن من است؛ هر که او را اذیت کند، مرا اذیت کرده است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
-      { type: "حدیث", text: "فاطمه سرور زنان اهل بهشت است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
-      { type: "حدیث", text: "خداوند به غضب فاطمه غضب می‌کند و به رضای او راضی می‌شود.", source: "پیامبر اکرم (ص) — مستدرک حاکم" },
-      { type: "جمله", text: "مادر، پناه بی‌پناهان است؛ و فاطمه، مادر همه‌ی بی‌پناهانِ تاریخ.", source: "دل‌نوشته" },
-      { type: "حدیث", text: "يا فاطِمَةُ، أبْشِري فَاللّه ُ عَزَّوَجَلَّ خَلَقَ الْجَنَّةَ لَكِ وَ لِمُحِبّيكِ.", source: "مژده باد بر تو ای فاطمه، که خداوند بهشت را برای تو و دوستدارانت آفریده است.", source: "بحار الأنوار" },
-      { type: "حدیث", text: "خداوند متعال فرمود: ای احمد! اگر تو نبودی فلاک را نمی‌آفریدم و اگر علی نبود تو را نمی‌آفریدم و اگر فاطمه نبود هیچ‌کدام شما را نمی‌آفریدم.", source: "حدیث قدسی" },
-      { type: "جمله", text: "یا فاطمه زهرا (س)! ای پنهان‌m مزار، دلتنگ حضور نورانی توایم در این خیمه.", source: "دل‌نوشته" },
-      { type: "آیه", text: "يُوفُونَ بِالنَّذْرِ وَيَخَافُونَ يَوْمًا كَانَ شَرُّهُ مُسْتَطِيرًا", source: "آنان به نذر وفا می‌کنند و از روزی که شرّ و عذاب آن گسترده است می‌ترسند.", source: "سوره انسان — آیه ۷" },
-      { type: "حدیث", text: "بهترین شما کسی است که در اخلاق نرم‌تر و با همسرانش مهربان‌تر باشد؛ و فاطمه الگوی تمام‌نمای این فضیلت است.", source: "پیامبر اکرم (ص)" },
-      // ... (مجموعه کامل ۱۰۰ متن معنوی متناوب برای بخش نور هدایت)
-      { type: "حدیث", text: "ما توسل جسته‌ایم به فاطمه (س)؛ تا شفیع ما باشد در روز محشر.", source: "روایت اهل بیت" },
-      { type: "جمله", text: "نام زهرا (س) کلید هر در بسته‌ای است.", source: "کلام بزرگان" }
-    ];
-
-    // تکمیل خودکار فهرست تا ۱۰۰ متن متنوع برای بخش نور هدایت
-    for (var i = 1; i <= 88; i++) {
-      GUIDING_ITEMS.push({
-        type: i % 2 === 0 ? "حدیث" : "دل‌نوشته",
-        text: "یا فاطمه زهرا (س)! سلام بر آن پهلوی شکسته و آن مزار بی‌علامت که پناهگاه دل‌های شیفتگان است. (شماره " + i + ")",
-        source: "پویش هم‌عهدی فاطمی"
-      });
+    function createRipple(e) {
+      const circle = document.createElement('span');
+      const d = Math.max(btn.clientWidth, btn.clientHeight);
+      const rect = btn.getBoundingClientRect();
+      circle.style.width = circle.style.height = `${d}px`;
+      circle.style.left = `${e.clientX - rect.left - d / 2}px`;
+      circle.style.top  = `${e.clientY - rect.top  - d / 2}px`;
+      circle.classList.add('salavat-ripple');
+      const old = btn.querySelector('.salavat-ripple');
+      if (old) old.remove();
+      btn.appendChild(circle);
     }
 
-    var currentGuidingIndex = 0;
+    btn.addEventListener('click', (e) => {
+      if (isCooling) return;
+      createRipple(e);
 
-    function renderGuiding(index) {
-      var item = GUIDING_ITEMS[index];
-      if (!item) return;
+      isCooling = true;
+      btn.classList.add('is-cooling');
+      progressBar.style.animation = 'none';
+      void progressBar.offsetHeight;
+      progressBar.style.animation = 'progress-drain 1s linear forwards';
+      setTimeout(() => {
+        isCooling = false;
+        btn.classList.remove('is-cooling');
+      }, 1000);
 
-      var typeEl = document.getElementById("guidingType");
-      var textEl = document.getElementById("guidingText");
-      var translationEl = document.getElementById("guidingTranslation");
-      var sourceEl = document.getElementById("guidingSource");
+      localCount++;
+      pending++;
+      countDisplay.textContent = localCount;
+      countDisplay.style.transform = 'scale(1.1)';
+      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+      persist();
 
-      if (typeEl) typeEl.textContent = item.type;
-      if (textEl) {
-        textEl.textContent = item.text;
-        if (item.translation) {
-          textEl.classList.add("arabic");
+      fetch(API_URL + "/up?nocache=" + Date.now(), { cache: 'no-store' })
+        .then(res => res.json())
+        .then(() => {
+          pending = Math.max(0, pending - 1);
+          persist();
+        })
+        .catch(() => {
+          // در صورت خطا، pending باقی می‌ماند تا در دور بعد تلاش شود
+        });
+    });
+  })();
+
+  /* ============================================================
+     BANK CARD — کپی شماره کارت
+     ============================================================ */
+  (function initBankCopy() {
+    const visual = document.getElementById('bankVisual');
+    const toast = document.getElementById('copyToast');
+    const number = '6219861904253118';
+
+    function showToast() {
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    async function copy() {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(number);
         } else {
-          textEl.classList.remove("arabic");
+          const ta = document.createElement('textarea');
+          ta.value = number;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
         }
+        showToast();
+      } catch (_) {
+        // fallback نهایی: نمایش prompt
+        window.prompt('شماره کارت را دستی کپی کنید:', number);
       }
-      if (translationEl) {
-        if (item.translation) {
-          translationEl.textContent = item.translation;
-          translationEl.style.display = "block";
-        } else {
-          translationEl.style.display = "none";
-        }
-      }
-      if (sourceEl) sourceEl.textContent = item.source || "";
     }
 
-    var guidingNextBtn = document.getElementById("guidingNextBtn");
-    if (guidingNextBtn) {
-      guidingNextBtn.addEventListener("click", function() {
-        var body = document.getElementById("guidingBody");
-        guidingNextBtn.classList.add("is-spinning");
-        setTimeout(function() { guidingNextBtn.classList.remove("is-spinning"); }, 520);
-        if (body) body.classList.add("is-fading");
-        setTimeout(function() {
-          currentGuidingIndex = Math.floor(Math.random() * GUIDING_ITEMS.length);
-          renderGuiding(currentGuidingIndex);
-          if (body) body.classList.remove("is-fading");
-        }, 220);
+    visual.addEventListener('click', copy);
+    visual.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        copy();
+      }
+    });
+  })();
+
+  /* ============================================================
+     GALLERY SLIDER
+     ============================================================ */
+  (function initSlider() {
+    const slides = document.querySelectorAll('#legacyGallery .slide');
+    const dots = document.querySelectorAll('#sliderDots .slider-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer;
+
+    function showSlide(index) {
+      slides.forEach(s => s.classList.remove('is-active'));
+      dots.forEach(d => {
+        d.classList.remove('is-active');
+        d.setAttribute('aria-selected', 'false');
       });
+      slides[index].classList.add('is-active');
+      dots[index].classList.add('is-active');
+      dots[index].setAttribute('aria-selected', 'true');
+      current = index;
     }
 
-    // پلیر صوتی
-    (function initFloatingPlayer() {
-      var tracks = [
-        { title: "این روزا میگذره علی", src: "https://s33.uupload.ir/files/sahebcosar/این%20روزا%20میگذره%20علی%20320.mp3" },
-        { title: "گل چادر گلدارت", src: "https://s33.uupload.ir/files/sahebcosar/نماهنگ%20گل%20چادر%20گلدارت.mp3" },
-        { title: "با چادرت چی کار کنم", src: "https://s33.uupload.ir/files/sahebcosar/نماهنگ%20با%20چادرت%20چی%20کار%20کنم%20320.mp3" },
-        { title: "چادرت را بتکان", src: "https://s11.uupload.ir/files/sahebcosar/Pouyanfar%20-%20Chadorat%20Ra%20Betekan%20320K-%20(madahionline.ir).mp3" }
-      ];
+    function next() { showSlide((current + 1) % slides.length); }
+    function prev() { showSlide((current - 1 + slides.length) % slides.length); }
 
-      var currentIndex = 0;
-      var audio = new Audio(tracks[currentIndex].src);
-      audio.loop = false;
+    document.getElementById('sliderNextBtn').addEventListener('click', () => { next(); restart(); });
+    document.getElementById('sliderPrevBtn').addEventListener('click', () => { prev(); restart(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); restart(); }));
 
-      var playPauseBtn = document.getElementById("playPauseBtn");
-      var playIcon = document.getElementById("playIcon");
-      var pauseIcon = document.getElementById("pauseIcon");
-      var prevBtn = document.getElementById("prevBtn");
-      var nextBtn = document.getElementById("nextBtn");
-      var titleEl = document.getElementById("playerTitle");
-
-      function updateUI() {
-        if (titleEl) titleEl.textContent = tracks[currentIndex].title;
-        if (audio.paused) {
-          if (playIcon) playIcon.style.display = "block";
-          if (pauseIcon) pauseIcon.style.display = "none";
-          if (playPauseBtn) playPauseBtn.setAttribute("aria-label", "پخش");
-        } else {
-          if (playIcon) playIcon.style.display = "none";
-          if (pauseIcon) pauseIcon.style.display = "block";
-          if (playPauseBtn) playPauseBtn.setAttribute("aria-label", "توقف");
-        }
+    function restart() {
+      clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(next, 4000);
       }
-
-      function loadTrack(index) {
-        currentIndex = index;
-        audio.src = tracks[currentIndex].src;
-        updateUI();
-      }
-
-      function playTrack() {
-        audio.play().catch(function() {
-          showToast("پخش آهنگ با خطا مواجه شد");
-          updateUI();
-        });
-        updateUI();
-      }
-
-      if (playPauseBtn) {
-        playPauseBtn.addEventListener("click", function() {
-          if (audio.paused) playTrack();
-          else { audio.pause(); updateUI(); }
-        });
-      }
-
-      if (prevBtn) {
-        prevBtn.addEventListener("click", function() {
-          var index = (currentIndex - 1 + tracks.length) % tracks.length;
-          loadTrack(index);
-          playTrack();
-        });
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener("click", function() {
-          var index = (currentIndex + 1) % tracks.length;
-          loadTrack(index);
-          playTrack();
-        });
-      }
-
-      audio.addEventListener("ended", function() {
-        var index = (currentIndex + 1) % tracks.length;
-        loadTrack(index);
-        playTrack();
-      });
-
-      updateUI();
-    })();
-
-    // گالری تصاویر
-    (function initLegacySlider() {
-      var gallery = document.getElementById("legacyGallery");
-      if (!gallery) return;
-
-      var slides = gallery.querySelectorAll(".slide");
-      var prevBtn = document.getElementById("sliderPrevBtn");
-      var nextBtn = document.getElementById("sliderNextBtn");
-      var dots = document.querySelectorAll("#sliderDots .slider-dot");
-
-      if (slides.length <= 1) return;
-
-      var currentIndex = 0;
-      var isAnimating = false;
-      var timer = null;
-
-      function setActiveDot(i) {
-        for (var d = 0; d < dots.length; d++) {
-          dots[d].classList.toggle("is-active", d === i);
-        }
-      }
-
-      function settle() {
-        for (var i = 0; i < slides.length; i++) {
-          slides[i].classList.remove("is-leaving", "is-leaving-reverse", "is-entering", "is-entering-reverse");
-          slides[i].classList.toggle("is-active", i === currentIndex);
-        }
-        setActiveDot(currentIndex);
-        isAnimating = false;
-      }
-
-      function go(direction) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        var total = slides.length;
-        var nextIndex = (currentIndex + direction + total) % total;
-        var current = slides[currentIndex];
-        var next = slides[nextIndex];
-
-        for (var i = 0; i < slides.length; i++) {
-          slides[i].classList.remove("is-leaving", "is-leaving-reverse", "is-entering", "is-entering-reverse", "is-active");
-        }
-
-        next.classList.add("is-active");
-
-        if (direction > 0) {
-          current.classList.add("is-leaving");
-          next.classList.add("is-entering");
-        } else {
-          current.classList.add("is-leaving-reverse");
-          next.classList.add("is-entering-reverse");
-        }
-
-        currentIndex = nextIndex;
-        setActiveDot(currentIndex);
-        setTimeout(settle, 580);
-      }
-
-      function start() {
-        stop();
-        timer = setInterval(function() { go(1); }, 4000);
-      }
-
-      function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener("click", function(e) {
-          e.preventDefault();
-          go(1);
-          start();
-        });
-      }
-
-      if (prevBtn) {
-        prevBtn.addEventListener("click", function(e) {
-          e.preventDefault();
-          go(-1);
-          start();
-        });
-      }
-
-      for (var k = 0; k < dots.length; k++) {
-        (function(idx) {
-          dots[idx].addEventListener("click", function() {
-            if (isAnimating || idx === currentIndex) return;
-            go(idx > currentIndex ? 1 : -1);
-            start();
-          });
-        })(k);
-      }
-
-      settle();
-      start();
-    })();
-
-    // دکمه بازگشت به بالا
-    (function initBackToTop() {
-      var btn = document.getElementById("backToTopBtn");
-      if (!btn) return;
-
-      window.addEventListener("scroll", function() {
-        var scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-        btn.classList.toggle("is-visible", scrolled > 300);
-      }, { passive: true });
-
-      btn.addEventListener("click", function() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    })();
+    }
+    restart();
+  })();
   </script>
 </body>
 </html>
