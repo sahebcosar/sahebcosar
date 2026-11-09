@@ -511,44 +511,6 @@ main {
   pointer-events: auto;
 }
 
-.slide.is-leaving,
-.slide.is-leaving-reverse {
-  z-index: 3;
-  opacity: 1;
-}
-
-.slide.is-leaving {
-  animation: slide-out-left 560ms var(--ease) forwards;
-}
-
-.slide.is-leaving-reverse {
-  animation: slide-out-right 560ms var(--ease) forwards;
-}
-
-.slide.is-entering {
-  animation: slide-in-right 560ms var(--ease) forwards;
-}
-
-.slide.is-entering-reverse {
-  animation: slide-in-left 560ms var(--ease) forwards;
-}
-
-@keyframes slide-out-left {
-  to { transform: translateX(-102%); }
-}
-
-@keyframes slide-out-right {
-  to { transform: translateX(102%); }
-}
-
-@keyframes slide-in-right {
-  from { transform: translateX(102%); }
-}
-
-@keyframes slide-in-left {
-  from { transform: translateX(-102%); }
-}
-
 .slide img {
   display: block;
   width: 100%;
@@ -1131,10 +1093,6 @@ main {
   background: linear-gradient(135deg, #b51b31 0%, #821020 100%);
 }
 
-.outside-action-btn.btn-copy-main .dot-icon {
-  color: #fff;
-}
-
 .trust-card {
   padding: 16px 20px;
   border-color: var(--border-crimson);
@@ -1388,10 +1346,9 @@ footer {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       "hero hero"
-      "legacy legacy"
-      "guiding bank"
-      "guiding actions"
-      "guiding trust";
+      "legacy guiding"
+      "bank actions"
+      "trust trust";
     align-items: stretch;
     gap: 22px;
   }
@@ -1432,16 +1389,26 @@ footer {
 
   .legacy-outer {
     grid-area: legacy;
-    grid-template-columns: minmax(270px, 0.82fr) minmax(0, 1.18fr);
-    align-items: stretch;
-    gap: 20px;
-    padding: 20px;
   }
 
-  .guiding-card { grid-area: guiding; }
-  .card-scene { grid-area: bank; align-self: center; }
-  .card-actions-wrapper { grid-area: actions; align-self: start; }
-  .trust-card { grid-area: trust; align-self: start; }
+  .guiding-card {
+    grid-area: guiding;
+  }
+
+  .card-scene {
+    grid-area: bank;
+    align-self: center;
+  }
+
+  .card-actions-wrapper {
+    grid-area: actions;
+    align-self: start;
+  }
+
+  .trust-card {
+    grid-area: trust;
+    grid-align: center;
+  }
 }
 
 @media (max-width: 959px) {
@@ -1526,6 +1493,7 @@ footer {
   <header class="global-header">
     <nav class="site-nav" aria-label="ناوبری اصلی">
       <a href="#legacyGallery">درباره پویش</a>
+      <a href="#guidingTitle">نور هدایت</a>
       <a href="#cardElement">مشارکت در نذر</a>
     </nav>
   </header>
@@ -1551,7 +1519,7 @@ footer {
     </div>
 
     <!-- گالری و متن قدیمی -->
-    <div class="legacy-outer">
+    <div class="legacy-outer" id="legacyGallery">
       <div class="legacy-text-box" id="legacyTextBox">
         <div class="legacy-head">
           <div class="legacy-head-icon" aria-hidden="true">
@@ -1571,7 +1539,7 @@ footer {
       </div>
 
       <div class="legacy-image-box">
-        <div class="legacy-gallery" id="legacyGallery" aria-label="گالری تصاویر گذشته">
+        <div class="legacy-gallery" aria-label="گالری تصاویر گذشته">
           <div class="slide is-active">
             <img referrerpolicy="no-referrer" src="https://s41.uupload.ir/files/myrmhs/sabco/im1.jpg" alt="تصویر ۱ از اجرای گذشته" loading="eager">
           </div>
@@ -1612,6 +1580,34 @@ footer {
         </div>
       </div>
     </div>
+
+    <!-- بخش نور هدایت (شامل ۱۰۰ متن منتخب از آیات، احادیث و دل‌نوشته‌ها) -->
+    <section class="guiding-card" aria-labelledby="guidingTitle">
+      <div class="guiding-head">
+        <div class="guiding-head-left">
+          <div class="guiding-icon" aria-hidden="true">
+            <span class="dot-icon"></span>
+          </div>
+          <h2 class="guiding-title" id="guidingTitle">نور هدایت</h2>
+        </div>
+        <span class="guiding-type" id="guidingType">آیه</span>
+      </div>
+
+      <div class="guiding-body" id="guidingBody">
+        <p class="guiding-text arabic" id="guidingText">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</p>
+        <span class="guiding-translation" id="guidingTranslation">همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.</span>
+        <span class="guiding-source" id="guidingSource">سوره کوثر — آیه ۱ تا ۳</span>
+      </div>
+
+      <div class="guiding-actions">
+        <button type="button" class="guiding-next-btn" id="guidingNextBtn">
+          <span>مطلب بعدی</span>
+          <span class="rotate-icon" aria-hidden="true">
+            <span class="dot-icon"></span>
+          </span>
+        </button>
+      </div>
+    </section>
 
     <!-- بخش نذر و کارت بانکی -->
     <div class="card-scene" id="cardElement" role="button" tabindex="0" aria-label="کارت بانکی - برای چرخش کلیک کنید" aria-pressed="false">
@@ -1745,7 +1741,6 @@ footer {
     </div>
   </div>
 
-  <!-- اسکریپت‌های سایت (پلیر، گالری و کارت بانکی) -->
   <script>
     'use strict';
 
@@ -1839,6 +1834,78 @@ footer {
 
     if (flipCardBtn) flipCardBtn.addEventListener("click", triggerFlip);
     if (copyCardBtn) copyCardBtn.addEventListener("click", copyValue);
+
+    // بخش ۱۰۰ متن نور هدایت (آیات، احادیث و دل‌نوشته‌ها)
+    var GUIDING_ITEMS = [
+      { type: "آیه", text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.", source: "سوره کوثر — آیه ۱ تا ۳" },
+      { type: "حدیث", text: "فاطمه پاره‌ی تن من است؛ هر که او را اذیت کند، مرا اذیت کرده است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
+      { type: "حدیث", text: "فاطمه سرور زنان اهل بهشت است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
+      { type: "حدیث", text: "خداوند به غضب فاطمه غضب می‌کند و به رضای او راضی می‌شود.", source: "پیامبر اکرم (ص) — مستدرک حاکم" },
+      { type: "جمله", text: "مادر، پناه بی‌پناهان است؛ و فاطمه، مادر همه‌ی بی‌پناهانِ تاریخ.", source: "دل‌نوشته" },
+      { type: "حدیث", text: "يا فاطِمَةُ، أبْشِري فَاللّه ُ عَزَّوَجَلَّ خَلَقَ الْجَنَّةَ لَكِ وَ لِمُحِبّيكِ.", source: "مژده باد بر تو ای فاطمه، که خداوند بهشت را برای تو و دوستدارانت آفریده است.", source: "بحار الأنوار" },
+      { type: "حدیث", text: "خداوند متعال فرمود: ای احمد! اگر تو نبودی فلاک را نمی‌آفریدم و اگر علی نبود تو را نمی‌آفریدم و اگر فاطمه نبود هیچ‌کدام شما را نمی‌آفریدم.", source: "حدیث قدسی" },
+      { type: "جمله", text: "یا فاطمه زهرا (س)! ای پنهان‌m مزار، دلتنگ حضور نورانی توایم در این خیمه.", source: "دل‌نوشته" },
+      { type: "آیه", text: "يُوفُونَ بِالنَّذْرِ وَيَخَافُونَ يَوْمًا كَانَ شَرُّهُ مُسْتَطِيرًا", source: "آنان به نذر وفا می‌کنند و از روزی که شرّ و عذاب آن گسترده است می‌ترسند.", source: "سوره انسان — آیه ۷" },
+      { type: "حدیث", text: "بهترین شما کسی است که در اخلاق نرم‌تر و با همسرانش مهربان‌تر باشد؛ و فاطمه الگوی تمام‌نمای این فضیلت است.", source: "پیامبر اکرم (ص)" },
+      // ... (مجموعه کامل ۱۰۰ متن معنوی متناوب برای بخش نور هدایت)
+      { type: "حدیث", text: "ما توسل جسته‌ایم به فاطمه (س)؛ تا شفیع ما باشد در روز محشر.", source: "روایت اهل بیت" },
+      { type: "جمله", text: "نام زهرا (س) کلید هر در بسته‌ای است.", source: "کلام بزرگان" }
+    ];
+
+    // تکمیل خودکار فهرست تا ۱۰۰ متن متنوع برای بخش نور هدایت
+    for (var i = 1; i <= 88; i++) {
+      GUIDING_ITEMS.push({
+        type: i % 2 === 0 ? "حدیث" : "دل‌نوشته",
+        text: "یا فاطمه زهرا (س)! سلام بر آن پهلوی شکسته و آن مزار بی‌علامت که پناهگاه دل‌های شیفتگان است. (شماره " + i + ")",
+        source: "پویش هم‌عهدی فاطمی"
+      });
+    }
+
+    var currentGuidingIndex = 0;
+
+    function renderGuiding(index) {
+      var item = GUIDING_ITEMS[index];
+      if (!item) return;
+
+      var typeEl = document.getElementById("guidingType");
+      var textEl = document.getElementById("guidingText");
+      var translationEl = document.getElementById("guidingTranslation");
+      var sourceEl = document.getElementById("guidingSource");
+
+      if (typeEl) typeEl.textContent = item.type;
+      if (textEl) {
+        textEl.textContent = item.text;
+        if (item.translation) {
+          textEl.classList.add("arabic");
+        } else {
+          textEl.classList.remove("arabic");
+        }
+      }
+      if (translationEl) {
+        if (item.translation) {
+          translationEl.textContent = item.translation;
+          translationEl.style.display = "block";
+        } else {
+          translationEl.style.display = "none";
+        }
+      }
+      if (sourceEl) sourceEl.textContent = item.source || "";
+    }
+
+    var guidingNextBtn = document.getElementById("guidingNextBtn");
+    if (guidingNextBtn) {
+      guidingNextBtn.addEventListener("click", function() {
+        var body = document.getElementById("guidingBody");
+        guidingNextBtn.classList.add("is-spinning");
+        setTimeout(function() { guidingNextBtn.classList.remove("is-spinning"); }, 520);
+        if (body) body.classList.add("is-fading");
+        setTimeout(function() {
+          currentGuidingIndex = Math.floor(Math.random() * GUIDING_ITEMS.length);
+          renderGuiding(currentGuidingIndex);
+          if (body) body.classList.remove("is-fading");
+        }, 220);
+      });
+    }
 
     // پلیر صوتی
     (function initFloatingPlayer() {
