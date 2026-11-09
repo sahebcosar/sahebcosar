@@ -260,7 +260,8 @@ main {
 .hero-card,
 .legacy-outer,
 .guiding-card,
-.trust-card {
+.trust-card,
+.salavat-counter-box {
   position: relative;
   width: 100%;
   border: 1px solid var(--border);
@@ -410,6 +411,175 @@ main {
 .live-status-pill .dot-icon {
   color: var(--crimson-bright);
   box-shadow: 0 0 8px var(--crimson-bright);
+}
+
+/* ============ Salavat Counter ============ */
+.salavat-counter-box {
+  position: relative;
+  text-align: center;
+  padding: 40px 20px;
+  border: 1px solid var(--border-crimson);
+  background: linear-gradient(160deg, #1c1317 0%, #0d090b 100%);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.salavat-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(184, 29, 51, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.salavat-counter-box h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(212, 180, 117, 0.3);
+}
+
+.salavat-counter-box p {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.salavat-display {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 30px;
+  border-radius: 50%;
+  background: rgba(10, 6, 8, 0.6);
+  border: 1px solid rgba(212, 180, 117, 0.2);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.salavat-display::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, var(--crimson-bright) 50%, transparent 100%);
+  opacity: 0.3;
+  animation: spin 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+#salavatCount {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 4px 15px rgba(184, 29, 51, 0.6);
+  transition: transform 0.1s ease;
+}
+
+.salavat-btn-wrapper {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.salavat-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 200px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #b81d33 0%, #6e0d1b 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(184, 29, 51, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+}
+
+.salavat-btn:hover:not(.is-cooling) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(184, 29, 51, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.salavat-btn:active:not(.is-cooling) {
+  transform: translateY(1px) scale(0.97);
+}
+
+.salavat-btn.is-cooling {
+  cursor: not-allowed;
+  filter: grayscale(0.6) brightness(0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.salavat-icon {
+  width: 20px;
+  height: 20px;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.salavat-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+}
+
+.salavat-btn.is-cooling .salavat-progress {
+  animation: progress-drain 3s linear forwards;
+}
+
+@keyframes progress-drain {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+
+.salavat-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple-anim 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
 }
 
 /* ============ Legacy & Gallery Section ============ */
@@ -797,7 +967,7 @@ main {
   to { transform: rotate(360deg); }
 }
 
-/* ============ Realistic Bank Card (Desktop & Mobile) ============ */
+/* ============ Realistic Bank Card ============ */
 .card-scene {
   position: relative;
   width: min(100%, 420px);
@@ -1479,6 +1649,7 @@ footer {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       "hero hero"
+      "salavat salavat"
       "legacy legacy"
       "guiding bank"
       "guiding actions"
@@ -1519,6 +1690,10 @@ footer {
     grid-column: 2;
     grid-row: 2 / 5;
     align-self: center;
+  }
+
+  .salavat-counter-box {
+    grid-area: salavat;
   }
 
   .legacy-outer {
@@ -1693,6 +1868,7 @@ footer {
   <header class="global-header">
     <nav class="site-nav" aria-label="ناوبری اصلی">
       <a href="#legacyGallery">درباره پویش</a>
+      <a href="#salavatSection">صلوات شمار</a>
       <a href="#cardElement">مشارکت در نذر</a>
     </nav>
   </header>
@@ -1714,6 +1890,27 @@ footer {
       <div class="live-status-pill">
         <span class="dot-icon"></span>
         به برکت حضور و نفس‌های گرم شما، این خیمه برپاست.
+      </div>
+    </div>
+
+    <!-- صلوات شمار -->
+    <div class="salavat-counter-box" id="salavatSection">
+      <div class="salavat-bg-glow"></div>
+      <h2>هم‌عهدی با صلوات</h2>
+      <p>با هر کلیک، یک صلوات نذر خیمه‌ی حضرت زهرا (س) کنید.</p>
+      
+      <div class="salavat-display">
+        <div id="salavatCount">0</div>
+      </div>
+      
+      <div class="salavat-btn-wrapper">
+        <button id="salavatBtn" class="salavat-btn">
+          <svg class="salavat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span class="salavat-btn-text">صلوات نذر کن</span>
+          <div class="salavat-progress" id="salavatProgress"></div>
+        </button>
       </div>
     </div>
 
@@ -1934,7 +2131,7 @@ footer {
 
   <div class="floating-player" id="floatingPlayer">
     <div class="player-info">
-      <span class="player-title" id="playerTitle">چادرت را بتکان</span>
+      <span class="player-title" id="playerTitle">این روزا میگذره علی</span>
     </div>
     <div class="player-controls">
       <button class="player-btn" id="prevBtn" aria-label="آهنگ قبلی" title="آهنگ قبلی">
@@ -1950,12 +2147,144 @@ footer {
     </div>
   </div>
 
+  <!-- اسکریپت فایربیس (نسخه سازگار - بدون مشکل CORS در اجرای محلی) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+  <!-- اسکریپت صلوات‌شمار -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2XjhsIxGmFn9LNbCHiUmzoQVttOAhxUQ",
+      authDomain: "salavatfatemiye.firebaseapp.com",
+      databaseURL: "https://salavatfatemiye-default-rtdb.firebaseio.com",
+      projectId: "salavatfatemiye",
+      storageBucket: "salavatfatemiye.firebasestorage.app",
+      messagingSenderId: "549826831043",
+      appId: "1:549826831043:web:1ce68b45e57c0dd92eb876",
+      measurementId: "G-GG6RPT7H0H"
+    };
+
+    // مقداردهی اولیه فایربیس
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const salavatRef = db.ref('salavat_counter');
+
+    const countDisplay = document.getElementById('salavatCount');
+    const btn = document.getElementById('salavatBtn');
+    const progressBar = document.getElementById('salavatProgress');
+    
+    const COOLDOWN_MS = 3000;
+    let isCoolingDown = false;
+    let cooldownTimeout = null;
+    let localOptimisticCount = 0; // برای آپدیت آنی
+
+    // ۱. دریافت و نمایش زنده عدد از سرور
+    salavatRef.on('value', (snapshot) => {
+      const val = snapshot.val() || 0;
+      localOptimisticCount = val;
+      countDisplay.textContent = val;
+      
+      // افکت کوچک برای تغییر عدد
+      countDisplay.style.transform = 'scale(1.1)';
+      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+    });
+
+    // تابع آزاد کردن دکمه
+    function forceUnlock() {
+      isCoolingDown = false;
+      btn.classList.remove('is-cooling');
+      progressBar.style.animation = 'none';
+      progressBar.offsetHeight; // ترفند ریست انیمیشن
+      progressBar.style.animation = '';
+      localStorage.removeItem('salavatCooldownEnd');
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+    }
+
+    // ۲. شروع کول‌داون
+    function startCooldown() {
+      isCoolingDown = true;
+      btn.classList.add('is-cooling');
+      
+      // ذخیره زمان پایان
+      const endTime = Date.now() + COOLDOWN_MS;
+      localStorage.setItem('salavatCooldownEnd', endTime);
+
+      if (cooldownTimeout) clearTimeout(cooldownTimeout);
+      cooldownTimeout = setTimeout(forceUnlock, COOLDOWN_MS);
+    }
+
+    // ۳. بررسی وضعیت در شروع
+    function checkCooldownOnLoad() {
+      forceUnlock(); // اول دکمه را آزاد کن
+
+      const savedEnd = localStorage.getItem('salavatCooldownEnd');
+      if (savedEnd) {
+        const remaining = parseInt(savedEnd) - Date.now();
+        if (remaining > 0 && remaining <= COOLDOWN_MS) {
+          isCoolingDown = true;
+          btn.classList.add('is-cooling');
+          
+          progressBar.style.animation = 'none';
+          progressBar.style.transform = `scaleX(${remaining / COOLDOWN_MS})`;
+          progressBar.offsetHeight;
+          
+          cooldownTimeout = setTimeout(forceUnlock, remaining);
+        } else {
+          localStorage.removeItem('salavatCooldownEnd');
+        }
+      }
+    }
+
+    // ۴. افکت موج
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add('salavat-ripple');
+      
+      const ripple = button.getElementsByClassName('salavat-ripple')[0];
+      if (ripple) ripple.remove();
+      button.appendChild(circle);
+    }
+
+    // ۵. کلیک روی دکمه (استفاده از سیستم اتمیک increment)
+    btn.addEventListener('click', (e) => {
+      if (isCoolingDown) return; 
+
+      createRipple(e);
+
+      // آپدیت آنی رابط کاربری (Optimistic UI) بدون صبر کردن برای سرور
+      localOptimisticCount++;
+      countDisplay.textContent = localOptimisticCount;
+      countDisplay.style.transform = 'scale(1.1)';
+      setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
+
+      // ثبت در فایربیس با استفاده از متد Increment که در صورت کلیک همزمان کاربران، هیچ مشکلی ایجاد نمی‌کند
+      salavatRef.set(firebase.database.ServerValue.increment(1)).catch(err => {
+          console.error("Error saving to Firebase: ", err);
+          if(window.showToast) {
+            window.showToast("خطا در ارتباط با سرور فایربیس.");
+          }
+      });
+
+      startCooldown();
+    });
+
+    checkCooldownOnLoad();
+  </script>
+
+  <!-- اسکریپت‌های اصلی سایت -->
   <script>
     'use strict';
 
     var CARD_PAN = "6219861904253118";
 
-    function showToast(message) {
+    // این فانکشن به حالت سراسری (Global) منتقل شده تا بقیه بخش‌ها هم به آن دسترسی داشته باشند
+    window.showToast = function(message) {
       var t = document.getElementById("snackToast");
       if (!t) return;
       t.textContent = message;
@@ -1972,7 +2301,6 @@ footer {
       }
     }
 
-    /* ============ Card flip & Copy ============ */
     function triggerFlip() {
       var card = document.getElementById("cardElement");
       if (!card) return;
@@ -2045,13 +2373,12 @@ footer {
     if (flipCardBtn) flipCardBtn.addEventListener("click", triggerFlip);
     if (copyCardBtn) copyCardBtn.addEventListener("click", copyValue);
 
-    /* ============ Floating Audio Player ============ */
     (function initFloatingPlayer() {
       var tracks = [
-        { title: "چادرت را بتکان", src: "https://s6.uupload.ir/filelink/SJekO4DGarFZ_5660e50398/pouyanfar_-_chadorat_ra_betekan_320k-_(madahionline.ir)_wqu.mp3" },
-        { title: "گل چادر گلدارت", src: "https://s6.uupload.ir/filelink/QK3pzIWSgnNt_3aa4bfface/نماهنگ_گل_چادر_گلدارت_dyl3.mp3" },
-        { title: "با چادرت چی کار کنم", src: "https://s6.uupload.ir/filelink/dNtahMjyAhCr_b071165f05/نماهنگ_با_چادرت_چی_کار_کنم_320_qqxn.mp3" },
-        { title: "این روزا میگذره علی", src: "https://s6.uupload.ir/filelink/cYWMzL6SWFPc_6245ac4167/این_روزا_میگذره_علی_320_pf0t.mp3" }
+        { title: "این روزا میگذره علی", src: "https://s33.uupload.ir/files/sahebcosar/این%20روزا%20میگذره%20علی%20320.mp3" },
+        { title: "گل چادر گلدارت", src: "https://s33.uupload.ir/files/sahebcosar/نماهنگ%20گل%20چادر%20گلدارت.mp3" },
+        { title: "با چادرت چی کار کنم", src: "https://s33.uupload.ir/files/sahebcosar/نماهنگ%20با%20چادرت%20چی%20کار%20کنم%20320.mp3" },
+        { title: "چادرت را بتکان", src: "https://s11.uupload.ir/files/sahebcosar/Pouyanfar%20-%20Chadorat%20Ra%20Betekan%20320K-%20(madahionline.ir).mp3" }
       ];
 
       var currentIndex = 0;
@@ -2124,7 +2451,6 @@ footer {
       updateUI();
     })();
 
-    /* ============ Guiding Light ============ */
     var GUIDING_ITEMS = [
       { type: "آیه", text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ۝ فَصَلِّ لِرَبِّكَ وَانْحَرْ ۝ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "همانا ما به تو کوثر (خیر کثیر و فاطمه) عطا کردیم. پس برای پروردگارت نماز بخوان و قربانی کن. بی‌گمان دشمن تو، خود بی‌نشان و بی‌نسل است.", source: "سوره کوثر — آیه ۱ تا ۳" },
       { type: "حدیث", text: "فاطمه پاره‌ی تن من است؛ هر که او را اذیت کند، مرا اذیت کرده است.", source: "پیامبر اکرم (ص) — صحیح بخاری" },
@@ -2177,7 +2503,6 @@ footer {
       });
     }
 
-    /* ============ Legacy photo slider ============ */
     (function initLegacySlider() {
       var gallery = document.getElementById("legacyGallery");
       if (!gallery) return;
@@ -2275,7 +2600,6 @@ footer {
       start();
     })();
 
-    /* ============ Back to top ============ */
     (function initBackToTop() {
       var btn = document.getElementById("backToTopBtn");
       if (!btn) return;
@@ -2290,7 +2614,6 @@ footer {
       });
     })();
 
-    /* ============ Spiritual particles ============ */
     (function initParticlesSystem() {
       if (window.matchMedia("(max-width: 768px)").matches) return;
       var canvas = document.getElementById('spiritualCanvas');
