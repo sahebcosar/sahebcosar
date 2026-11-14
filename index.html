@@ -1912,6 +1912,12 @@ footer {
           <div class="salavat-progress" id="salavatProgress"></div>
         </button>
       </div>
+
+      <!-- اختیاری: نشان (Badge) شمارنده (اگر خواستی اینجا می‌تونی نگهش داری) -->
+      <div style="margin-top: 20px; position: relative; z-index: 1;">
+        <img src="https://countapi.mileshilliard.com/api/v1/get/fatemiye/shield?text=صلوات&bgcolor=2f6b4f&textcolor=ffffff&style=flat" alt="تعداد صلوات">
+      </div>
+
     </div>
 
     <div class="legacy-outer">
@@ -2551,36 +2557,39 @@ footer {
     })();
   </script>
 
-  <!-- اسکریپت صلوات‌شمار اختصاصی با سرور گوگل (کاملاً ضد فیلتر) -->
+  <!-- اسکریپت صلوات‌شمار با استفاده از CountAPI (بدون نیاز به هاست) -->
   <script>
-    // لینک شما با موفقیت در این بخش قرار گرفت:
-    const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbxpzJzNuNRk5BJ5QlDXV7lGetbh1F5iadcnGJM2UaZX4yUU_0oSNtwzqxnU6E04B1hhIw/exec";
+    // ==========================================
+    // کد جدید صلوات‌شمار (اتصال به CountAPI)
+    // ==========================================
 
     const countDisplay = document.getElementById('salavatCount');
     const btn = document.getElementById('salavatBtn');
     const progressBar = document.getElementById('salavatProgress');
 
+    // تنظیمات شمارنده
+    const COUNTER_KEY = "fatemiye"; 
+    const API_BASE = "https://countapi.mileshilliard.com/api/v1";
+
     let localCount = 0;
     let isCooling = false;
 
-    // ۱. دریافت آمار زنده از گوگل (هر ۳ ثانیه)
+    // ۱. دریافت آمار زنده (هر ۳ ثانیه)
     function fetchCount() {
-      // استفاده از زمان برای جلوگیری از کش شدن مرورگر
-      const url = GOOGLE_API_URL + '?_=' + Date.now();
-      
-      fetch(url)
-        .then(res => res.json())
+      fetch(`${API_BASE}/get/${COUNTER_KEY}?_=${Date.now()}`)
+        .then(res => {
+            if(res.status === 404) return { value: 0 }; // اگر کلید وجود نداشت
+            return res.json();
+        })
         .then(data => {
-          if (data && data.count !== undefined) {
-            if (data.count > localCount || localCount === 0) {
-              localCount = data.count;
-              countDisplay.textContent = localCount;
-            }
+          if (data && data.value !== undefined) {
+            localCount = data.value;
+            countDisplay.textContent = localCount;
           }
         })
         .catch(err => console.error('خطا در دریافت آمار:', err));
     }
-    
+
     fetchCount();
     setInterval(fetchCount, 3000);
 
@@ -2616,19 +2625,18 @@ footer {
           btn.classList.remove('is-cooling');
       }, 1000);
 
-      // آپدیت سریع عدد روی صفحه برای القای حس سرعت
+      // آپدیت خوش‌بینانه روی صفحه
       localCount++;
       countDisplay.textContent = localCount;
       countDisplay.style.transform = 'scale(1.1)';
       setTimeout(() => countDisplay.style.transform = 'scale(1)', 150);
 
-      // ارسال مستقیم دستور افزایش عدد به گوگل شیت
-      const upUrl = GOOGLE_API_URL + '?up=1&_=' + Date.now();
-      fetch(upUrl)
+      // ارسال درخواست افزایش به CountAPI
+      fetch(`${API_BASE}/hit/${COUNTER_KEY}`)
         .then(res => res.json())
         .then(data => {
-          if(data && data.count !== undefined) {
-             localCount = data.count;
+          if(data && data.value !== undefined) {
+             localCount = data.value;
              countDisplay.textContent = localCount;
           }
         })
