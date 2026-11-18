@@ -632,7 +632,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
 .footer-logo-label { color: var(--ink); font-size: 0.65rem; font-weight: 700; }
 .footer-text { flex: 1; color: var(--muted); font-size: 0.74rem; line-height: 1.9; text-align: left; }
 
-/* آیکون پیش‌فرض لوگو در صورت خرابی لینک */
 .logo-fallback-svg { color: var(--gold); fill: currentColor; width: 20px; height: 20px; }
 
 /* ============ Floating Elements ============ */
@@ -934,8 +933,19 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
     <section class="feedback-card" id="feedbackSection" aria-labelledby="feedbackTitle">
       <div class="feedback-head">
         <div class="guiding-icon" aria-hidden="true"><span class="dot-icon"></span></div>
-        <h2 class="feedback-title" id="feedbackTitle">شنیده‌ها و سپاس‌ها</h2>
+        <h2 class="feedback-title" id="feedbackTitle">ارتباط با ما</h2>
       </div>
+
+      <!-- 🌟 دکمه هدایت به ربات بله 🌟 -->
+      <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: rgba(143, 20, 36, 0.1); border: 1px solid var(--border-crimson); border-radius: 12px;">
+        <p style="color: var(--gold); font-weight: 800; margin-bottom: 15px; font-size: 1.1rem;">برای گفتگوی مستقیم و سریع با پشتیبانی، روی دکمه زیر کلیک کنید:</p>
+        <a href="https://ble.ir/Fatemiyebot" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 10px 30px; border-radius: 999px; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: #fff; font-size: 1rem; font-weight: 800; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(0, 123, 255, 0.6)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0, 123, 255, 0.4)';">
+          <svg style="width: 24px; height: 24px; fill: white;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.37 1.23 4.8L2.22 21.78l5.11-1.02C8.75 21.55 10.32 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <span>💬 پیام در پیام‌رسان بله</span>
+        </a>
+      </div>
+
+      <div style="text-align: center; color: var(--muted); margin-bottom: 20px; font-size: 0.9rem;">و یا از فرم زیر برای ارسال پیام استفاده کنید:</div>
 
       <div id="feedbackMessage" class="feedback-msg"></div>
 
@@ -962,7 +972,7 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
         </div>
 
         <button type="submit" class="feedback-submit-btn" id="feedbackSubmit" style="margin-top: 20px;">
-          <span>ارسال پیام</span>
+          <span>ارسال پیام از طریق فرم</span>
           <span class="dot-icon"></span>
         </button>
       </form>
@@ -986,7 +996,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
       <div class="footer-logos">
         <div class="footer-logo-card" title="مکتب الرسول (ص)">
           <div class="footer-logo-img">
-            <!-- آیکون جایگزین بسیار زیبا در صورت لود نشدن عکس -->
             <svg class="logo-fallback-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
           </div>
           <span class="footer-logo-label">مکتب الرسول (ص)</span>
@@ -994,7 +1003,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
 
         <div class="footer-logo-card" title="مجتمع آموزشی صاحب کوثر (ص)">
           <div class="footer-logo-img">
-            <!-- آیکون جایگزین بسیار زیبا در صورت لود نشدن عکس -->
             <svg class="logo-fallback-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
           </div>
           <span class="footer-logo-label">مجتمع آموزشی صاحب کوثر (ص)</span>
@@ -1012,6 +1020,11 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
   </button>
 
   <div id="snackToast" class="snack-toast" role="status" aria-live="polite">✅ شماره کارت با موفقیت کپی شد</div>
+
+  <!-- 🌟 دکمه شناور بله 🌟 -->
+  <a href="https://ble.ir/Fatemiyebot" target="_blank" title="گفتگو در بله" style="position: fixed; bottom: 80px; left: 20px; z-index: 9999; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #007bff, #0056b3); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg style="width: 30px; height: 30px; fill: white;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.37 1.23 4.8L2.22 21.78l5.11-1.02C8.75 21.55 10.32 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+  </a>
 
   <div class="floating-player" id="floatingPlayer">
     <div class="player-info"><span class="player-title" id="playerTitle">این روزا میگذره علی</span></div>
@@ -1238,7 +1251,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
     });
   </script>
 
-  <!-- ============ اسکریپت فرم پیشنهاد و انتقاد ============ -->
   <script>
     const WORKER_URL = 'https://balefourm.amirsotudehs.workers.dev/'; 
 
