@@ -929,14 +929,14 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
       برای مشاهده اطلاعات حساب، روی کارت ضربه بزنید. پس از واریز، <b>نیازی به ارسال فیش یا پیگیری نیست</b>؛ اجر شما در دفتر خادمان این پویش ثبت خواهد شد.
     </div>
 
-    <!-- ============ فرم پیشنهاد، انتقاد و تشکر ============ -->
+    <!-- ============ ارتباط با ما ============ -->
     <section class="feedback-card" id="feedbackSection" aria-labelledby="feedbackTitle">
       <div class="feedback-head">
         <div class="guiding-icon" aria-hidden="true"><span class="dot-icon"></span></div>
         <h2 class="feedback-title" id="feedbackTitle">ارتباط با ما</h2>
       </div>
 
-      <!-- 🌟 دکمه هدایت به ربات بله 🌟 -->
+      <!-- دکمه هدایت به ربات بله -->
       <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: rgba(143, 20, 36, 0.1); border: 1px solid var(--border-crimson); border-radius: 12px;">
         <p style="color: var(--gold); font-weight: 800; margin-bottom: 15px; font-size: 1.1rem;">برای گفتگوی مستقیم و سریع با پشتیبانی، روی دکمه زیر کلیک کنید:</p>
         <a href="https://ble.ir/Fatemiyebot" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 10px 30px; border-radius: 999px; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: #fff; font-size: 1rem; font-weight: 800; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(0, 123, 255, 0.6)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(0, 123, 255, 0.4)';">
@@ -944,38 +944,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
           <span>💬 پیام در پیام‌رسان بله</span>
         </a>
       </div>
-
-      <div style="text-align: center; color: var(--muted); margin-bottom: 20px; font-size: 0.9rem;">و یا از فرم زیر برای ارسال پیام استفاده کنید:</div>
-
-      <div id="feedbackMessage" class="feedback-msg"></div>
-
-      <form id="myForm">
-        <div class="feedback-grid">
-          <div class="feedback-form-group">
-            <label class="feedback-label" for="feedbackName">نام شما</label>
-            <input type="text" name="name" id="feedbackName" class="feedback-input" placeholder="نام یا نام مستعار" required>
-          </div>
-
-          <div class="feedback-form-group">
-            <label class="feedback-label" for="feedbackType">نوع پیام</label>
-            <select name="type" id="feedbackType" class="feedback-select">
-              <option value="پیشنهاد">پیشنهاد</option>
-              <option value="انتقاد">انتقاد</option>
-              <option value="تشکر">تشکر</option>
-            </select>
-          </div>
-
-          <div class="feedback-form-group feedback-group-full">
-            <label class="feedback-label" for="feedbackText">متن پیام</label>
-            <textarea name="message" id="feedbackText" class="feedback-textarea" placeholder="پیام خود را بنویسید..." required></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="feedback-submit-btn" id="feedbackSubmit" style="margin-top: 20px;">
-          <span>ارسال پیام از طریق فرم</span>
-          <span class="dot-icon"></span>
-        </button>
-      </form>
     </section>
   </main>
 
@@ -1021,7 +989,7 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
 
   <div id="snackToast" class="snack-toast" role="status" aria-live="polite">✅ شماره کارت با موفقیت کپی شد</div>
 
-  <!-- 🌟 دکمه شناور بله 🌟 -->
+  <!-- دکمه شناور بله -->
   <a href="https://ble.ir/Fatemiyebot" target="_blank" title="گفتگو در بله" style="position: fixed; bottom: 80px; left: 20px; z-index: 9999; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #007bff, #0056b3); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
     <svg style="width: 30px; height: 30px; fill: white;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.37 1.23 4.8L2.22 21.78l5.11-1.02C8.75 21.55 10.32 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
   </a>
@@ -1248,26 +1216,6 @@ footer { position: relative; z-index: 1; width: min(100%, var(--content-width));
         .then(res => res.json())
         .then(data => { if(data && data.value !== undefined) { localCount = data.value; countDisplay.textContent = localCount; } })
         .catch(err => console.error("خطا در ثبت صلوات:", err));
-    });
-  </script>
-
-  <script>
-    const WORKER_URL = 'https://balefourm.amirsotudehs.workers.dev/'; 
-
-    document.getElementById('myForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target, result = document.getElementById('feedbackMessage'), btn = document.getElementById('feedbackSubmit');
-      btn.disabled = true; result.className = 'feedback-msg';
-      result.textContent = 'در حال ارسال...'; result.style.display = 'block'; result.style.color = '#d4b475'; result.style.background = 'transparent'; result.style.border = 'none';
-
-      const payload = { type: form.type.value, name: form.name.value, message: form.message.value };
-      try {
-        const res = await fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        const data = await res.json();
-        if (data.ok) { result.className = 'feedback-msg is-success'; result.innerHTML = '✅ پیام شما با موفقیت ارسال شد. ممنون از همراهی‌تون!'; form.reset(); }
-        else { result.className = 'feedback-msg is-error'; result.innerHTML = 'ارسال نشد. لطفاً دوباره تلاش کنید.'; }
-      } catch (err) { result.className = 'feedback-msg is-error'; result.innerHTML = 'خطا در ارتباط با سرور.'; }
-      finally { btn.disabled = false; }
     });
   </script>
 
